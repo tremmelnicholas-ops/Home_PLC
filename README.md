@@ -2,6 +2,14 @@
 
 Web-based HMI for a residential CompactLogix PLC monitoring generator/ATS, sump pump, HVAC, outdoor temperature, and whole-house electrical.
 
+## Screenshots
+
+### Dashboard (Simulation Mode)
+![Dashboard](screenshots/dashboard.png)
+
+### PLC Logic Visualization
+![Visualization](screenshots/visualization.png)
+
 ## What it does
 - Polls PLC tags over EtherNet/IP using pylogix
 - Displays live status, alarms, and runtime statistics in a dark-theme dashboard
