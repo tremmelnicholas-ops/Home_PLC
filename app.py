@@ -117,6 +117,11 @@ def index():
     return render_template("index.html", sim_mode=SIM_MODE)
 
 
+@app.route("/viz")
+def viz():
+    return render_template("viz.html", sim_mode=SIM_MODE)
+
+
 @app.route("/api/data")
 def api_data():
     if SIM_MODE:
@@ -157,6 +162,14 @@ def api_write():
     else:
         ok = write_tag(tag, value)
     return jsonify({"success": ok, "tag": tag})
+
+
+@app.route("/api/sim/timers")
+def api_sim_timers():
+    """Return timer states from the simulator."""
+    if not SIM_MODE:
+        return jsonify({"error": "Not in simulation mode"}), 400
+    return jsonify(sim.get_timer_states())
 
 
 @app.route("/api/sim", methods=["POST"])

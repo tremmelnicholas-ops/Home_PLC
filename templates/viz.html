@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HomePLC - Visualization</title>
+<link rel="stylesheet" href="/static/style.css">
+<style>
+/* ============================================================
+   VIZ PAGE STYLES
+   ============================================================ */
+
+/* Layout */
+.viz-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    padding: 16px;
+    max-width: 1800px;
+    margin: 0 auto;
+}
+
+.viz-full { grid-column: 1 / -1; }
+
+/* State machine diagram */
+.sm-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    padding: 8px 0;
+    justify-content: center;
+}
+
+.sm-node {
+    position: relative;
+    padding: 8px 14px;
+    border: 2px solid var(--card-border);
+    border-radius: 6px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--text-dim);
+    background: var(--bg);
+    text-align: center;
+    min-width: 80px;
+    transition: all 0.3s;
+}
+
+.sm-node .sm-id {
+    font-size: 0.65rem;
+    color: var(--text-dim);
+    opacity: 0.6;
+    display: block;
+    margin-bottom: 2px;
+}
+
+.sm-node.active {
+    color: #fff;
+    border-color: var(--accent);
+    background: rgba(0, 180, 216, 0.15);
+    box-shadow: 0 0 12px rgba(0, 180, 216, 0.4), 0 0 24px rgba(0, 180, 216, 0.15);
+}
+
+.sm-node.active.fault-node {
+    border-color: var(--red);
+    background: rgba(231, 76, 60, 0.2);
+    box-shadow: 0 0 12px rgba(231, 76, 60, 0.5), 0 0 24px rgba(231, 76, 60, 0.2);
+    animation: alarm-flash 1s infinite;
+}
+
+.sm-node.active.exercise-node {
+    border-color: var(--purple);
+    background: rgba(155, 89, 182, 0.15);
+    box-shadow: 0 0 12px rgba(155, 89, 182, 0.4), 0 0 24px rgba(155, 89, 182, 0.15);
+}
+
+.sm-node.active.running-node {
+    border-color: var(--green);
+    background: rgba(46, 204, 113, 0.15);
+    box-shadow: 0 0 12px rgba(46, 204, 113, 0.4), 0 0 24px rgba(46, 204, 113, 0.15);
+}
+
+/* State machine flow arrows */
+.sm-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    flex-wrap: wrap;
+}
+
+.sm-arrow {
+    color: var(--card-border);
+    font-size: 1.1rem;
+    line-height: 1;
+    padding: 0 2px;
+}
+
+.sm-arrow-down {
+    text-align: center;
+    color: var(--card-border);
+    font-size: 1rem;
+    padding: 2px 0;
+}
+
+.sm-section {
+    margin-bottom: 12px;
+}
+
+.sm-section-label {
+    font-size: 0.7rem;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 6px;
+    padding-left: 4px;
+}
+
+/* Timer bars */
+.timer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 8px;
+}
+
+.timer-item {
+    background: var(--bg);
+    border-radius: 4px;
+    padding: 8px 10px;
+    border: 1px solid rgba(255,255,255,0.04);
+}
+
+.timer-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 4px;
+}
+
+.timer-name {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--text);
+}
+
+.timer-values {
+    font-size: 0.7rem;
+    color: var(--text-dim);
+    font-family: 'Consolas', 'Courier New', monospace;
+}
+
+.timer-bar-bg {
+    height: 14px;
+    background: #0a0a1a;
+    border-radius: 3px;
+    overflow: hidden;
+    position: relative;
+}
+
+.timer-bar-fill {
+    height: 100%;
+    background: var(--accent);
+    border-radius: 3px;
+    transition: width 0.4s linear;
+    min-width: 0;
+}
+
+.timer-bar-fill.done {
+    background: var(--green);
+}
+
+.timer-bar-fill.timing {
+    background: var(--blue);
+}
+
+.timer-bits {
+    display: flex;
+    gap: 6px;
+    margin-top: 4px;
+}
+
+.timer-bit {
+    font-size: 0.65rem;
+    font-weight: 600;
+    padding: 1px 5px;
+    border-radius: 3px;
+    background: #333;
+    color: #666;
+}
+
+.timer-bit.on {
+    color: #fff;
+}
+
+.timer-bit.en-on { background: var(--blue); }
+.timer-bit.tt-on { background: var(--yellow); }
+.timer-bit.dn-on { background: var(--green); }
+
+/* I/O indicators */
+.io-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 8px;
+}
+
+.io-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 10px;
+    background: var(--bg);
+    border-radius: 4px;
+    border: 1px solid rgba(255,255,255,0.04);
+}
+
+.io-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #444;
+    flex-shrink: 0;
+}
+
+.io-dot.on-green { background: var(--green); box-shadow: 0 0 6px var(--green); }
+.io-dot.on-red { background: var(--red); box-shadow: 0 0 6px var(--red); }
+.io-dot.on-yellow { background: var(--yellow); box-shadow: 0 0 6px var(--yellow); }
+.io-dot.on-blue { background: var(--blue); box-shadow: 0 0 6px var(--blue); }
+
+.io-label {
+    font-size: 0.8rem;
+    color: var(--text);
+}
+
+.io-value {
+    margin-left: auto;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--accent);
+}
+
+/* Analog bar */
+.analog-item {
+    padding: 8px 10px;
+    background: var(--bg);
+    border-radius: 4px;
+    border: 1px solid rgba(255,255,255,0.04);
+}
+
+.analog-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 4px;
+}
+
+.analog-label { font-size: 0.8rem; color: var(--text); }
+.analog-value { font-size: 0.8rem; font-weight: 600; color: var(--accent); }
+
+.analog-bar-bg {
+    height: 10px;
+    background: #0a0a1a;
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.analog-bar-fill {
+    height: 100%;
+    background: var(--accent);
+    border-radius: 3px;
+    transition: width 0.4s;
+}
+
+/* Tag table */
+.tag-table-container {
+    max-height: 500px;
+    overflow-y: auto;
+}
+
+.tag-group-label {
+    font-size: 0.75rem;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 8px 0 4px;
+    border-bottom: 1px solid var(--card-border);
+    font-weight: 600;
+}
+
+.tag-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 3px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.03);
+    font-size: 0.78rem;
+}
+
+.tag-name {
+    color: var(--text-dim);
+    font-family: 'Consolas', 'Courier New', monospace;
+    font-size: 0.72rem;
+}
+
+.tag-val {
+    font-weight: 600;
+    text-align: right;
+    font-family: 'Consolas', 'Courier New', monospace;
+    font-size: 0.72rem;
+}
+
+.tag-bool-dot {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    vertical-align: middle;
+}
+
+.tag-bool-dot.true { background: var(--green); box-shadow: 0 0 4px var(--green); }
+.tag-bool-dot.false { background: #444; }
+
+/* Not-sim message */
+.not-sim-msg {
+    text-align: center;
+    padding: 60px 20px;
+    color: var(--text-dim);
+    font-size: 1.1rem;
+}
+
+.not-sim-msg a { color: var(--accent); }
+
+/* Responsive */
+@media (max-width: 900px) {
+    .viz-grid {
+        grid-template-columns: 1fr;
+        padding: 8px;
+    }
+}
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<div class="header">
+    <div style="display:flex; align-items:center; gap:16px;">
+        <h1>HomePLC Visualization</h1>
+        <a href="/" class="nav-link">Dashboard</a>
+    </div>
+    <div class="conn-status">
+        <span id="connText">Connecting...</span>
+        <div id="connDot" class="conn-dot"></div>
+    </div>
+</div>
+
+<!-- Not sim mode message (hidden by JS if in sim mode) -->
+<div id="notSimMsg" class="not-sim-msg" style="display:none;">
+    Visualization is only available in simulation mode.<br>
+    Restart the server with <code>--sim</code> flag to enable.<br><br>
+    <a href="/">Return to Dashboard</a>
+</div>
+
+<!-- Main content (hidden until sim mode confirmed) -->
+<div id="vizContent" style="display:none;">
+
+<div class="viz-grid">
+
+    <!-- ============ GENERATOR STATE MACHINE ============ -->
+    <div class="card viz-full">
+        <div class="card-header">
+            <h2>Generator State Machine</h2>
+            <span id="genStateLabel" class="state-badge state-idle">IDLE (0)</span>
+        </div>
+        <div class="card-body">
+            <!-- Power loss path -->
+            <div class="sm-section">
+                <div class="sm-section-label">Power Loss Sequence</div>
+                <div class="sm-row">
+                    <div class="sm-node" data-gen-state="0">
+                        <span class="sm-id">0</span>IDLE
+                    </div>
+                    <span class="sm-arrow">&rarr;</span>
+                    <div class="sm-node" data-gen-state="10">
+                        <span class="sm-id">10</span>START CMD
+                    </div>
+                    <span class="sm-arrow">&rarr;</span>
+                    <div class="sm-node" data-gen-state="20">
+                        <span class="sm-id">20</span>CRANKING
+                    </div>
+                    <span class="sm-arrow">&rarr;</span>
+                    <div class="sm-node" data-gen-state="30">
+                        <span class="sm-id">30</span>WARMUP
+                    </div>
+                    <span class="sm-arrow">&rarr;</span>
+                    <div class="sm-node" data-gen-state="40">
+                        <span class="sm-id">40</span>TRANSFERRING
+                    </div>
+                    <span class="sm-arrow">&rarr;</span>
+                    <div class="sm-node running-node" data-gen-state="50">
+                        <span class="sm-id">50</span>ON GENERATOR
+                    </div>
+                    <span class="sm-arrow">&rarr;</span>
+                    <div class="sm-node" data-gen-state="55">
+                        <span class="sm-id">55</span>RETURNING
+                    </div>
+                    <span class="sm-arrow">&rarr;</span>
+                    <div class="sm-node" data-gen-state="60">
+                        <span class="sm-id">60</span>COOLDOWN
+                    </div>
+                    <span class="sm-arrow">&rarr;</span>
+                    <div class="sm-node" data-gen-state="70">
+                        <span class="sm-id">70</span>SHUTDOWN
+                    </div>
+                </div>
+            </div>
+            <!-- Exercise path -->
+            <div class="sm-section">
+                <div class="sm-section-label">Exercise Sequence</div>
+                <div class="sm-row">
+                    <div class="sm-node exercise-node" data-gen-state="90">
+                        <span class="sm-id">90</span>EXERCISE START
+                    </div>
+                    <span class="sm-arrow">&rarr;</span>
+                    <div class="sm-node exercise-node" data-gen-state="95">
+                        <span class="sm-id">95</span>EXERCISE CRANK
+                    </div>
+                    <span class="sm-arrow">&rarr;</span>
+                    <div class="sm-node exercise-node" data-gen-state="100">
+                        <span class="sm-id">100</span>EXERCISING
+                    </div>
+                    <span class="sm-arrow">&rarr;</span>
+                    <div class="sm-node exercise-node" data-gen-state="105">
+                        <span class="sm-id">105</span>EX COOLDOWN
+                    </div>
+                    <span class="sm-arrow">&rarr;</span>
+                    <div class="sm-node exercise-node" data-gen-state="110">
+                        <span class="sm-id">110</span>EX SHUTDOWN
+                    </div>
+                </div>
+            </div>
+            <!-- Fault -->
+            <div class="sm-section">
+                <div class="sm-section-label">Fault</div>
+                <div class="sm-row">
+                    <div class="sm-node fault-node" data-gen-state="999">
+                        <span class="sm-id">999</span>FAULT
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============ SUMP STATE MACHINE ============ -->
+    <div class="card viz-full">
+        <div class="card-header">
+            <h2>Sump Pump State Machine</h2>
+            <span id="sumpStateLabel" class="state-badge state-idle">IDLE (0)</span>
+        </div>
+        <div class="card-body">
+            <div class="sm-row">
+                <div class="sm-node" data-sump-state="0">
+                    <span class="sm-id">0</span>IDLE
+                </div>
+                <span class="sm-arrow">&rarr;</span>
+                <div class="sm-node" data-sump-state="10">
+                    <span class="sm-id">10</span>STARTING
+                </div>
+                <span class="sm-arrow">&rarr;</span>
+                <div class="sm-node running-node" data-sump-state="20">
+                    <span class="sm-id">20</span>PUMPING
+                </div>
+                <span class="sm-arrow" style="margin:0 16px;">&nbsp;</span>
+                <div class="sm-node exercise-node" data-sump-state="30">
+                    <span class="sm-id">30</span>TEST RUN
+                </div>
+                <span class="sm-arrow" style="margin:0 16px;">&nbsp;</span>
+                <div class="sm-node fault-node" data-sump-state="999">
+                    <span class="sm-id">999</span>FAULT
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============ TIMER STATUS ============ -->
+    <div class="card viz-full">
+        <div class="card-header">
+            <h2>Timer Status</h2>
+            <span style="font-size:0.75rem; color:var(--text-dim);">ACC / PRE (ms)</span>
+        </div>
+        <div class="card-body">
+            <div id="timerGrid" class="timer-grid">
+                <!-- Populated by JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- ============ I/O MAP ============ -->
+    <div class="card">
+        <div class="card-header">
+            <h2>I/O Map</h2>
+        </div>
+        <div class="card-body">
+            <div class="sm-section-label" style="margin-bottom:8px;">Digital Inputs</div>
+            <div class="io-grid" id="diGrid">
+                <!-- Populated by JS -->
+            </div>
+
+            <div class="sm-section-label" style="margin-top:16px; margin-bottom:8px;">Analog Inputs</div>
+            <div id="analogGrid">
+                <!-- Populated by JS -->
+            </div>
+
+            <div class="sm-section-label" style="margin-top:16px; margin-bottom:8px;">Digital Outputs</div>
+            <div class="io-grid" id="doGrid">
+                <!-- Populated by JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- ============ LIVE TAG TABLE ============ -->
+    <div class="card">
+        <div class="card-header">
+            <h2>Live Tag Table</h2>
+        </div>
+        <div class="card-body tag-table-container" id="tagTableBody">
+            <!-- Populated by JS -->
+        </div>
+    </div>
+
+</div><!-- viz-grid -->
+</div><!-- vizContent -->
+
+<script>
+// ============================================================
+// DATA
+// ============================================================
+let D = {};
+let T = {};
+
+const GEN_STATES = {
+    0:'IDLE', 10:'START CMD', 20:'CRANKING', 30:'WARMUP',
+    40:'TRANSFERRING', 50:'ON GENERATOR', 55:'RETURNING',
+    60:'COOLDOWN', 70:'SHUTDOWN', 90:'EXERCISE START',
+    95:'EXERCISE CRANK', 100:'EXERCISING', 105:'EX COOLDOWN',
+    110:'EX SHUTDOWN', 999:'FAULT'
+};
+
+const SUMP_STATES = {
+    0:'IDLE', 10:'STARTING', 20:'PUMPING', 30:'TEST RUN', 999:'FAULT'
+};
+
+function genStateClass(s) {
+    if (s === 0) return 'state-idle';
+    if (s === 999) return 'state-fault';
+    if (s >= 90 && s <= 110) return 'state-exercise';
+    if (s === 50) return 'state-running';
+    return 'state-transition';
+}
+
+function sumpStateClass(s) {
+    if (s === 0) return 'state-idle';
+    if (s === 999) return 'state-fault';
+    if (s === 30) return 'state-exercise';
+    return 'state-running';
+}
+
+// Timer display order
+const TIMER_ORDER = [
+    "Power_Loss_Delay", "Gen_Start_Timeout", "Gen_Warmup_Timer",
+    "Transfer_Delay", "Gen_Utility_Return_Timer",
+    "Gen_Cooldown_Timer", "Gen_Stop_Timeout",
+    "Exercise_Run_Timer",
+    "Sump_Debounce", "Sump_Max_Run", "Sump_Off_Delay", "Sump_Test_Run_Timer",
+    "Heat_Call_Debounce", "Short_Cycle_Timer",
+    "Elec_Overload_Timer", "Elec_Gen_Overload_Timer",
+    "Pulse_1s_Timer"
+];
+
+// Tag groups for tag table
+const TAG_GROUPS = {
+    "Generator": [
+        "Gen_State", "Gen_Running", "Gen_Fault", "Gen_Ready",
+        "Gen_On_Utility", "Gen_On_Generator", "Gen_Start_Cmd", "ATS_Transfer_Cmd",
+        "Utility_Power_Present", "ATS_Utility_Pos", "ATS_Generator_Pos",
+        "Gen_Exercise_Active", "Gen_Start_Fail", "Gen_Stop_Fail",
+        "Gen_Crank_Attempts", "Gen_Total_Run_Seconds", "Exercise_Trigger"
+    ],
+    "Sump Pump": [
+        "Sump_State", "Sump_Pump_Run", "Sump_Float_High",
+        "Sump_Test_Active", "Sump_Last_Test_OK", "Sump_Max_Run_Fault",
+        "Sump_Cycle_Count", "Sump_Total_Run_Seconds",
+        "Sump_Last_Run_Seconds", "Sump_Current_Run_Seconds"
+    ],
+    "HVAC": [
+        "Thermostat_W_Call", "HVAC_Furnace_Running",
+        "HVAC_Cycle_Count", "HVAC_Total_Run_Seconds",
+        "HVAC_Last_Run_Seconds", "HVAC_Current_Run_Seconds",
+        "HVAC_Filter_Run_Seconds", "HVAC_Filter_Change_Due",
+        "HVAC_Short_Cycle_Alarm", "HVAC_Short_Cycle_Count",
+        "HVAC_Outdoor_Temp_Min", "HVAC_Outdoor_Temp_Max"
+    ],
+    "Electrical": [
+        "Outdoor_Temp_F", "House_Current_Amps",
+        "Elec_Current_Amps", "Elec_Peak_Amps", "Elec_Total_kWh",
+        "Elec_Overload_Alarm", "Elec_Gen_Overload_Alarm", "Elec_Gen_Max_Amps"
+    ]
+};
+
+// ============================================================
+// POLLING
+// ============================================================
+async function fetchAll() {
+    try {
+        const [dataResp, timerResp] = await Promise.all([
+            fetch('/api/data'),
+            fetch('/api/sim/timers')
+        ]);
+        D = await dataResp.json();
+        if (timerResp.ok) {
+            T = await timerResp.json();
+        }
+        updateAll();
+    } catch(e) {
+        document.getElementById('connDot').className = 'conn-dot';
+        document.getElementById('connText').textContent = 'HMI Server Error';
+    }
+}
+
+// ============================================================
+// UI UPDATE
+// ============================================================
+function val(tag, def) {
+    return D[tag] !== undefined && D[tag] !== null ? D[tag] : def;
+}
+
+function updateAll() {
+    const isSim = val('_sim_mode', false);
+    const conn = val('_plc_connected', false);
+
+    // Connection dot
+    document.getElementById('connDot').className = 'conn-dot' + (conn ? ' connected' : '');
+    document.getElementById('connText').textContent = isSim ? 'SIMULATION' : (conn ? 'PLC Connected' : 'Disconnected');
+
+    // Show/hide based on sim mode
+    if (!isSim) {
+        document.getElementById('notSimMsg').style.display = '';
+        document.getElementById('vizContent').style.display = 'none';
+        return;
+    }
+    document.getElementById('notSimMsg').style.display = 'none';
+    document.getElementById('vizContent').style.display = '';
+
+    updateStateMachines();
+    updateTimers();
+    updateIO();
+    updateTagTable();
+}
+
+// ============================================================
+// STATE MACHINES
+// ============================================================
+function updateStateMachines() {
+    const gs = val('Gen_State', 0);
+    const ss = val('Sump_State', 0);
+
+    // Generator state badge
+    const gLabel = document.getElementById('genStateLabel');
+    gLabel.textContent = (GEN_STATES[gs] || 'STATE ' + gs) + ' (' + gs + ')';
+    gLabel.className = 'state-badge ' + genStateClass(gs);
+
+    // Highlight active gen state node
+    document.querySelectorAll('[data-gen-state]').forEach(node => {
+        const stateVal = parseInt(node.getAttribute('data-gen-state'));
+        if (stateVal === gs) {
+            node.classList.add('active');
+        } else {
+            node.classList.remove('active');
+        }
+    });
+
+    // Sump state badge
+    const sLabel = document.getElementById('sumpStateLabel');
+    sLabel.textContent = (SUMP_STATES[ss] || 'STATE ' + ss) + ' (' + ss + ')';
+    sLabel.className = 'state-badge ' + sumpStateClass(ss);
+
+    // Highlight active sump state node
+    document.querySelectorAll('[data-sump-state]').forEach(node => {
+        const stateVal = parseInt(node.getAttribute('data-sump-state'));
+        if (stateVal === ss) {
+            node.classList.add('active');
+        } else {
+            node.classList.remove('active');
+        }
+    });
+}
+
+// ============================================================
+// TIMERS
+// ============================================================
+function updateTimers() {
+    const grid = document.getElementById('timerGrid');
+    let html = '';
+
+    for (const name of TIMER_ORDER) {
+        const t = T[name];
+        if (!t) continue;
+
+        const pct = t.PRE > 0 ? Math.min(t.ACC / t.PRE * 100, 100) : 0;
+        const fillClass = t.DN ? 'done' : (t.TT ? 'timing' : '');
+
+        // Format ms values for display
+        const accDisp = formatMs(t.ACC);
+        const preDisp = formatMs(t.PRE);
+
+        html += `<div class="timer-item">
+            <div class="timer-header">
+                <span class="timer-name">${name.replace(/_/g, ' ')}</span>
+                <span class="timer-values">${accDisp} / ${preDisp}</span>
+            </div>
+            <div class="timer-bar-bg">
+                <div class="timer-bar-fill ${fillClass}" style="width:${pct.toFixed(1)}%"></div>
+            </div>
+            <div class="timer-bits">
+                <span class="timer-bit${t.EN ? ' on en-on' : ''}">EN</span>
+                <span class="timer-bit${t.TT ? ' on tt-on' : ''}">TT</span>
+                <span class="timer-bit${t.DN ? ' on dn-on' : ''}">DN</span>
+            </div>
+        </div>`;
+    }
+
+    grid.innerHTML = html;
+}
+
+function formatMs(ms) {
+    if (ms >= 60000) {
+        return (ms / 1000).toFixed(1) + 's';
+    }
+    if (ms >= 1000) {
+        return (ms / 1000).toFixed(1) + 's';
+    }
+    return ms.toFixed(0) + 'ms';
+}
+
+// ============================================================
+// I/O MAP
+// ============================================================
+function updateIO() {
+    // Digital inputs
+    const diDefs = [
+        { tag: 'utility_power', label: 'Utility Power', color: 'green' },
+        { tag: 'gen_fault', label: 'Gen Fault', color: 'red' },
+        { tag: 'gen_ready', label: 'Gen Ready', color: 'green' },
+        { tag: 'float_high', label: 'Sump Float High', color: 'yellow' },
+        { tag: 'thermostat_call', label: 'Thermostat Call', color: 'yellow' },
+    ];
+
+    const si = D._sim_inputs || {};
+    let diHtml = '';
+    for (const d of diDefs) {
+        const on = si[d.tag] || false;
+        diHtml += `<div class="io-item">
+            <div class="io-dot${on ? ' on-' + d.color : ''}"></div>
+            <span class="io-label">${d.label}</span>
+            <span class="io-value">${on ? 'ON' : 'OFF'}</span>
+        </div>`;
+    }
+    document.getElementById('diGrid').innerHTML = diHtml;
+
+    // Analog inputs
+    const tempPct = si.outdoor_temp_pct || 0;
+    const currPct = si.house_current_pct || 0;
+    const tempF = val('Outdoor_Temp_F', 0);
+    const houseA = val('House_Current_Amps', 0);
+
+    document.getElementById('analogGrid').innerHTML = `
+        <div class="analog-item" style="margin-bottom:8px;">
+            <div class="analog-header">
+                <span class="analog-label">Outdoor Temp</span>
+                <span class="analog-value">${typeof tempF === 'number' ? tempF.toFixed(1) : '--'}°F (${tempPct.toFixed(1)}%)</span>
+            </div>
+            <div class="analog-bar-bg">
+                <div class="analog-bar-fill" style="width:${tempPct}%; background:${tempF < 0 ? 'var(--blue)' : tempF > 90 ? 'var(--red)' : 'var(--accent)'}"></div>
+            </div>
+        </div>
+        <div class="analog-item">
+            <div class="analog-header">
+                <span class="analog-label">House Current</span>
+                <span class="analog-value">${typeof houseA === 'number' ? houseA.toFixed(1) : '--'}A (${currPct.toFixed(1)}%)</span>
+            </div>
+            <div class="analog-bar-bg">
+                <div class="analog-bar-fill" style="width:${currPct}%; background:${houseA > 180 ? 'var(--red)' : houseA > 120 ? 'var(--yellow)' : 'var(--accent)'}"></div>
+            </div>
+        </div>`;
+
+    // Digital outputs
+    const doDefs = [
+        { tag: 'Gen_Start_Cmd', label: 'Gen Start Cmd', color: 'yellow' },
+        { tag: 'ATS_Transfer_Cmd', label: 'ATS Transfer Cmd', color: 'yellow' },
+        { tag: 'Sump_Pump_Run', label: 'Sump Pump Run', color: 'blue' },
+        { tag: 'Gen_Running', label: 'Gen Running', color: 'green' },
+    ];
+
+    let doHtml = '';
+    for (const d of doDefs) {
+        const on = val(d.tag, false);
+        doHtml += `<div class="io-item">
+            <div class="io-dot${on ? ' on-' + d.color : ''}"></div>
+            <span class="io-label">${d.label}</span>
+            <span class="io-value">${on ? 'ON' : 'OFF'}</span>
+        </div>`;
+    }
+    document.getElementById('doGrid').innerHTML = doHtml;
+}
+
+// ============================================================
+// TAG TABLE
+// ============================================================
+function updateTagTable() {
+    const container = document.getElementById('tagTableBody');
+    let html = '';
+
+    for (const [group, tags] of Object.entries(TAG_GROUPS)) {
+        html += `<div class="tag-group-label">${group}</div>`;
+        for (const tag of tags) {
+            const v = D[tag];
+            let valHtml;
+            if (typeof v === 'boolean') {
+                valHtml = `<span class="tag-bool-dot ${v ? 'true' : 'false'}"></span> ${v ? 'TRUE' : 'FALSE'}`;
+            } else if (typeof v === 'number') {
+                valHtml = Number.isInteger(v) ? v.toString() : v.toFixed(1);
+            } else {
+                valHtml = v !== undefined && v !== null ? String(v) : '--';
+            }
+            html += `<div class="tag-row">
+                <span class="tag-name">${tag}</span>
+                <span class="tag-val">${valHtml}</span>
+            </div>`;
+        }
+    }
+
+    container.innerHTML = html;
+}
+
+// ============================================================
+// START
+// ============================================================
+setInterval(fetchAll, 500);
+fetchAll();
+</script>
+
+</body>
+</html>

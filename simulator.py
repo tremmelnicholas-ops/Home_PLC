@@ -224,6 +224,39 @@ class PLCSimulator:
                 "speed_multiplier": self.speed_multiplier,
             }
 
+    def get_timer_states(self):
+        """Return a dict of all timer names with ACC, PRE, EN, TT, DN."""
+        with self.lock:
+            timers = {
+                "Power_Loss_Delay": self.Power_Loss_Delay,
+                "Gen_Start_Timeout": self.Gen_Start_Timeout,
+                "Gen_Warmup_Timer": self.Gen_Warmup_Timer,
+                "Gen_Cooldown_Timer": self.Gen_Cooldown_Timer,
+                "Gen_Stop_Timeout": self.Gen_Stop_Timeout,
+                "Exercise_Run_Timer": self.Exercise_Run_Timer,
+                "Transfer_Delay": self.Transfer_Delay,
+                "Gen_Utility_Return_Timer": self.Gen_Utility_Return_Timer,
+                "Sump_Debounce": self.Sump_Debounce,
+                "Sump_Max_Run": self.Sump_Max_Run,
+                "Sump_Off_Delay": self.Sump_Off_Delay,
+                "Sump_Test_Run_Timer": self.Sump_Test_Run_Timer,
+                "Heat_Call_Debounce": self.Heat_Call_Debounce,
+                "Short_Cycle_Timer": self.Short_Cycle_Timer,
+                "Elec_Overload_Timer": self.Elec_Overload_Timer,
+                "Elec_Gen_Overload_Timer": self.Elec_Gen_Overload_Timer,
+                "Pulse_1s_Timer": self.Pulse_1s_Timer,
+            }
+            result = {}
+            for name, t in timers.items():
+                result[name] = {
+                    "ACC": t.ACC,
+                    "PRE": t.PRE,
+                    "EN": t.EN,
+                    "TT": t.TT,
+                    "DN": t.DN,
+                }
+            return result
+
     def write_tag(self, tag, value):
         with self.lock:
             if hasattr(self, tag):

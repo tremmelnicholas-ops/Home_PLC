@@ -314,6 +314,22 @@ body {
     min-width: 100px;
 }
 
+/* Navigation link */
+.nav-link {
+    color: var(--accent);
+    text-decoration: none;
+    font-size: 0.85rem;
+    padding: 4px 12px;
+    border: 1px solid var(--card-border);
+    border-radius: 4px;
+    transition: all 0.2s;
+}
+
+.nav-link:hover {
+    background: var(--card-border);
+    border-color: var(--accent);
+}
+
 /* Responsive */
 @media (max-width: 480px) {
     .dashboard {
