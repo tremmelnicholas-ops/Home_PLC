@@ -1,0 +1,2670 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<RSLogix5000Content SchemaRevision="1.0" SoftwareRevision="30.01" TargetName="HomePLC" TargetType="Controller" ContainsContext="false" ExportDate="Tue Mar 10 04:49:58 2026" ExportOptions="NoRawData L5KData DecoratedData ForceProtectedEncoding AllProjDocTrans">
+<Controller Use="Target" Name="HomePLC" ProcessorType="5069-L306ERM" MajorRev="30" MinorRev="11" ProjectCreationDate="Tue Mar 10 04:45:09 2026" LastModifiedDate="Tue Mar 10 04:47:25 2026" SFCExecutionControl="CurrentActive" SFCRestartPosition="MostRecent" SFCLastScan="DontScan" ProjectSN="16#0000_0000"
+ MatchProjectToController="false" CanUseRPIFromProducer="false" InhibitAutomaticFirmwareUpdate="0" PassThroughConfiguration="EnabledWithAppend" DownloadProjectDocumentationAndExtendedProperties="true" DownloadProjectCustomProperties="true" ReportMinorOverflow="false" EtherNetIPMode="A1/A2: Dual-IP">
+<RedundancyInfo Enabled="false" KeepTestEditsOnSwitchOver="false"/>
+<Security Code="0" ChangesToDetect="16#ffff_ffff_ffff_ffff"/>
+<SafetyInfo/>
+<DataTypes/>
+<Modules>
+<Module Name="Local" CatalogNumber="5069-L306ERM" Vendor="1" ProductType="14" ProductCode="189" Major="30" Minor="11" ParentModule="Local" ParentModPortId="1" Inhibited="false" MajorFault="true"
+>
+<EKey State="Disabled"/>
+<Ports>
+<Port Id="1" Address="0" Type="5069" Upstream="false">
+<Bus Size="9"/>
+</Port>
+<Port Id="3" Type="Ethernet" Upstream="false">
+<Bus/>
+</Port>
+<Port Id="4" Type="Ethernet" Upstream="false">
+<Bus/>
+</Port>
+</Ports>
+</Module>
+<Module Name="Digital_Input_1" CatalogNumber="5069-IB16/A" Vendor="1" ProductType="7" ProductCode="390" Major="2" Minor="1" ParentModule="Local" ParentModPortId="1" Inhibited="false" MajorFault="false"
+ SafetyEnabled="false">
+<EKey State="CompatibleModule"/>
+<Ports>
+<Port Id="1" Address="1" Type="5069" Upstream="true"/>
+</Ports>
+<Communications>
+<ConfigTag ConfigSize="64" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[[68,160,[13,13,0],[13,13,0],[13,13,0],[13,13,0],[13,13,0],[13,13,0],[13,13,0],[13,13,0],[13,13,0],[13,13,0],[13,13,0],[13,13,0],[13,13,0],[13,13,0],[13,13,0],[13
+					,13,0]]]]>
+</Data>
+<Data Format="Decorated">
+<Structure DataType="AB:5000_DI16:C:0">
+<StructureMember Name="Pt00" DataType="AB:5000_DI_Channel:C:0">
+<DataValueMember Name="InputOffOnFilter" DataType="SINT" Radix="Decimal" Value="13"/>
+<DataValueMember Name="InputOnOffFilter" DataType="SINT" Radix="Decimal" Value="13"/>
+</StructureMember>
+<StructureMember Name="Pt01" DataType="AB:5000_DI_Channel:C:0">
+<DataValueMember Name="InputOffOnFilter" DataType="SINT" Radix="Decimal" Value="13"/>
+<DataValueMember Name="InputOnOffFilter" DataType="SINT" Radix="Decimal" Value="13"/>
+</StructureMember>
+<StructureMember Name="Pt02" DataType="AB:5000_DI_Channel:C:0">
+<DataValueMember Name="InputOffOnFilter" DataType="SINT" Radix="Decimal" Value="13"/>
+<DataValueMember Name="InputOnOffFilter" DataType="SINT" Radix="Decimal" Value="13"/>
+</StructureMember>
+<StructureMember Name="Pt03" DataType="AB:5000_DI_Channel:C:0">
+<DataValueMember Name="InputOffOnFilter" DataType="SINT" Radix="Decimal" Value="13"/>
+<DataValueMember Name="InputOnOffFilter" DataType="SINT" Radix="Decimal" Value="13"/>
+</StructureMember>
+<StructureMember Name="Pt04" DataType="AB:5000_DI_Channel:C:0">
+<DataValueMember Name="InputOffOnFilter" DataType="SINT" Radix="Decimal" Value="13"/>
+<DataValueMember Name="InputOnOffFilter" DataType="SINT" Radix="Decimal" Value="13"/>
+</StructureMember>
+<StructureMember Name="Pt05" DataType="AB:5000_DI_Channel:C:0">
+<DataValueMember Name="InputOffOnFilter" DataType="SINT" Radix="Decimal" Value="13"/>
+<DataValueMember Name="InputOnOffFilter" DataType="SINT" Radix="Decimal" Value="13"/>
+</StructureMember>
+<StructureMember Name="Pt06" DataType="AB:5000_DI_Channel:C:0">
+<DataValueMember Name="InputOffOnFilter" DataType="SINT" Radix="Decimal" Value="13"/>
+<DataValueMember Name="InputOnOffFilter" DataType="SINT" Radix="Decimal" Value="13"/>
+</StructureMember>
+<StructureMember Name="Pt07" DataType="AB:5000_DI_Channel:C:0">
+<DataValueMember Name="InputOffOnFilter" DataType="SINT" Radix="Decimal" Value="13"/>
+<DataValueMember Name="InputOnOffFilter" DataType="SINT" Radix="Decimal" Value="13"/>
+</StructureMember>
+<StructureMember Name="Pt08" DataType="AB:5000_DI_Channel:C:0">
+<DataValueMember Name="InputOffOnFilter" DataType="SINT" Radix="Decimal" Value="13"/>
+<DataValueMember Name="InputOnOffFilter" DataType="SINT" Radix="Decimal" Value="13"/>
+</StructureMember>
+<StructureMember Name="Pt09" DataType="AB:5000_DI_Channel:C:0">
+<DataValueMember Name="InputOffOnFilter" DataType="SINT" Radix="Decimal" Value="13"/>
+<DataValueMember Name="InputOnOffFilter" DataType="SINT" Radix="Decimal" Value="13"/>
+</StructureMember>
+<StructureMember Name="Pt10" DataType="AB:5000_DI_Channel:C:0">
+<DataValueMember Name="InputOffOnFilter" DataType="SINT" Radix="Decimal" Value="13"/>
+<DataValueMember Name="InputOnOffFilter" DataType="SINT" Radix="Decimal" Value="13"/>
+</StructureMember>
+<StructureMember Name="Pt11" DataType="AB:5000_DI_Channel:C:0">
+<DataValueMember Name="InputOffOnFilter" DataType="SINT" Radix="Decimal" Value="13"/>
+<DataValueMember Name="InputOnOffFilter" DataType="SINT" Radix="Decimal" Value="13"/>
+</StructureMember>
+<StructureMember Name="Pt12" DataType="AB:5000_DI_Channel:C:0">
+<DataValueMember Name="InputOffOnFilter" DataType="SINT" Radix="Decimal" Value="13"/>
+<DataValueMember Name="InputOnOffFilter" DataType="SINT" Radix="Decimal" Value="13"/>
+</StructureMember>
+<StructureMember Name="Pt13" DataType="AB:5000_DI_Channel:C:0">
+<DataValueMember Name="InputOffOnFilter" DataType="SINT" Radix="Decimal" Value="13"/>
+<DataValueMember Name="InputOnOffFilter" DataType="SINT" Radix="Decimal" Value="13"/>
+</StructureMember>
+<StructureMember Name="Pt14" DataType="AB:5000_DI_Channel:C:0">
+<DataValueMember Name="InputOffOnFilter" DataType="SINT" Radix="Decimal" Value="13"/>
+<DataValueMember Name="InputOnOffFilter" DataType="SINT" Radix="Decimal" Value="13"/>
+</StructureMember>
+<StructureMember Name="Pt15" DataType="AB:5000_DI_Channel:C:0">
+<DataValueMember Name="InputOffOnFilter" DataType="SINT" Radix="Decimal" Value="13"/>
+<DataValueMember Name="InputOnOffFilter" DataType="SINT" Radix="Decimal" Value="13"/>
+</StructureMember>
+</Structure>
+</Data>
+</ConfigTag>
+<Connections>
+<Connection Name="InputData" RPI="5000" Type="StandardDataDriven" OutputSize="0" InputSize="68" EventID="0" ProgrammaticallySendEventTrigger="false" Priority="Scheduled" InputConnectionType="Multicast" InputProductionTrigger="Cyclic" ConnectionPath="20 04 24 a0 2c c7 2c 9a"
+ InputTagSuffix="I">
+<InputTag ExternalAccess="Read/Write">
+<Data Format="Decorated">
+<Structure DataType="AB:5000_DI16:I:0">
+<DataValueMember Name="RunMode" DataType="BOOL" Value="0"/>
+<DataValueMember Name="ConnectionFaulted" DataType="BOOL" Value="0"/>
+<DataValueMember Name="DiagnosticActive" DataType="BOOL" Value="0"/>
+<DataValueMember Name="DiagnosticSequenceCount" DataType="SINT" Radix="Decimal" Value="0"/>
+<StructureMember Name="Pt00" DataType="CHANNEL_DI:I:0">
+<DataValueMember Name="Data" DataType="BOOL" Value="0"/>
+<DataValueMember Name="Fault" DataType="BOOL" Value="0"/>
+<DataValueMember Name="Uncertain" DataType="BOOL" Value="0"/>
+</StructureMember>
+<StructureMember Name="Pt01" DataType="CHANNEL_DI:I:0">
+<DataValueMember Name="Data" DataType="BOOL" Value="0"/>
+<DataValueMember Name="Fault" DataType="BOOL" Value="0"/>
+<DataValueMember Name="Uncertain" DataType="BOOL" Value="0"/>
+</StructureMember>
+<StructureMember Name="Pt02" DataType="CHANNEL_DI:I:0">
+<DataValueMember Name="Data" DataType="BOOL" Value="0"/>
+<DataValueMember Name="Fault" DataType="BOOL" Value="0"/>
+<DataValueMember Name="Uncertain" DataType="BOOL" Value="0"/>
+</StructureMember>
+<StructureMember Name="Pt03" DataType="CHANNEL_DI:I:0">
+<DataValueMember Name="Data" DataType="BOOL" Value="0"/>
+<DataValueMember Name="Fault" DataType="BOOL" Value="0"/>
+<DataValueMember Name="Uncertain" DataType="BOOL" Value="0"/>
+</StructureMember>
+<StructureMember Name="Pt04" DataType="CHANNEL_DI:I:0">
+<DataValueMember Name="Data" DataType="BOOL" Value="0"/>
+<DataValueMember Name="Fault" DataType="BOOL" Value="0"/>
+<DataValueMember Name="Uncertain" DataType="BOOL" Value="0"/>
+</StructureMember>
+<StructureMember Name="Pt05" DataType="CHANNEL_DI:I:0">
+<DataValueMember Name="Data" DataType="BOOL" Value="0"/>
+<DataValueMember Name="Fault" DataType="BOOL" Value="0"/>
+<DataValueMember Name="Uncertain" DataType="BOOL" Value="0"/>
+</StructureMember>
+<StructureMember Name="Pt06" DataType="CHANNEL_DI:I:0">
+<DataValueMember Name="Data" DataType="BOOL" Value="0"/>
+<DataValueMember Name="Fault" DataType="BOOL" Value="0"/>
+<DataValueMember Name="Uncertain" DataType="BOOL" Value="0"/>
+</StructureMember>
+<StructureMember Name="Pt07" DataType="CHANNEL_DI:I:0">
+<DataValueMember Name="Data" DataType="BOOL" Value="0"/>
+<DataValueMember Name="Fault" DataType="BOOL" Value="0"/>
+<DataValueMember Name="Uncertain" DataType="BOOL" Value="0"/>
+</StructureMember>
+<StructureMember Name="Pt08" DataType="CHANNEL_DI:I:0">
+<DataValueMember Name="Data" DataType="BOOL" Value="0"/>
+<DataValueMember Name="Fault" DataType="BOOL" Value="0"/>
+<DataValueMember Name="Uncertain" DataType="BOOL" Value="0"/>
+</StructureMember>
+<StructureMember Name="Pt09" DataType="CHANNEL_DI:I:0">
+<DataValueMember Name="Data" DataType="BOOL" Value="0"/>
+<DataValueMember Name="Fault" DataType="BOOL" Value="0"/>
+<DataValueMember Name="Uncertain" DataType="BOOL" Value="0"/>
+</StructureMember>
+<StructureMember Name="Pt10" DataType="CHANNEL_DI:I:0">
+<DataValueMember Name="Data" DataType="BOOL" Value="0"/>
+<DataValueMember Name="Fault" DataType="BOOL" Value="0"/>
+<DataValueMember Name="Uncertain" DataType="BOOL" Value="0"/>
+</StructureMember>
+<StructureMember Name="Pt11" DataType="CHANNEL_DI:I:0">
+<DataValueMember Name="Data" DataType="BOOL" Value="0"/>
+<DataValueMember Name="Fault" DataType="BOOL" Value="0"/>
+<DataValueMember Name="Uncertain" DataType="BOOL" Value="0"/>
+</StructureMember>
+<StructureMember Name="Pt12" DataType="CHANNEL_DI:I:0">
+<DataValueMember Name="Data" DataType="BOOL" Value="0"/>
+<DataValueMember Name="Fault" DataType="BOOL" Value="0"/>
+<DataValueMember Name="Uncertain" DataType="BOOL" Value="0"/>
+</StructureMember>
+<StructureMember Name="Pt13" DataType="CHANNEL_DI:I:0">
+<DataValueMember Name="Data" DataType="BOOL" Value="0"/>
+<DataValueMember Name="Fault" DataType="BOOL" Value="0"/>
+<DataValueMember Name="Uncertain" DataType="BOOL" Value="0"/>
+</StructureMember>
+<StructureMember Name="Pt14" DataType="CHANNEL_DI:I:0">
+<DataValueMember Name="Data" DataType="BOOL" Value="0"/>
+<DataValueMember Name="Fault" DataType="BOOL" Value="0"/>
+<DataValueMember Name="Uncertain" DataType="BOOL" Value="0"/>
+</StructureMember>
+<StructureMember Name="Pt15" DataType="CHANNEL_DI:I:0">
+<DataValueMember Name="Data" DataType="BOOL" Value="0"/>
+<DataValueMember Name="Fault" DataType="BOOL" Value="0"/>
+<DataValueMember Name="Uncertain" DataType="BOOL" Value="0"/>
+</StructureMember>
+</Structure>
+</Data>
+</InputTag>
+</Connection>
+</Connections>
+</Communications>
+<ExtendedProperties>
+<public><ConfigID>500</ConfigID><CatNum>5069-IB16</CatNum></public>
+</ExtendedProperties>
+</Module>
+<Module Name="Digital_Output_1" CatalogNumber="5069-OB16/A" Vendor="1" ProductType="7" ProductCode="392" Major="2" Minor="1" ParentModule="Local" ParentModPortId="1" Inhibited="false" MajorFault="false"
+ SafetyEnabled="false">
+<EKey State="CompatibleModule"/>
+<Ports>
+<Port Id="1" Address="2" Type="5069" Upstream="true"/>
+</Ports>
+<Communications>
+<ConfigTag ConfigSize="64" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[[68,163,[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0]]]]>
+</Data>
+<Data Format="Decorated">
+<Structure DataType="AB:5000_DO16_Diag:C:0">
+<StructureMember Name="Pt00" DataType="AB:5000_DO_Diag_Channel:C:0">
+<DataValueMember Name="FaultMode" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FaultValue" DataType="BOOL" Value="0"/>
+<DataValueMember Name="ProgMode" DataType="BOOL" Value="0"/>
+<DataValueMember Name="ProgValue" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FaultFinalState" DataType="BOOL" Value="0"/>
+<DataValueMember Name="ProgramToFaultEn" DataType="BOOL" Value="0"/>
+<DataValueMember Name="NoLoadEn" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FaultValueStateDuration" DataType="SINT" Radix="Decimal" Value="0"/>
+</StructureMember>
+<StructureMember Name="Pt01" DataType="AB:5000_DO_Diag_Channel:C:0">
+<DataValueMember Name="FaultMode" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FaultValue" DataType="BOOL" Value="0"/>
+<DataValueMember Name="ProgMode" DataType="BOOL" Value="0"/>
+<DataValueMember Name="ProgValue" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FaultFinalState" DataType="BOOL" Value="0"/>
+<DataValueMember Name="ProgramToFaultEn" DataType="BOOL" Value="0"/>
+<DataValueMember Name="NoLoadEn" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FaultValueStateDuration" DataType="SINT" Radix="Decimal" Value="0"/>
+</StructureMember>
+<StructureMember Name="Pt02" DataType="AB:5000_DO_Diag_Channel:C:0">
+<DataValueMember Name="FaultMode" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FaultValue" DataType="BOOL" Value="0"/>
+<DataValueMember Name="ProgMode" DataType="BOOL" Value="0"/>
+<DataValueMember Name="ProgValue" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FaultFinalState" DataType="BOOL" Value="0"/>
+<DataValueMember Name="ProgramToFaultEn" DataType="BOOL" Value="0"/>
+<DataValueMember Name="NoLoadEn" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FaultValueStateDuration" DataType="SINT" Radix="Decimal" Value="0"/>
+</StructureMember>
+<StructureMember Name="Pt03" DataType="AB:5000_DO_Diag_Channel:C:0">
+<DataValueMember Name="FaultMode" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FaultValue" DataType="BOOL" Value="0"/>
+<DataValueMember Name="ProgMode" DataType="BOOL" Value="0"/>
+<DataValueMember Name="ProgValue" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FaultFinalState" DataType="BOOL" Value="0"/>
+<DataValueMember Name="ProgramToFaultEn" DataType="BOOL" Value="0"/>
+<DataValueMember Name="NoLoadEn" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FaultValueStateDuration" DataType="SINT" Radix="Decimal" Value="0"/>
+</StructureMember>
+<StructureMember Name="Pt04" DataType="AB:5000_DO_Diag_Channel:C:0">
+<DataValueMember Name="FaultMode" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FaultValue" DataType="BOOL" Value="0"/>
+<DataValueMember Name="ProgMode" DataType="BOOL" Value="0"/>
+<DataValueMember Name="ProgValue" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FaultFinalState" DataType="BOOL" Value="0"/>
+<DataValueMember Name="ProgramToFaultEn" DataType="BOOL" Value="0"/>
+<DataValueMember Name="NoLoadEn" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FaultValueStateDuration" DataType="SINT" Radix="Decimal" Value="0"/>
+</StructureMember>
+<StructureMember Name="Pt05" DataType="AB:5000_DO_Diag_Channel:C:0">
+<DataValueMember Name="FaultMode" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FaultValue" DataType="BOOL" Value="0"/>
+<DataValueMember Name="ProgMode" DataType="BOOL" Value="0"/>
+<DataValueMember Name="ProgValue" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FaultFinalState" DataType="BOOL" Value="0"/>
+<DataValueMember Name="ProgramToFaultEn" DataType="BOOL" Value="0"/>
+<DataValueMember Name="NoLoadEn" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FaultValueStateDuration" DataType="SINT" Radix="Decimal" Value="0"/>
+</StructureMember>
+<StructureMember Name="Pt06" DataType="AB:5000_DO_Diag_Channel:C:0">
+<DataValueMember Name="FaultMode" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FaultValue" DataType="BOOL" Value="0"/>
+<DataValueMember Name="ProgMode" DataType="BOOL" Value="0"/>
+<DataValueMember Name="ProgValue" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FaultFinalState" DataType="BOOL" Value="0"/>
+<DataValueMember Name="ProgramToFaultEn" DataType="BOOL" Value="0"/>
+<DataValueMember Name="NoLoadEn" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FaultValueStateDuration" DataType="SINT" Radix="Decimal" Value="0"/>
+</StructureMember>
+<StructureMember Name="Pt07" DataType="AB:5000_DO_Diag_Channel:C:0">
+<DataValueMember Name="FaultMode" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FaultValue" DataType="BOOL" Value="0"/>
+<DataValueMember Name="ProgMode" DataType="BOOL" Value="0"/>
+<DataValueMember Name="ProgValue" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FaultFinalState" DataType="BOOL" Value="0"/>
+<DataValueMember Name="ProgramToFaultEn" DataType="BOOL" Value="0"/>
+<DataValueMember Name="NoLoadEn" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FaultValueStateDuration" DataType="SINT" Radix="Decimal" Value="0"/>
+</StructureMember>
+<StructureMember Name="Pt08" DataType="AB:5000_DO_Diag_Channel:C:0">
+<DataValueMember Name="FaultMode" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FaultValue" DataType="BOOL" Value="0"/>
+<DataValueMember Name="ProgMode" DataType="BOOL" Value="0"/>
+<DataValueMember Name="ProgValue" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FaultFinalState" DataType="BOOL" Value="0"/>
+<DataValueMember Name="ProgramToFaultEn" DataType="BOOL" Value="0"/>
+<DataValueMember Name="NoLoadEn" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FaultValueStateDuration" DataType="SINT" Radix="Decimal" Value="0"/>
+</StructureMember>
+<StructureMember Name="Pt09" DataType="AB:5000_DO_Diag_Channel:C:0">
+<DataValueMember Name="FaultMode" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FaultValue" DataType="BOOL" Value="0"/>
+<DataValueMember Name="ProgMode" DataType="BOOL" Value="0"/>
+<DataValueMember Name="ProgValue" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FaultFinalState" DataType="BOOL" Value="0"/>
+<DataValueMember Name="ProgramToFaultEn" DataType="BOOL" Value="0"/>
+<DataValueMember Name="NoLoadEn" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FaultValueStateDuration" DataType="SINT" Radix="Decimal" Value="0"/>
+</StructureMember>
+<StructureMember Name="Pt10" DataType="AB:5000_DO_Diag_Channel:C:0">
+<DataValueMember Name="FaultMode" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FaultValue" DataType="BOOL" Value="0"/>
+<DataValueMember Name="ProgMode" DataType="BOOL" Value="0"/>
+<DataValueMember Name="ProgValue" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FaultFinalState" DataType="BOOL" Value="0"/>
+<DataValueMember Name="ProgramToFaultEn" DataType="BOOL" Value="0"/>
+<DataValueMember Name="NoLoadEn" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FaultValueStateDuration" DataType="SINT" Radix="Decimal" Value="0"/>
+</StructureMember>
+<StructureMember Name="Pt11" DataType="AB:5000_DO_Diag_Channel:C:0">
+<DataValueMember Name="FaultMode" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FaultValue" DataType="BOOL" Value="0"/>
+<DataValueMember Name="ProgMode" DataType="BOOL" Value="0"/>
+<DataValueMember Name="ProgValue" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FaultFinalState" DataType="BOOL" Value="0"/>
+<DataValueMember Name="ProgramToFaultEn" DataType="BOOL" Value="0"/>
+<DataValueMember Name="NoLoadEn" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FaultValueStateDuration" DataType="SINT" Radix="Decimal" Value="0"/>
+</StructureMember>
+<StructureMember Name="Pt12" DataType="AB:5000_DO_Diag_Channel:C:0">
+<DataValueMember Name="FaultMode" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FaultValue" DataType="BOOL" Value="0"/>
+<DataValueMember Name="ProgMode" DataType="BOOL" Value="0"/>
+<DataValueMember Name="ProgValue" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FaultFinalState" DataType="BOOL" Value="0"/>
+<DataValueMember Name="ProgramToFaultEn" DataType="BOOL" Value="0"/>
+<DataValueMember Name="NoLoadEn" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FaultValueStateDuration" DataType="SINT" Radix="Decimal" Value="0"/>
+</StructureMember>
+<StructureMember Name="Pt13" DataType="AB:5000_DO_Diag_Channel:C:0">
+<DataValueMember Name="FaultMode" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FaultValue" DataType="BOOL" Value="0"/>
+<DataValueMember Name="ProgMode" DataType="BOOL" Value="0"/>
+<DataValueMember Name="ProgValue" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FaultFinalState" DataType="BOOL" Value="0"/>
+<DataValueMember Name="ProgramToFaultEn" DataType="BOOL" Value="0"/>
+<DataValueMember Name="NoLoadEn" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FaultValueStateDuration" DataType="SINT" Radix="Decimal" Value="0"/>
+</StructureMember>
+<StructureMember Name="Pt14" DataType="AB:5000_DO_Diag_Channel:C:0">
+<DataValueMember Name="FaultMode" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FaultValue" DataType="BOOL" Value="0"/>
+<DataValueMember Name="ProgMode" DataType="BOOL" Value="0"/>
+<DataValueMember Name="ProgValue" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FaultFinalState" DataType="BOOL" Value="0"/>
+<DataValueMember Name="ProgramToFaultEn" DataType="BOOL" Value="0"/>
+<DataValueMember Name="NoLoadEn" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FaultValueStateDuration" DataType="SINT" Radix="Decimal" Value="0"/>
+</StructureMember>
+<StructureMember Name="Pt15" DataType="AB:5000_DO_Diag_Channel:C:0">
+<DataValueMember Name="FaultMode" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FaultValue" DataType="BOOL" Value="0"/>
+<DataValueMember Name="ProgMode" DataType="BOOL" Value="0"/>
+<DataValueMember Name="ProgValue" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FaultFinalState" DataType="BOOL" Value="0"/>
+<DataValueMember Name="ProgramToFaultEn" DataType="BOOL" Value="0"/>
+<DataValueMember Name="NoLoadEn" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FaultValueStateDuration" DataType="SINT" Radix="Decimal" Value="0"/>
+</StructureMember>
+</Structure>
+</Data>
+</ConfigTag>
+<Connections>
+<Connection Name="OutputData" RPI="5000" Type="StandardDataDriven" OutputSize="64" InputSize="68" EventID="0" ProgrammaticallySendEventTrigger="false" Priority="Scheduled" InputConnectionType="Multicast" InputProductionTrigger="Cyclic" ConnectionPath="20 04 24 a3 2c 64 2c 85"
+ InputTagSuffix="I" OutputTagSuffix="O">
+<InputTag ExternalAccess="Read/Write">
+<Data Format="Decorated">
+<Structure DataType="AB:5000_DO16_Diag:I:0">
+<DataValueMember Name="RunMode" DataType="BOOL" Value="0"/>
+<DataValueMember Name="ConnectionFaulted" DataType="BOOL" Value="0"/>
+<DataValueMember Name="DiagnosticActive" DataType="BOOL" Value="0"/>
+<DataValueMember Name="DiagnosticSequenceCount" DataType="SINT" Radix="Decimal" Value="0"/>
+<StructureMember Name="Pt00" DataType="CHANNEL_DO_DIAG:I:0">
+<DataValueMember Name="Data" DataType="BOOL" Value="0"/>
+<DataValueMember Name="Fault" DataType="BOOL" Value="0"/>
+<DataValueMember Name="Uncertain" DataType="BOOL" Value="0"/>
+<DataValueMember Name="NoLoad" DataType="BOOL" Value="0"/>
+<DataValueMember Name="ShortCircuit" DataType="BOOL" Value="0"/>
+</StructureMember>
+<StructureMember Name="Pt01" DataType="CHANNEL_DO_DIAG:I:0">
+<DataValueMember Name="Data" DataType="BOOL" Value="0"/>
+<DataValueMember Name="Fault" DataType="BOOL" Value="0"/>
+<DataValueMember Name="Uncertain" DataType="BOOL" Value="0"/>
+<DataValueMember Name="NoLoad" DataType="BOOL" Value="0"/>
+<DataValueMember Name="ShortCircuit" DataType="BOOL" Value="0"/>
+</StructureMember>
+<StructureMember Name="Pt02" DataType="CHANNEL_DO_DIAG:I:0">
+<DataValueMember Name="Data" DataType="BOOL" Value="0"/>
+<DataValueMember Name="Fault" DataType="BOOL" Value="0"/>
+<DataValueMember Name="Uncertain" DataType="BOOL" Value="0"/>
+<DataValueMember Name="NoLoad" DataType="BOOL" Value="0"/>
+<DataValueMember Name="ShortCircuit" DataType="BOOL" Value="0"/>
+</StructureMember>
+<StructureMember Name="Pt03" DataType="CHANNEL_DO_DIAG:I:0">
+<DataValueMember Name="Data" DataType="BOOL" Value="0"/>
+<DataValueMember Name="Fault" DataType="BOOL" Value="0"/>
+<DataValueMember Name="Uncertain" DataType="BOOL" Value="0"/>
+<DataValueMember Name="NoLoad" DataType="BOOL" Value="0"/>
+<DataValueMember Name="ShortCircuit" DataType="BOOL" Value="0"/>
+</StructureMember>
+<StructureMember Name="Pt04" DataType="CHANNEL_DO_DIAG:I:0">
+<DataValueMember Name="Data" DataType="BOOL" Value="0"/>
+<DataValueMember Name="Fault" DataType="BOOL" Value="0"/>
+<DataValueMember Name="Uncertain" DataType="BOOL" Value="0"/>
+<DataValueMember Name="NoLoad" DataType="BOOL" Value="0"/>
+<DataValueMember Name="ShortCircuit" DataType="BOOL" Value="0"/>
+</StructureMember>
+<StructureMember Name="Pt05" DataType="CHANNEL_DO_DIAG:I:0">
+<DataValueMember Name="Data" DataType="BOOL" Value="0"/>
+<DataValueMember Name="Fault" DataType="BOOL" Value="0"/>
+<DataValueMember Name="Uncertain" DataType="BOOL" Value="0"/>
+<DataValueMember Name="NoLoad" DataType="BOOL" Value="0"/>
+<DataValueMember Name="ShortCircuit" DataType="BOOL" Value="0"/>
+</StructureMember>
+<StructureMember Name="Pt06" DataType="CHANNEL_DO_DIAG:I:0">
+<DataValueMember Name="Data" DataType="BOOL" Value="0"/>
+<DataValueMember Name="Fault" DataType="BOOL" Value="0"/>
+<DataValueMember Name="Uncertain" DataType="BOOL" Value="0"/>
+<DataValueMember Name="NoLoad" DataType="BOOL" Value="0"/>
+<DataValueMember Name="ShortCircuit" DataType="BOOL" Value="0"/>
+</StructureMember>
+<StructureMember Name="Pt07" DataType="CHANNEL_DO_DIAG:I:0">
+<DataValueMember Name="Data" DataType="BOOL" Value="0"/>
+<DataValueMember Name="Fault" DataType="BOOL" Value="0"/>
+<DataValueMember Name="Uncertain" DataType="BOOL" Value="0"/>
+<DataValueMember Name="NoLoad" DataType="BOOL" Value="0"/>
+<DataValueMember Name="ShortCircuit" DataType="BOOL" Value="0"/>
+</StructureMember>
+<StructureMember Name="Pt08" DataType="CHANNEL_DO_DIAG:I:0">
+<DataValueMember Name="Data" DataType="BOOL" Value="0"/>
+<DataValueMember Name="Fault" DataType="BOOL" Value="0"/>
+<DataValueMember Name="Uncertain" DataType="BOOL" Value="0"/>
+<DataValueMember Name="NoLoad" DataType="BOOL" Value="0"/>
+<DataValueMember Name="ShortCircuit" DataType="BOOL" Value="0"/>
+</StructureMember>
+<StructureMember Name="Pt09" DataType="CHANNEL_DO_DIAG:I:0">
+<DataValueMember Name="Data" DataType="BOOL" Value="0"/>
+<DataValueMember Name="Fault" DataType="BOOL" Value="0"/>
+<DataValueMember Name="Uncertain" DataType="BOOL" Value="0"/>
+<DataValueMember Name="NoLoad" DataType="BOOL" Value="0"/>
+<DataValueMember Name="ShortCircuit" DataType="BOOL" Value="0"/>
+</StructureMember>
+<StructureMember Name="Pt10" DataType="CHANNEL_DO_DIAG:I:0">
+<DataValueMember Name="Data" DataType="BOOL" Value="0"/>
+<DataValueMember Name="Fault" DataType="BOOL" Value="0"/>
+<DataValueMember Name="Uncertain" DataType="BOOL" Value="0"/>
+<DataValueMember Name="NoLoad" DataType="BOOL" Value="0"/>
+<DataValueMember Name="ShortCircuit" DataType="BOOL" Value="0"/>
+</StructureMember>
+<StructureMember Name="Pt11" DataType="CHANNEL_DO_DIAG:I:0">
+<DataValueMember Name="Data" DataType="BOOL" Value="0"/>
+<DataValueMember Name="Fault" DataType="BOOL" Value="0"/>
+<DataValueMember Name="Uncertain" DataType="BOOL" Value="0"/>
+<DataValueMember Name="NoLoad" DataType="BOOL" Value="0"/>
+<DataValueMember Name="ShortCircuit" DataType="BOOL" Value="0"/>
+</StructureMember>
+<StructureMember Name="Pt12" DataType="CHANNEL_DO_DIAG:I:0">
+<DataValueMember Name="Data" DataType="BOOL" Value="0"/>
+<DataValueMember Name="Fault" DataType="BOOL" Value="0"/>
+<DataValueMember Name="Uncertain" DataType="BOOL" Value="0"/>
+<DataValueMember Name="NoLoad" DataType="BOOL" Value="0"/>
+<DataValueMember Name="ShortCircuit" DataType="BOOL" Value="0"/>
+</StructureMember>
+<StructureMember Name="Pt13" DataType="CHANNEL_DO_DIAG:I:0">
+<DataValueMember Name="Data" DataType="BOOL" Value="0"/>
+<DataValueMember Name="Fault" DataType="BOOL" Value="0"/>
+<DataValueMember Name="Uncertain" DataType="BOOL" Value="0"/>
+<DataValueMember Name="NoLoad" DataType="BOOL" Value="0"/>
+<DataValueMember Name="ShortCircuit" DataType="BOOL" Value="0"/>
+</StructureMember>
+<StructureMember Name="Pt14" DataType="CHANNEL_DO_DIAG:I:0">
+<DataValueMember Name="Data" DataType="BOOL" Value="0"/>
+<DataValueMember Name="Fault" DataType="BOOL" Value="0"/>
+<DataValueMember Name="Uncertain" DataType="BOOL" Value="0"/>
+<DataValueMember Name="NoLoad" DataType="BOOL" Value="0"/>
+<DataValueMember Name="ShortCircuit" DataType="BOOL" Value="0"/>
+</StructureMember>
+<StructureMember Name="Pt15" DataType="CHANNEL_DO_DIAG:I:0">
+<DataValueMember Name="Data" DataType="BOOL" Value="0"/>
+<DataValueMember Name="Fault" DataType="BOOL" Value="0"/>
+<DataValueMember Name="Uncertain" DataType="BOOL" Value="0"/>
+<DataValueMember Name="NoLoad" DataType="BOOL" Value="0"/>
+<DataValueMember Name="ShortCircuit" DataType="BOOL" Value="0"/>
+</StructureMember>
+</Structure>
+</Data>
+</InputTag>
+<OutputTag ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[[[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]]]]>
+</Data>
+<Data Format="Decorated">
+<Structure DataType="AB:5000_DO16:O:0">
+<StructureMember Name="Pt00" DataType="CHANNEL_DO:O:0">
+<DataValueMember Name="Data" DataType="BOOL" Value="0"/>
+</StructureMember>
+<StructureMember Name="Pt01" DataType="CHANNEL_DO:O:0">
+<DataValueMember Name="Data" DataType="BOOL" Value="0"/>
+</StructureMember>
+<StructureMember Name="Pt02" DataType="CHANNEL_DO:O:0">
+<DataValueMember Name="Data" DataType="BOOL" Value="0"/>
+</StructureMember>
+<StructureMember Name="Pt03" DataType="CHANNEL_DO:O:0">
+<DataValueMember Name="Data" DataType="BOOL" Value="0"/>
+</StructureMember>
+<StructureMember Name="Pt04" DataType="CHANNEL_DO:O:0">
+<DataValueMember Name="Data" DataType="BOOL" Value="0"/>
+</StructureMember>
+<StructureMember Name="Pt05" DataType="CHANNEL_DO:O:0">
+<DataValueMember Name="Data" DataType="BOOL" Value="0"/>
+</StructureMember>
+<StructureMember Name="Pt06" DataType="CHANNEL_DO:O:0">
+<DataValueMember Name="Data" DataType="BOOL" Value="0"/>
+</StructureMember>
+<StructureMember Name="Pt07" DataType="CHANNEL_DO:O:0">
+<DataValueMember Name="Data" DataType="BOOL" Value="0"/>
+</StructureMember>
+<StructureMember Name="Pt08" DataType="CHANNEL_DO:O:0">
+<DataValueMember Name="Data" DataType="BOOL" Value="0"/>
+</StructureMember>
+<StructureMember Name="Pt09" DataType="CHANNEL_DO:O:0">
+<DataValueMember Name="Data" DataType="BOOL" Value="0"/>
+</StructureMember>
+<StructureMember Name="Pt10" DataType="CHANNEL_DO:O:0">
+<DataValueMember Name="Data" DataType="BOOL" Value="0"/>
+</StructureMember>
+<StructureMember Name="Pt11" DataType="CHANNEL_DO:O:0">
+<DataValueMember Name="Data" DataType="BOOL" Value="0"/>
+</StructureMember>
+<StructureMember Name="Pt12" DataType="CHANNEL_DO:O:0">
+<DataValueMember Name="Data" DataType="BOOL" Value="0"/>
+</StructureMember>
+<StructureMember Name="Pt13" DataType="CHANNEL_DO:O:0">
+<DataValueMember Name="Data" DataType="BOOL" Value="0"/>
+</StructureMember>
+<StructureMember Name="Pt14" DataType="CHANNEL_DO:O:0">
+<DataValueMember Name="Data" DataType="BOOL" Value="0"/>
+</StructureMember>
+<StructureMember Name="Pt15" DataType="CHANNEL_DO:O:0">
+<DataValueMember Name="Data" DataType="BOOL" Value="0"/>
+</StructureMember>
+</Structure>
+</Data>
+</OutputTag>
+</Connection>
+</Connections>
+</Communications>
+<ExtendedProperties>
+<public><ConfigID>110</ConfigID><CatNum>5069-OB16</CatNum></public>
+</ExtendedProperties>
+</Module>
+<Module Name="Analog_Input_1" CatalogNumber="5069-IF8/A" Vendor="1" ProductType="115" ProductCode="312" Major="2" Minor="1" ParentModule="Local" ParentModPortId="1" Inhibited="false" MajorFault="false"
+ SafetyEnabled="false">
+<EKey State="CompatibleModule"/>
+<Ports>
+<Port Id="1" Address="3" Type="5069" Upstream="true"/>
+</Ports>
+<Communications>
+<ConfigTag ConfigSize="384" ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[[388,165,[4,0,2,1,0,0,0.00000000e+000,2.00000000e+001,0.00000000e+000,1.00000000e+002,0.00000000e+000
+					,0.00000000e+000,1.00000000e+002,1.00000000e+002,0.00000000e+000,0.00000000e+000],[4,0,2,1,0,0
+					,0.00000000e+000,2.00000000e+001,0.00000000e+000,1.00000000e+002,0.00000000e+000,0.00000000e+000
+					,1.00000000e+002,1.00000000e+002,0.00000000e+000,0.00000000e+000],[4,0,2,1,0,0,0.00000000e+000
+					,2.00000000e+001,0.00000000e+000,1.00000000e+002,0.00000000e+000,0.00000000e+000,1.00000000e+002
+					,1.00000000e+002,0.00000000e+000,0.00000000e+000],[4,0,2,1,0,0,0.00000000e+000,2.00000000e+001
+					,0.00000000e+000,1.00000000e+002,0.00000000e+000,0.00000000e+000,1.00000000e+002,1.00000000e+002
+					,0.00000000e+000,0.00000000e+000],[4,0,2,1,0,0,0.00000000e+000,2.00000000e+001,0.00000000e+000
+					,1.00000000e+002,0.00000000e+000,0.00000000e+000,1.00000000e+002,1.00000000e+002,0.00000000e+000
+					,0.00000000e+000],[4,0,2,1,0,0,0.00000000e+000,2.00000000e+001,0.00000000e+000,1.00000000e+002
+					,0.00000000e+000,0.00000000e+000,1.00000000e+002,1.00000000e+002,0.00000000e+000,0.00000000e+000
+					],[4,0,2,1,0,0,0.00000000e+000,2.00000000e+001,0.00000000e+000,1.00000000e+002,0.00000000e+000
+					,0.00000000e+000,1.00000000e+002,1.00000000e+002,0.00000000e+000,0.00000000e+000],[4,0,2,1,0,0
+					,0.00000000e+000,2.00000000e+001,0.00000000e+000,1.00000000e+002,0.00000000e+000,0.00000000e+000
+					,1.00000000e+002,1.00000000e+002,0.00000000e+000,0.00000000e+000]]]]>
+</Data>
+<Data Format="Decorated">
+<Structure DataType="AB:5000_AI8:C:0">
+<StructureMember Name="Ch00" DataType="AB:5000_AI_Channel:C:0">
+<DataValueMember Name="Range" DataType="SINT" Radix="Decimal" Value="4"/>
+<DataValueMember Name="SensorType" DataType="SINT" Radix="Decimal" Value="0"/>
+<DataValueMember Name="NotchFilter" DataType="SINT" Radix="Decimal" Value="2"/>
+<DataValueMember Name="AlarmDisable" DataType="BOOL" Value="1"/>
+<DataValueMember Name="ProcessAlarmLatchEn" DataType="BOOL" Value="0"/>
+<DataValueMember Name="RateAlarmLatchEn" DataType="BOOL" Value="0"/>
+<DataValueMember Name="OpenWireEn" DataType="BOOL" Value="0"/>
+<DataValueMember Name="Disable" DataType="BOOL" Value="0"/>
+<DataValueMember Name="TenOhmOffset" DataType="INT" Radix="Decimal" Value="0"/>
+<DataValueMember Name="DigitalFilter" DataType="INT" Radix="Decimal" Value="0"/>
+<DataValueMember Name="LowSignal" DataType="REAL" Radix="Float" Value="0.0"/>
+<DataValueMember Name="HighSignal" DataType="REAL" Radix="Float" Value="20.0"/>
+<DataValueMember Name="LowEngineering" DataType="REAL" Radix="Float" Value="0.0"/>
+<DataValueMember Name="HighEngineering" DataType="REAL" Radix="Float" Value="100.0"/>
+<DataValueMember Name="LLAlarmLimit" DataType="REAL" Radix="Float" Value="0.0"/>
+<DataValueMember Name="LAlarmLimit" DataType="REAL" Radix="Float" Value="0.0"/>
+<DataValueMember Name="HAlarmLimit" DataType="REAL" Radix="Float" Value="100.0"/>
+<DataValueMember Name="HHAlarmLimit" DataType="REAL" Radix="Float" Value="100.0"/>
+<DataValueMember Name="RateAlarmLimit" DataType="REAL" Radix="Float" Value="0.0"/>
+<DataValueMember Name="AlarmDeadband" DataType="REAL" Radix="Float" Value="0.0"/>
+</StructureMember>
+<StructureMember Name="Ch01" DataType="AB:5000_AI_Channel:C:0">
+<DataValueMember Name="Range" DataType="SINT" Radix="Decimal" Value="4"/>
+<DataValueMember Name="SensorType" DataType="SINT" Radix="Decimal" Value="0"/>
+<DataValueMember Name="NotchFilter" DataType="SINT" Radix="Decimal" Value="2"/>
+<DataValueMember Name="AlarmDisable" DataType="BOOL" Value="1"/>
+<DataValueMember Name="ProcessAlarmLatchEn" DataType="BOOL" Value="0"/>
+<DataValueMember Name="RateAlarmLatchEn" DataType="BOOL" Value="0"/>
+<DataValueMember Name="OpenWireEn" DataType="BOOL" Value="0"/>
+<DataValueMember Name="Disable" DataType="BOOL" Value="0"/>
+<DataValueMember Name="TenOhmOffset" DataType="INT" Radix="Decimal" Value="0"/>
+<DataValueMember Name="DigitalFilter" DataType="INT" Radix="Decimal" Value="0"/>
+<DataValueMember Name="LowSignal" DataType="REAL" Radix="Float" Value="0.0"/>
+<DataValueMember Name="HighSignal" DataType="REAL" Radix="Float" Value="20.0"/>
+<DataValueMember Name="LowEngineering" DataType="REAL" Radix="Float" Value="0.0"/>
+<DataValueMember Name="HighEngineering" DataType="REAL" Radix="Float" Value="100.0"/>
+<DataValueMember Name="LLAlarmLimit" DataType="REAL" Radix="Float" Value="0.0"/>
+<DataValueMember Name="LAlarmLimit" DataType="REAL" Radix="Float" Value="0.0"/>
+<DataValueMember Name="HAlarmLimit" DataType="REAL" Radix="Float" Value="100.0"/>
+<DataValueMember Name="HHAlarmLimit" DataType="REAL" Radix="Float" Value="100.0"/>
+<DataValueMember Name="RateAlarmLimit" DataType="REAL" Radix="Float" Value="0.0"/>
+<DataValueMember Name="AlarmDeadband" DataType="REAL" Radix="Float" Value="0.0"/>
+</StructureMember>
+<StructureMember Name="Ch02" DataType="AB:5000_AI_Channel:C:0">
+<DataValueMember Name="Range" DataType="SINT" Radix="Decimal" Value="4"/>
+<DataValueMember Name="SensorType" DataType="SINT" Radix="Decimal" Value="0"/>
+<DataValueMember Name="NotchFilter" DataType="SINT" Radix="Decimal" Value="2"/>
+<DataValueMember Name="AlarmDisable" DataType="BOOL" Value="1"/>
+<DataValueMember Name="ProcessAlarmLatchEn" DataType="BOOL" Value="0"/>
+<DataValueMember Name="RateAlarmLatchEn" DataType="BOOL" Value="0"/>
+<DataValueMember Name="OpenWireEn" DataType="BOOL" Value="0"/>
+<DataValueMember Name="Disable" DataType="BOOL" Value="0"/>
+<DataValueMember Name="TenOhmOffset" DataType="INT" Radix="Decimal" Value="0"/>
+<DataValueMember Name="DigitalFilter" DataType="INT" Radix="Decimal" Value="0"/>
+<DataValueMember Name="LowSignal" DataType="REAL" Radix="Float" Value="0.0"/>
+<DataValueMember Name="HighSignal" DataType="REAL" Radix="Float" Value="20.0"/>
+<DataValueMember Name="LowEngineering" DataType="REAL" Radix="Float" Value="0.0"/>
+<DataValueMember Name="HighEngineering" DataType="REAL" Radix="Float" Value="100.0"/>
+<DataValueMember Name="LLAlarmLimit" DataType="REAL" Radix="Float" Value="0.0"/>
+<DataValueMember Name="LAlarmLimit" DataType="REAL" Radix="Float" Value="0.0"/>
+<DataValueMember Name="HAlarmLimit" DataType="REAL" Radix="Float" Value="100.0"/>
+<DataValueMember Name="HHAlarmLimit" DataType="REAL" Radix="Float" Value="100.0"/>
+<DataValueMember Name="RateAlarmLimit" DataType="REAL" Radix="Float" Value="0.0"/>
+<DataValueMember Name="AlarmDeadband" DataType="REAL" Radix="Float" Value="0.0"/>
+</StructureMember>
+<StructureMember Name="Ch03" DataType="AB:5000_AI_Channel:C:0">
+<DataValueMember Name="Range" DataType="SINT" Radix="Decimal" Value="4"/>
+<DataValueMember Name="SensorType" DataType="SINT" Radix="Decimal" Value="0"/>
+<DataValueMember Name="NotchFilter" DataType="SINT" Radix="Decimal" Value="2"/>
+<DataValueMember Name="AlarmDisable" DataType="BOOL" Value="1"/>
+<DataValueMember Name="ProcessAlarmLatchEn" DataType="BOOL" Value="0"/>
+<DataValueMember Name="RateAlarmLatchEn" DataType="BOOL" Value="0"/>
+<DataValueMember Name="OpenWireEn" DataType="BOOL" Value="0"/>
+<DataValueMember Name="Disable" DataType="BOOL" Value="0"/>
+<DataValueMember Name="TenOhmOffset" DataType="INT" Radix="Decimal" Value="0"/>
+<DataValueMember Name="DigitalFilter" DataType="INT" Radix="Decimal" Value="0"/>
+<DataValueMember Name="LowSignal" DataType="REAL" Radix="Float" Value="0.0"/>
+<DataValueMember Name="HighSignal" DataType="REAL" Radix="Float" Value="20.0"/>
+<DataValueMember Name="LowEngineering" DataType="REAL" Radix="Float" Value="0.0"/>
+<DataValueMember Name="HighEngineering" DataType="REAL" Radix="Float" Value="100.0"/>
+<DataValueMember Name="LLAlarmLimit" DataType="REAL" Radix="Float" Value="0.0"/>
+<DataValueMember Name="LAlarmLimit" DataType="REAL" Radix="Float" Value="0.0"/>
+<DataValueMember Name="HAlarmLimit" DataType="REAL" Radix="Float" Value="100.0"/>
+<DataValueMember Name="HHAlarmLimit" DataType="REAL" Radix="Float" Value="100.0"/>
+<DataValueMember Name="RateAlarmLimit" DataType="REAL" Radix="Float" Value="0.0"/>
+<DataValueMember Name="AlarmDeadband" DataType="REAL" Radix="Float" Value="0.0"/>
+</StructureMember>
+<StructureMember Name="Ch04" DataType="AB:5000_AI_Channel:C:0">
+<DataValueMember Name="Range" DataType="SINT" Radix="Decimal" Value="4"/>
+<DataValueMember Name="SensorType" DataType="SINT" Radix="Decimal" Value="0"/>
+<DataValueMember Name="NotchFilter" DataType="SINT" Radix="Decimal" Value="2"/>
+<DataValueMember Name="AlarmDisable" DataType="BOOL" Value="1"/>
+<DataValueMember Name="ProcessAlarmLatchEn" DataType="BOOL" Value="0"/>
+<DataValueMember Name="RateAlarmLatchEn" DataType="BOOL" Value="0"/>
+<DataValueMember Name="OpenWireEn" DataType="BOOL" Value="0"/>
+<DataValueMember Name="Disable" DataType="BOOL" Value="0"/>
+<DataValueMember Name="TenOhmOffset" DataType="INT" Radix="Decimal" Value="0"/>
+<DataValueMember Name="DigitalFilter" DataType="INT" Radix="Decimal" Value="0"/>
+<DataValueMember Name="LowSignal" DataType="REAL" Radix="Float" Value="0.0"/>
+<DataValueMember Name="HighSignal" DataType="REAL" Radix="Float" Value="20.0"/>
+<DataValueMember Name="LowEngineering" DataType="REAL" Radix="Float" Value="0.0"/>
+<DataValueMember Name="HighEngineering" DataType="REAL" Radix="Float" Value="100.0"/>
+<DataValueMember Name="LLAlarmLimit" DataType="REAL" Radix="Float" Value="0.0"/>
+<DataValueMember Name="LAlarmLimit" DataType="REAL" Radix="Float" Value="0.0"/>
+<DataValueMember Name="HAlarmLimit" DataType="REAL" Radix="Float" Value="100.0"/>
+<DataValueMember Name="HHAlarmLimit" DataType="REAL" Radix="Float" Value="100.0"/>
+<DataValueMember Name="RateAlarmLimit" DataType="REAL" Radix="Float" Value="0.0"/>
+<DataValueMember Name="AlarmDeadband" DataType="REAL" Radix="Float" Value="0.0"/>
+</StructureMember>
+<StructureMember Name="Ch05" DataType="AB:5000_AI_Channel:C:0">
+<DataValueMember Name="Range" DataType="SINT" Radix="Decimal" Value="4"/>
+<DataValueMember Name="SensorType" DataType="SINT" Radix="Decimal" Value="0"/>
+<DataValueMember Name="NotchFilter" DataType="SINT" Radix="Decimal" Value="2"/>
+<DataValueMember Name="AlarmDisable" DataType="BOOL" Value="1"/>
+<DataValueMember Name="ProcessAlarmLatchEn" DataType="BOOL" Value="0"/>
+<DataValueMember Name="RateAlarmLatchEn" DataType="BOOL" Value="0"/>
+<DataValueMember Name="OpenWireEn" DataType="BOOL" Value="0"/>
+<DataValueMember Name="Disable" DataType="BOOL" Value="0"/>
+<DataValueMember Name="TenOhmOffset" DataType="INT" Radix="Decimal" Value="0"/>
+<DataValueMember Name="DigitalFilter" DataType="INT" Radix="Decimal" Value="0"/>
+<DataValueMember Name="LowSignal" DataType="REAL" Radix="Float" Value="0.0"/>
+<DataValueMember Name="HighSignal" DataType="REAL" Radix="Float" Value="20.0"/>
+<DataValueMember Name="LowEngineering" DataType="REAL" Radix="Float" Value="0.0"/>
+<DataValueMember Name="HighEngineering" DataType="REAL" Radix="Float" Value="100.0"/>
+<DataValueMember Name="LLAlarmLimit" DataType="REAL" Radix="Float" Value="0.0"/>
+<DataValueMember Name="LAlarmLimit" DataType="REAL" Radix="Float" Value="0.0"/>
+<DataValueMember Name="HAlarmLimit" DataType="REAL" Radix="Float" Value="100.0"/>
+<DataValueMember Name="HHAlarmLimit" DataType="REAL" Radix="Float" Value="100.0"/>
+<DataValueMember Name="RateAlarmLimit" DataType="REAL" Radix="Float" Value="0.0"/>
+<DataValueMember Name="AlarmDeadband" DataType="REAL" Radix="Float" Value="0.0"/>
+</StructureMember>
+<StructureMember Name="Ch06" DataType="AB:5000_AI_Channel:C:0">
+<DataValueMember Name="Range" DataType="SINT" Radix="Decimal" Value="4"/>
+<DataValueMember Name="SensorType" DataType="SINT" Radix="Decimal" Value="0"/>
+<DataValueMember Name="NotchFilter" DataType="SINT" Radix="Decimal" Value="2"/>
+<DataValueMember Name="AlarmDisable" DataType="BOOL" Value="1"/>
+<DataValueMember Name="ProcessAlarmLatchEn" DataType="BOOL" Value="0"/>
+<DataValueMember Name="RateAlarmLatchEn" DataType="BOOL" Value="0"/>
+<DataValueMember Name="OpenWireEn" DataType="BOOL" Value="0"/>
+<DataValueMember Name="Disable" DataType="BOOL" Value="0"/>
+<DataValueMember Name="TenOhmOffset" DataType="INT" Radix="Decimal" Value="0"/>
+<DataValueMember Name="DigitalFilter" DataType="INT" Radix="Decimal" Value="0"/>
+<DataValueMember Name="LowSignal" DataType="REAL" Radix="Float" Value="0.0"/>
+<DataValueMember Name="HighSignal" DataType="REAL" Radix="Float" Value="20.0"/>
+<DataValueMember Name="LowEngineering" DataType="REAL" Radix="Float" Value="0.0"/>
+<DataValueMember Name="HighEngineering" DataType="REAL" Radix="Float" Value="100.0"/>
+<DataValueMember Name="LLAlarmLimit" DataType="REAL" Radix="Float" Value="0.0"/>
+<DataValueMember Name="LAlarmLimit" DataType="REAL" Radix="Float" Value="0.0"/>
+<DataValueMember Name="HAlarmLimit" DataType="REAL" Radix="Float" Value="100.0"/>
+<DataValueMember Name="HHAlarmLimit" DataType="REAL" Radix="Float" Value="100.0"/>
+<DataValueMember Name="RateAlarmLimit" DataType="REAL" Radix="Float" Value="0.0"/>
+<DataValueMember Name="AlarmDeadband" DataType="REAL" Radix="Float" Value="0.0"/>
+</StructureMember>
+<StructureMember Name="Ch07" DataType="AB:5000_AI_Channel:C:0">
+<DataValueMember Name="Range" DataType="SINT" Radix="Decimal" Value="4"/>
+<DataValueMember Name="SensorType" DataType="SINT" Radix="Decimal" Value="0"/>
+<DataValueMember Name="NotchFilter" DataType="SINT" Radix="Decimal" Value="2"/>
+<DataValueMember Name="AlarmDisable" DataType="BOOL" Value="1"/>
+<DataValueMember Name="ProcessAlarmLatchEn" DataType="BOOL" Value="0"/>
+<DataValueMember Name="RateAlarmLatchEn" DataType="BOOL" Value="0"/>
+<DataValueMember Name="OpenWireEn" DataType="BOOL" Value="0"/>
+<DataValueMember Name="Disable" DataType="BOOL" Value="0"/>
+<DataValueMember Name="TenOhmOffset" DataType="INT" Radix="Decimal" Value="0"/>
+<DataValueMember Name="DigitalFilter" DataType="INT" Radix="Decimal" Value="0"/>
+<DataValueMember Name="LowSignal" DataType="REAL" Radix="Float" Value="0.0"/>
+<DataValueMember Name="HighSignal" DataType="REAL" Radix="Float" Value="20.0"/>
+<DataValueMember Name="LowEngineering" DataType="REAL" Radix="Float" Value="0.0"/>
+<DataValueMember Name="HighEngineering" DataType="REAL" Radix="Float" Value="100.0"/>
+<DataValueMember Name="LLAlarmLimit" DataType="REAL" Radix="Float" Value="0.0"/>
+<DataValueMember Name="LAlarmLimit" DataType="REAL" Radix="Float" Value="0.0"/>
+<DataValueMember Name="HAlarmLimit" DataType="REAL" Radix="Float" Value="100.0"/>
+<DataValueMember Name="HHAlarmLimit" DataType="REAL" Radix="Float" Value="100.0"/>
+<DataValueMember Name="RateAlarmLimit" DataType="REAL" Radix="Float" Value="0.0"/>
+<DataValueMember Name="AlarmDeadband" DataType="REAL" Radix="Float" Value="0.0"/>
+</StructureMember>
+</Structure>
+</Data>
+</ConfigTag>
+<ConfigScript Size="612">
+<Data Format="L5K">
+<![CDATA[[96,2,0,0,4,0,0,0,0,0,0,0,0,0,0,0,78,2,0,0,7,1,0,0,0,3,0,0,0,-128,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+					,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+					,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+					,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+					,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+					,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,16,31,0,0,0,0,0,0,0,0,0,0,0,96,1,0,0,32,0,0,0,32,0,0,0,31,0,0,0,-128,1,0,0,-128,1,0,0,96,1,0,0,-96,1,0,0,-96,1
+					,0,0,31,0,0,0,0,3,0,0,0,3,0,0,96,1,0,0,32,3,0,0,32,3,0,0,31,0,0,0,-128,4,0,0,-128,4,0,0,96,1,0,0,-96,4,0,0,-96,4,0,0,31,0,0,0,0,6,0,0,0,6,0,0,96
+					,1,0,0,32,6,0,0,32,6,0,0,31,0,0,0,-128,7,0,0,-128,7,0,0,96,1,0,0,-96,7,0,0,-96,7,0,0,31,0,0,0,0,9,0,0,0,9,0,0,96,1,0,0,32,9,0,0,32,9,0,0,31,0,0
+					,0,-128,10,0,0,-128,10,0,0,96,1,0,0,-96,10,0,0,-96,10,0,0,0,0]]]>
+</Data>
+</ConfigScript>
+<Connections>
+<Connection Name="InputData" RPI="100000" Type="StandardDataDriven" OutputSize="64" InputSize="100" EventID="0" ProgrammaticallySendEventTrigger="false" Priority="Scheduled" InputConnectionType="Multicast" InputProductionTrigger="Cyclic" ConnectionPath="20 04 24 a5 2c 6a 2c 8b"
+ InputTagSuffix="I" OutputTagSuffix="O">
+<InputTag ExternalAccess="Read/Write">
+<EngineeringUnits>
+<EngineeringUnit Operand=".CH00.DATA">
+<![CDATA[%]]>
+</EngineeringUnit>
+<EngineeringUnit Operand=".CH01.DATA">
+<![CDATA[%]]>
+</EngineeringUnit>
+<EngineeringUnit Operand=".CH02.DATA">
+<![CDATA[%]]>
+</EngineeringUnit>
+<EngineeringUnit Operand=".CH03.DATA">
+<![CDATA[%]]>
+</EngineeringUnit>
+<EngineeringUnit Operand=".CH04.DATA">
+<![CDATA[%]]>
+</EngineeringUnit>
+<EngineeringUnit Operand=".CH05.DATA">
+<![CDATA[%]]>
+</EngineeringUnit>
+<EngineeringUnit Operand=".CH06.DATA">
+<![CDATA[%]]>
+</EngineeringUnit>
+<EngineeringUnit Operand=".CH07.DATA">
+<![CDATA[%]]>
+</EngineeringUnit>
+</EngineeringUnits>
+<Data Format="Decorated">
+<Structure DataType="AB:5000_AI8:I:0">
+<DataValueMember Name="RunMode" DataType="BOOL" Value="0"/>
+<DataValueMember Name="ConnectionFaulted" DataType="BOOL" Value="0"/>
+<DataValueMember Name="DiagnosticActive" DataType="BOOL" Value="0"/>
+<DataValueMember Name="DiagnosticSequenceCount" DataType="SINT" Radix="Decimal" Value="0"/>
+<StructureMember Name="Ch00" DataType="CHANNEL_AI_DIAG:I:0">
+<DataValueMember Name="Fault" DataType="BOOL" Value="0"/>
+<DataValueMember Name="Uncertain" DataType="BOOL" Value="0"/>
+<DataValueMember Name="OpenWire" DataType="BOOL" Value="0"/>
+<DataValueMember Name="OverTemperature" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FieldPowerOff" DataType="BOOL" Value="0"/>
+<DataValueMember Name="NotANumber" DataType="BOOL" Value="0"/>
+<DataValueMember Name="Underrange" DataType="BOOL" Value="0"/>
+<DataValueMember Name="Overrange" DataType="BOOL" Value="0"/>
+<DataValueMember Name="LLAlarm" DataType="BOOL" Value="0"/>
+<DataValueMember Name="LAlarm" DataType="BOOL" Value="0"/>
+<DataValueMember Name="HAlarm" DataType="BOOL" Value="0"/>
+<DataValueMember Name="HHAlarm" DataType="BOOL" Value="0"/>
+<DataValueMember Name="RateAlarm" DataType="BOOL" Value="0"/>
+<DataValueMember Name="CalFault" DataType="BOOL" Value="0"/>
+<DataValueMember Name="Calibrating" DataType="BOOL" Value="0"/>
+<DataValueMember Name="Data" DataType="REAL" Radix="Float" Value="0.0"/>
+<DataValueMember Name="RollingTimestamp" DataType="INT" Radix="Decimal" Value="0"/>
+</StructureMember>
+<StructureMember Name="Ch01" DataType="CHANNEL_AI_DIAG:I:0">
+<DataValueMember Name="Fault" DataType="BOOL" Value="0"/>
+<DataValueMember Name="Uncertain" DataType="BOOL" Value="0"/>
+<DataValueMember Name="OpenWire" DataType="BOOL" Value="0"/>
+<DataValueMember Name="OverTemperature" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FieldPowerOff" DataType="BOOL" Value="0"/>
+<DataValueMember Name="NotANumber" DataType="BOOL" Value="0"/>
+<DataValueMember Name="Underrange" DataType="BOOL" Value="0"/>
+<DataValueMember Name="Overrange" DataType="BOOL" Value="0"/>
+<DataValueMember Name="LLAlarm" DataType="BOOL" Value="0"/>
+<DataValueMember Name="LAlarm" DataType="BOOL" Value="0"/>
+<DataValueMember Name="HAlarm" DataType="BOOL" Value="0"/>
+<DataValueMember Name="HHAlarm" DataType="BOOL" Value="0"/>
+<DataValueMember Name="RateAlarm" DataType="BOOL" Value="0"/>
+<DataValueMember Name="CalFault" DataType="BOOL" Value="0"/>
+<DataValueMember Name="Calibrating" DataType="BOOL" Value="0"/>
+<DataValueMember Name="Data" DataType="REAL" Radix="Float" Value="0.0"/>
+<DataValueMember Name="RollingTimestamp" DataType="INT" Radix="Decimal" Value="0"/>
+</StructureMember>
+<StructureMember Name="Ch02" DataType="CHANNEL_AI_DIAG:I:0">
+<DataValueMember Name="Fault" DataType="BOOL" Value="0"/>
+<DataValueMember Name="Uncertain" DataType="BOOL" Value="0"/>
+<DataValueMember Name="OpenWire" DataType="BOOL" Value="0"/>
+<DataValueMember Name="OverTemperature" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FieldPowerOff" DataType="BOOL" Value="0"/>
+<DataValueMember Name="NotANumber" DataType="BOOL" Value="0"/>
+<DataValueMember Name="Underrange" DataType="BOOL" Value="0"/>
+<DataValueMember Name="Overrange" DataType="BOOL" Value="0"/>
+<DataValueMember Name="LLAlarm" DataType="BOOL" Value="0"/>
+<DataValueMember Name="LAlarm" DataType="BOOL" Value="0"/>
+<DataValueMember Name="HAlarm" DataType="BOOL" Value="0"/>
+<DataValueMember Name="HHAlarm" DataType="BOOL" Value="0"/>
+<DataValueMember Name="RateAlarm" DataType="BOOL" Value="0"/>
+<DataValueMember Name="CalFault" DataType="BOOL" Value="0"/>
+<DataValueMember Name="Calibrating" DataType="BOOL" Value="0"/>
+<DataValueMember Name="Data" DataType="REAL" Radix="Float" Value="0.0"/>
+<DataValueMember Name="RollingTimestamp" DataType="INT" Radix="Decimal" Value="0"/>
+</StructureMember>
+<StructureMember Name="Ch03" DataType="CHANNEL_AI_DIAG:I:0">
+<DataValueMember Name="Fault" DataType="BOOL" Value="0"/>
+<DataValueMember Name="Uncertain" DataType="BOOL" Value="0"/>
+<DataValueMember Name="OpenWire" DataType="BOOL" Value="0"/>
+<DataValueMember Name="OverTemperature" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FieldPowerOff" DataType="BOOL" Value="0"/>
+<DataValueMember Name="NotANumber" DataType="BOOL" Value="0"/>
+<DataValueMember Name="Underrange" DataType="BOOL" Value="0"/>
+<DataValueMember Name="Overrange" DataType="BOOL" Value="0"/>
+<DataValueMember Name="LLAlarm" DataType="BOOL" Value="0"/>
+<DataValueMember Name="LAlarm" DataType="BOOL" Value="0"/>
+<DataValueMember Name="HAlarm" DataType="BOOL" Value="0"/>
+<DataValueMember Name="HHAlarm" DataType="BOOL" Value="0"/>
+<DataValueMember Name="RateAlarm" DataType="BOOL" Value="0"/>
+<DataValueMember Name="CalFault" DataType="BOOL" Value="0"/>
+<DataValueMember Name="Calibrating" DataType="BOOL" Value="0"/>
+<DataValueMember Name="Data" DataType="REAL" Radix="Float" Value="0.0"/>
+<DataValueMember Name="RollingTimestamp" DataType="INT" Radix="Decimal" Value="0"/>
+</StructureMember>
+<StructureMember Name="Ch04" DataType="CHANNEL_AI_DIAG:I:0">
+<DataValueMember Name="Fault" DataType="BOOL" Value="0"/>
+<DataValueMember Name="Uncertain" DataType="BOOL" Value="0"/>
+<DataValueMember Name="OpenWire" DataType="BOOL" Value="0"/>
+<DataValueMember Name="OverTemperature" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FieldPowerOff" DataType="BOOL" Value="0"/>
+<DataValueMember Name="NotANumber" DataType="BOOL" Value="0"/>
+<DataValueMember Name="Underrange" DataType="BOOL" Value="0"/>
+<DataValueMember Name="Overrange" DataType="BOOL" Value="0"/>
+<DataValueMember Name="LLAlarm" DataType="BOOL" Value="0"/>
+<DataValueMember Name="LAlarm" DataType="BOOL" Value="0"/>
+<DataValueMember Name="HAlarm" DataType="BOOL" Value="0"/>
+<DataValueMember Name="HHAlarm" DataType="BOOL" Value="0"/>
+<DataValueMember Name="RateAlarm" DataType="BOOL" Value="0"/>
+<DataValueMember Name="CalFault" DataType="BOOL" Value="0"/>
+<DataValueMember Name="Calibrating" DataType="BOOL" Value="0"/>
+<DataValueMember Name="Data" DataType="REAL" Radix="Float" Value="0.0"/>
+<DataValueMember Name="RollingTimestamp" DataType="INT" Radix="Decimal" Value="0"/>
+</StructureMember>
+<StructureMember Name="Ch05" DataType="CHANNEL_AI_DIAG:I:0">
+<DataValueMember Name="Fault" DataType="BOOL" Value="0"/>
+<DataValueMember Name="Uncertain" DataType="BOOL" Value="0"/>
+<DataValueMember Name="OpenWire" DataType="BOOL" Value="0"/>
+<DataValueMember Name="OverTemperature" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FieldPowerOff" DataType="BOOL" Value="0"/>
+<DataValueMember Name="NotANumber" DataType="BOOL" Value="0"/>
+<DataValueMember Name="Underrange" DataType="BOOL" Value="0"/>
+<DataValueMember Name="Overrange" DataType="BOOL" Value="0"/>
+<DataValueMember Name="LLAlarm" DataType="BOOL" Value="0"/>
+<DataValueMember Name="LAlarm" DataType="BOOL" Value="0"/>
+<DataValueMember Name="HAlarm" DataType="BOOL" Value="0"/>
+<DataValueMember Name="HHAlarm" DataType="BOOL" Value="0"/>
+<DataValueMember Name="RateAlarm" DataType="BOOL" Value="0"/>
+<DataValueMember Name="CalFault" DataType="BOOL" Value="0"/>
+<DataValueMember Name="Calibrating" DataType="BOOL" Value="0"/>
+<DataValueMember Name="Data" DataType="REAL" Radix="Float" Value="0.0"/>
+<DataValueMember Name="RollingTimestamp" DataType="INT" Radix="Decimal" Value="0"/>
+</StructureMember>
+<StructureMember Name="Ch06" DataType="CHANNEL_AI_DIAG:I:0">
+<DataValueMember Name="Fault" DataType="BOOL" Value="0"/>
+<DataValueMember Name="Uncertain" DataType="BOOL" Value="0"/>
+<DataValueMember Name="OpenWire" DataType="BOOL" Value="0"/>
+<DataValueMember Name="OverTemperature" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FieldPowerOff" DataType="BOOL" Value="0"/>
+<DataValueMember Name="NotANumber" DataType="BOOL" Value="0"/>
+<DataValueMember Name="Underrange" DataType="BOOL" Value="0"/>
+<DataValueMember Name="Overrange" DataType="BOOL" Value="0"/>
+<DataValueMember Name="LLAlarm" DataType="BOOL" Value="0"/>
+<DataValueMember Name="LAlarm" DataType="BOOL" Value="0"/>
+<DataValueMember Name="HAlarm" DataType="BOOL" Value="0"/>
+<DataValueMember Name="HHAlarm" DataType="BOOL" Value="0"/>
+<DataValueMember Name="RateAlarm" DataType="BOOL" Value="0"/>
+<DataValueMember Name="CalFault" DataType="BOOL" Value="0"/>
+<DataValueMember Name="Calibrating" DataType="BOOL" Value="0"/>
+<DataValueMember Name="Data" DataType="REAL" Radix="Float" Value="0.0"/>
+<DataValueMember Name="RollingTimestamp" DataType="INT" Radix="Decimal" Value="0"/>
+</StructureMember>
+<StructureMember Name="Ch07" DataType="CHANNEL_AI_DIAG:I:0">
+<DataValueMember Name="Fault" DataType="BOOL" Value="0"/>
+<DataValueMember Name="Uncertain" DataType="BOOL" Value="0"/>
+<DataValueMember Name="OpenWire" DataType="BOOL" Value="0"/>
+<DataValueMember Name="OverTemperature" DataType="BOOL" Value="0"/>
+<DataValueMember Name="FieldPowerOff" DataType="BOOL" Value="0"/>
+<DataValueMember Name="NotANumber" DataType="BOOL" Value="0"/>
+<DataValueMember Name="Underrange" DataType="BOOL" Value="0"/>
+<DataValueMember Name="Overrange" DataType="BOOL" Value="0"/>
+<DataValueMember Name="LLAlarm" DataType="BOOL" Value="0"/>
+<DataValueMember Name="LAlarm" DataType="BOOL" Value="0"/>
+<DataValueMember Name="HAlarm" DataType="BOOL" Value="0"/>
+<DataValueMember Name="HHAlarm" DataType="BOOL" Value="0"/>
+<DataValueMember Name="RateAlarm" DataType="BOOL" Value="0"/>
+<DataValueMember Name="CalFault" DataType="BOOL" Value="0"/>
+<DataValueMember Name="Calibrating" DataType="BOOL" Value="0"/>
+<DataValueMember Name="Data" DataType="REAL" Radix="Float" Value="0.0"/>
+<DataValueMember Name="RollingTimestamp" DataType="INT" Radix="Decimal" Value="0"/>
+</StructureMember>
+</Structure>
+</Data>
+</InputTag>
+<OutputTag ExternalAccess="Read/Write">
+<Data Format="L5K">
+<![CDATA[[[0,0,0,0.00000000e+000],[0,0,0,0.00000000e+000],[0,0,0,0.00000000e+000],[0,0,0,0.00000000e+000],[0,0,0,0.00000000e+000
+					],[0,0,0,0.00000000e+000],[0,0,0,0.00000000e+000],[0,0,0,0.00000000e+000]]]]>
+</Data>
+<Data Format="Decorated">
+<Structure DataType="AB:5000_AI8:O:0">
+<StructureMember Name="Ch00" DataType="CHANNEL_AI:O:0">
+<DataValueMember Name="LLAlarmEn" DataType="BOOL" Value="0"/>
+<DataValueMember Name="LAlarmEn" DataType="BOOL" Value="0"/>
+<DataValueMember Name="HAlarmEn" DataType="BOOL" Value="0"/>
+<DataValueMember Name="HHAlarmEn" DataType="BOOL" Value="0"/>
+<DataValueMember Name="RateAlarmEn" DataType="BOOL" Value="0"/>
+<DataValueMember Name="LLAlarmUnlatch" DataType="BOOL" Value="0"/>
+<DataValueMember Name="LAlarmUnlatch" DataType="BOOL" Value="0"/>
+<DataValueMember Name="HAlarmUnlatch" DataType="BOOL" Value="0"/>
+<DataValueMember Name="HHAlarmUnlatch" DataType="BOOL" Value="0"/>
+<DataValueMember Name="RateAlarmUnlatch" DataType="BOOL" Value="0"/>
+<DataValueMember Name="SensorOffset" DataType="REAL" Radix="Float" Value="0.0"/>
+</StructureMember>
+<StructureMember Name="Ch01" DataType="CHANNEL_AI:O:0">
+<DataValueMember Name="LLAlarmEn" DataType="BOOL" Value="0"/>
+<DataValueMember Name="LAlarmEn" DataType="BOOL" Value="0"/>
+<DataValueMember Name="HAlarmEn" DataType="BOOL" Value="0"/>
+<DataValueMember Name="HHAlarmEn" DataType="BOOL" Value="0"/>
+<DataValueMember Name="RateAlarmEn" DataType="BOOL" Value="0"/>
+<DataValueMember Name="LLAlarmUnlatch" DataType="BOOL" Value="0"/>
+<DataValueMember Name="LAlarmUnlatch" DataType="BOOL" Value="0"/>
+<DataValueMember Name="HAlarmUnlatch" DataType="BOOL" Value="0"/>
+<DataValueMember Name="HHAlarmUnlatch" DataType="BOOL" Value="0"/>
+<DataValueMember Name="RateAlarmUnlatch" DataType="BOOL" Value="0"/>
+<DataValueMember Name="SensorOffset" DataType="REAL" Radix="Float" Value="0.0"/>
+</StructureMember>
+<StructureMember Name="Ch02" DataType="CHANNEL_AI:O:0">
+<DataValueMember Name="LLAlarmEn" DataType="BOOL" Value="0"/>
+<DataValueMember Name="LAlarmEn" DataType="BOOL" Value="0"/>
+<DataValueMember Name="HAlarmEn" DataType="BOOL" Value="0"/>
+<DataValueMember Name="HHAlarmEn" DataType="BOOL" Value="0"/>
+<DataValueMember Name="RateAlarmEn" DataType="BOOL" Value="0"/>
+<DataValueMember Name="LLAlarmUnlatch" DataType="BOOL" Value="0"/>
+<DataValueMember Name="LAlarmUnlatch" DataType="BOOL" Value="0"/>
+<DataValueMember Name="HAlarmUnlatch" DataType="BOOL" Value="0"/>
+<DataValueMember Name="HHAlarmUnlatch" DataType="BOOL" Value="0"/>
+<DataValueMember Name="RateAlarmUnlatch" DataType="BOOL" Value="0"/>
+<DataValueMember Name="SensorOffset" DataType="REAL" Radix="Float" Value="0.0"/>
+</StructureMember>
+<StructureMember Name="Ch03" DataType="CHANNEL_AI:O:0">
+<DataValueMember Name="LLAlarmEn" DataType="BOOL" Value="0"/>
+<DataValueMember Name="LAlarmEn" DataType="BOOL" Value="0"/>
+<DataValueMember Name="HAlarmEn" DataType="BOOL" Value="0"/>
+<DataValueMember Name="HHAlarmEn" DataType="BOOL" Value="0"/>
+<DataValueMember Name="RateAlarmEn" DataType="BOOL" Value="0"/>
+<DataValueMember Name="LLAlarmUnlatch" DataType="BOOL" Value="0"/>
+<DataValueMember Name="LAlarmUnlatch" DataType="BOOL" Value="0"/>
+<DataValueMember Name="HAlarmUnlatch" DataType="BOOL" Value="0"/>
+<DataValueMember Name="HHAlarmUnlatch" DataType="BOOL" Value="0"/>
+<DataValueMember Name="RateAlarmUnlatch" DataType="BOOL" Value="0"/>
+<DataValueMember Name="SensorOffset" DataType="REAL" Radix="Float" Value="0.0"/>
+</StructureMember>
+<StructureMember Name="Ch04" DataType="CHANNEL_AI:O:0">
+<DataValueMember Name="LLAlarmEn" DataType="BOOL" Value="0"/>
+<DataValueMember Name="LAlarmEn" DataType="BOOL" Value="0"/>
+<DataValueMember Name="HAlarmEn" DataType="BOOL" Value="0"/>
+<DataValueMember Name="HHAlarmEn" DataType="BOOL" Value="0"/>
+<DataValueMember Name="RateAlarmEn" DataType="BOOL" Value="0"/>
+<DataValueMember Name="LLAlarmUnlatch" DataType="BOOL" Value="0"/>
+<DataValueMember Name="LAlarmUnlatch" DataType="BOOL" Value="0"/>
+<DataValueMember Name="HAlarmUnlatch" DataType="BOOL" Value="0"/>
+<DataValueMember Name="HHAlarmUnlatch" DataType="BOOL" Value="0"/>
+<DataValueMember Name="RateAlarmUnlatch" DataType="BOOL" Value="0"/>
+<DataValueMember Name="SensorOffset" DataType="REAL" Radix="Float" Value="0.0"/>
+</StructureMember>
+<StructureMember Name="Ch05" DataType="CHANNEL_AI:O:0">
+<DataValueMember Name="LLAlarmEn" DataType="BOOL" Value="0"/>
+<DataValueMember Name="LAlarmEn" DataType="BOOL" Value="0"/>
+<DataValueMember Name="HAlarmEn" DataType="BOOL" Value="0"/>
+<DataValueMember Name="HHAlarmEn" DataType="BOOL" Value="0"/>
+<DataValueMember Name="RateAlarmEn" DataType="BOOL" Value="0"/>
+<DataValueMember Name="LLAlarmUnlatch" DataType="BOOL" Value="0"/>
+<DataValueMember Name="LAlarmUnlatch" DataType="BOOL" Value="0"/>
+<DataValueMember Name="HAlarmUnlatch" DataType="BOOL" Value="0"/>
+<DataValueMember Name="HHAlarmUnlatch" DataType="BOOL" Value="0"/>
+<DataValueMember Name="RateAlarmUnlatch" DataType="BOOL" Value="0"/>
+<DataValueMember Name="SensorOffset" DataType="REAL" Radix="Float" Value="0.0"/>
+</StructureMember>
+<StructureMember Name="Ch06" DataType="CHANNEL_AI:O:0">
+<DataValueMember Name="LLAlarmEn" DataType="BOOL" Value="0"/>
+<DataValueMember Name="LAlarmEn" DataType="BOOL" Value="0"/>
+<DataValueMember Name="HAlarmEn" DataType="BOOL" Value="0"/>
+<DataValueMember Name="HHAlarmEn" DataType="BOOL" Value="0"/>
+<DataValueMember Name="RateAlarmEn" DataType="BOOL" Value="0"/>
+<DataValueMember Name="LLAlarmUnlatch" DataType="BOOL" Value="0"/>
+<DataValueMember Name="LAlarmUnlatch" DataType="BOOL" Value="0"/>
+<DataValueMember Name="HAlarmUnlatch" DataType="BOOL" Value="0"/>
+<DataValueMember Name="HHAlarmUnlatch" DataType="BOOL" Value="0"/>
+<DataValueMember Name="RateAlarmUnlatch" DataType="BOOL" Value="0"/>
+<DataValueMember Name="SensorOffset" DataType="REAL" Radix="Float" Value="0.0"/>
+</StructureMember>
+<StructureMember Name="Ch07" DataType="CHANNEL_AI:O:0">
+<DataValueMember Name="LLAlarmEn" DataType="BOOL" Value="0"/>
+<DataValueMember Name="LAlarmEn" DataType="BOOL" Value="0"/>
+<DataValueMember Name="HAlarmEn" DataType="BOOL" Value="0"/>
+<DataValueMember Name="HHAlarmEn" DataType="BOOL" Value="0"/>
+<DataValueMember Name="RateAlarmEn" DataType="BOOL" Value="0"/>
+<DataValueMember Name="LLAlarmUnlatch" DataType="BOOL" Value="0"/>
+<DataValueMember Name="LAlarmUnlatch" DataType="BOOL" Value="0"/>
+<DataValueMember Name="HAlarmUnlatch" DataType="BOOL" Value="0"/>
+<DataValueMember Name="HHAlarmUnlatch" DataType="BOOL" Value="0"/>
+<DataValueMember Name="RateAlarmUnlatch" DataType="BOOL" Value="0"/>
+<DataValueMember Name="SensorOffset" DataType="REAL" Radix="Float" Value="0.0"/>
+</StructureMember>
+</Structure>
+</Data>
+</OutputTag>
+</Connection>
+</Connections>
+</Communications>
+<ExtendedProperties>
+<public><Vendor>Rockwell Automation/Allen-Bradley</Vendor><CatNum>5069-IF8</CatNum><ConfigID>101</ConfigID></public>
+</ExtendedProperties>
+</Module>
+</Modules>
+<AddOnInstructionDefinitions/>
+<Tags>
+<Tag Name="Utility_Power_Present" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[Utility power present signal]]></Description>
+<Data Format="L5K"><![CDATA[0]]></Data>
+<Data Format="Decorated"><DataValue DataType="BOOL" Radix="Decimal" Value="0"/></Data>
+</Tag>
+<Tag Name="Gen_Running" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[Generator running feedback]]></Description>
+<Data Format="L5K"><![CDATA[0]]></Data>
+<Data Format="Decorated"><DataValue DataType="BOOL" Radix="Decimal" Value="0"/></Data>
+</Tag>
+<Tag Name="Gen_Fault" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[Generator fault signal]]></Description>
+<Data Format="L5K"><![CDATA[0]]></Data>
+<Data Format="Decorated"><DataValue DataType="BOOL" Radix="Decimal" Value="0"/></Data>
+</Tag>
+<Tag Name="Gen_Ready" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[Generator ready signal]]></Description>
+<Data Format="L5K"><![CDATA[0]]></Data>
+<Data Format="Decorated"><DataValue DataType="BOOL" Radix="Decimal" Value="0"/></Data>
+</Tag>
+<Tag Name="ATS_Utility_Pos" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[ATS in utility position]]></Description>
+<Data Format="L5K"><![CDATA[0]]></Data>
+<Data Format="Decorated"><DataValue DataType="BOOL" Radix="Decimal" Value="0"/></Data>
+</Tag>
+<Tag Name="ATS_Generator_Pos" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[ATS in generator position]]></Description>
+<Data Format="L5K"><![CDATA[0]]></Data>
+<Data Format="Decorated"><DataValue DataType="BOOL" Radix="Decimal" Value="0"/></Data>
+</Tag>
+<Tag Name="Sump_Float_High" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[Sump pit float switch high water]]></Description>
+<Data Format="L5K"><![CDATA[0]]></Data>
+<Data Format="Decorated"><DataValue DataType="BOOL" Radix="Decimal" Value="0"/></Data>
+</Tag>
+<Tag Name="Gen_Start_Cmd" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[Generator start command output]]></Description>
+<Data Format="L5K"><![CDATA[0]]></Data>
+<Data Format="Decorated"><DataValue DataType="BOOL" Radix="Decimal" Value="0"/></Data>
+</Tag>
+<Tag Name="ATS_Transfer_Cmd" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[ATS transfer to generator command]]></Description>
+<Data Format="L5K"><![CDATA[0]]></Data>
+<Data Format="Decorated"><DataValue DataType="BOOL" Radix="Decimal" Value="0"/></Data>
+</Tag>
+<Tag Name="Sump_Pump_Run" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[Sump pump run output]]></Description>
+<Data Format="L5K"><![CDATA[0]]></Data>
+<Data Format="Decorated"><DataValue DataType="BOOL" Radix="Decimal" Value="0"/></Data>
+</Tag>
+<Tag Name="Thermostat_W_Call" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[Thermostat heat demand 24V signal]]></Description>
+<Data Format="L5K"><![CDATA[0]]></Data>
+<Data Format="Decorated"><DataValue DataType="BOOL" Radix="Decimal" Value="0"/></Data>
+</Tag>
+<Tag Name="Gen_On_Utility" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[System on utility power]]></Description>
+<Data Format="L5K"><![CDATA[0]]></Data>
+<Data Format="Decorated"><DataValue DataType="BOOL" Radix="Decimal" Value="0"/></Data>
+</Tag>
+<Tag Name="Gen_On_Generator" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[System on generator power]]></Description>
+<Data Format="L5K"><![CDATA[0]]></Data>
+<Data Format="Decorated"><DataValue DataType="BOOL" Radix="Decimal" Value="0"/></Data>
+</Tag>
+<Tag Name="Gen_Start_Fail" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[Generator failed to start]]></Description>
+<Data Format="L5K"><![CDATA[0]]></Data>
+<Data Format="Decorated"><DataValue DataType="BOOL" Radix="Decimal" Value="0"/></Data>
+</Tag>
+<Tag Name="Gen_Stop_Fail" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[Generator failed to stop]]></Description>
+<Data Format="L5K"><![CDATA[0]]></Data>
+<Data Format="Decorated"><DataValue DataType="BOOL" Radix="Decimal" Value="0"/></Data>
+</Tag>
+<Tag Name="Gen_Exercise_Active" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[Weekly exercise in progress]]></Description>
+<Data Format="L5K"><![CDATA[0]]></Data>
+<Data Format="Decorated"><DataValue DataType="BOOL" Radix="Decimal" Value="0"/></Data>
+</Tag>
+<Tag Name="Exercise_Trigger" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[Trigger to start exercise]]></Description>
+<Data Format="L5K"><![CDATA[0]]></Data>
+<Data Format="Decorated"><DataValue DataType="BOOL" Radix="Decimal" Value="0"/></Data>
+</Tag>
+<Tag Name="HMI_Exercise_Request" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[HMI manual exercise request]]></Description>
+<Data Format="L5K"><![CDATA[0]]></Data>
+<Data Format="Decorated"><DataValue DataType="BOOL" Radix="Decimal" Value="0"/></Data>
+</Tag>
+<Tag Name="HMI_Gen_Fault_Reset" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[HMI generator fault reset]]></Description>
+<Data Format="L5K"><![CDATA[0]]></Data>
+<Data Format="Decorated"><DataValue DataType="BOOL" Radix="Decimal" Value="0"/></Data>
+</Tag>
+<Tag Name="Sump_Max_Run_Fault" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[Pump max run time exceeded]]></Description>
+<Data Format="L5K"><![CDATA[0]]></Data>
+<Data Format="Decorated"><DataValue DataType="BOOL" Radix="Decimal" Value="0"/></Data>
+</Tag>
+<Tag Name="Sump_Test_Active" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[Test run in progress]]></Description>
+<Data Format="L5K"><![CDATA[0]]></Data>
+<Data Format="Decorated"><DataValue DataType="BOOL" Radix="Decimal" Value="0"/></Data>
+</Tag>
+<Tag Name="Sump_Last_Test_OK" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[Last test completed OK]]></Description>
+<Data Format="L5K"><![CDATA[0]]></Data>
+<Data Format="Decorated"><DataValue DataType="BOOL" Radix="Decimal" Value="0"/></Data>
+</Tag>
+<Tag Name="Sump_Test_Trigger" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[Trigger to start sump test]]></Description>
+<Data Format="L5K"><![CDATA[0]]></Data>
+<Data Format="Decorated"><DataValue DataType="BOOL" Radix="Decimal" Value="0"/></Data>
+</Tag>
+<Tag Name="HMI_Sump_Test_Request" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[HMI manual sump test request]]></Description>
+<Data Format="L5K"><![CDATA[0]]></Data>
+<Data Format="Decorated"><DataValue DataType="BOOL" Radix="Decimal" Value="0"/></Data>
+</Tag>
+<Tag Name="HMI_Sump_Fault_Reset" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[HMI sump fault reset]]></Description>
+<Data Format="L5K"><![CDATA[0]]></Data>
+<Data Format="Decorated"><DataValue DataType="BOOL" Radix="Decimal" Value="0"/></Data>
+</Tag>
+<Tag Name="HVAC_Furnace_Running" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[Furnace is running]]></Description>
+<Data Format="L5K"><![CDATA[0]]></Data>
+<Data Format="Decorated"><DataValue DataType="BOOL" Radix="Decimal" Value="0"/></Data>
+</Tag>
+<Tag Name="HVAC_Was_Running" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[Furnace was recently running]]></Description>
+<Data Format="L5K"><![CDATA[0]]></Data>
+<Data Format="Decorated"><DataValue DataType="BOOL" Radix="Decimal" Value="0"/></Data>
+</Tag>
+<Tag Name="HVAC_Filter_Change_Due" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[Filter change reminder at 300 hours]]></Description>
+<Data Format="L5K"><![CDATA[0]]></Data>
+<Data Format="Decorated"><DataValue DataType="BOOL" Radix="Decimal" Value="0"/></Data>
+</Tag>
+<Tag Name="HVAC_Short_Cycle_Alarm" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[Short cycling alarm]]></Description>
+<Data Format="L5K"><![CDATA[0]]></Data>
+<Data Format="Decorated"><DataValue DataType="BOOL" Radix="Decimal" Value="0"/></Data>
+</Tag>
+<Tag Name="HMI_Filter_Reset" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[HMI filter hours reset]]></Description>
+<Data Format="L5K"><![CDATA[0]]></Data>
+<Data Format="Decorated"><DataValue DataType="BOOL" Radix="Decimal" Value="0"/></Data>
+</Tag>
+<Tag Name="HMI_Temp_MinMax_Reset" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[HMI min/max temp reset]]></Description>
+<Data Format="L5K"><![CDATA[0]]></Data>
+<Data Format="Decorated"><DataValue DataType="BOOL" Radix="Decimal" Value="0"/></Data>
+</Tag>
+<Tag Name="HMI_HVAC_Alarm_Reset" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[HMI HVAC alarm reset]]></Description>
+<Data Format="L5K"><![CDATA[0]]></Data>
+<Data Format="Decorated"><DataValue DataType="BOOL" Radix="Decimal" Value="0"/></Data>
+</Tag>
+<Tag Name="Elec_Overload_Alarm" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[Sustained overload alarm]]></Description>
+<Data Format="L5K"><![CDATA[0]]></Data>
+<Data Format="Decorated"><DataValue DataType="BOOL" Radix="Decimal" Value="0"/></Data>
+</Tag>
+<Tag Name="Elec_Gen_Overload_Alarm" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[Generator overload alarm]]></Description>
+<Data Format="L5K"><![CDATA[0]]></Data>
+<Data Format="Decorated"><DataValue DataType="BOOL" Radix="Decimal" Value="0"/></Data>
+</Tag>
+<Tag Name="HMI_Elec_Peak_Reset" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[HMI peak current reset]]></Description>
+<Data Format="L5K"><![CDATA[0]]></Data>
+<Data Format="Decorated"><DataValue DataType="BOOL" Radix="Decimal" Value="0"/></Data>
+</Tag>
+<Tag Name="HMI_Elec_Alarm_Reset" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[HMI electrical alarm reset]]></Description>
+<Data Format="L5K"><![CDATA[0]]></Data>
+<Data Format="Decorated"><DataValue DataType="BOOL" Radix="Decimal" Value="0"/></Data>
+</Tag>
+<Tag Name="Pulse_1s" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[1 second pulse output]]></Description>
+<Data Format="L5K"><![CDATA[0]]></Data>
+<Data Format="Decorated"><DataValue DataType="BOOL" Radix="Decimal" Value="0"/></Data>
+</Tag>
+<Tag Name="Exercise_Count_ONS" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[One-shot for exercise second counter]]></Description>
+<Data Format="L5K"><![CDATA[0]]></Data>
+<Data Format="Decorated"><DataValue DataType="BOOL" Radix="Decimal" Value="0"/></Data>
+</Tag>
+<Tag Name="Crank_Attempt_ONS" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[One-shot for crank attempt counter]]></Description>
+<Data Format="L5K"><![CDATA[0]]></Data>
+<Data Format="Decorated"><DataValue DataType="BOOL" Radix="Decimal" Value="0"/></Data>
+</Tag>
+<Tag Name="Sump_Cycle_ONS" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[One-shot for sump pump cycle counter]]></Description>
+<Data Format="L5K"><![CDATA[0]]></Data>
+<Data Format="Decorated"><DataValue DataType="BOOL" Radix="Decimal" Value="0"/></Data>
+</Tag>
+<Tag Name="HMI_Gen_Running" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[Generator running for HMI]]></Description>
+<Data Format="L5K"><![CDATA[0]]></Data>
+<Data Format="Decorated"><DataValue DataType="BOOL" Radix="Decimal" Value="0"/></Data>
+</Tag>
+<Tag Name="HMI_Gen_On_Utility" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[On utility for HMI]]></Description>
+<Data Format="L5K"><![CDATA[0]]></Data>
+<Data Format="Decorated"><DataValue DataType="BOOL" Radix="Decimal" Value="0"/></Data>
+</Tag>
+<Tag Name="HMI_Gen_On_Generator" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[On generator for HMI]]></Description>
+<Data Format="L5K"><![CDATA[0]]></Data>
+<Data Format="Decorated"><DataValue DataType="BOOL" Radix="Decimal" Value="0"/></Data>
+</Tag>
+<Tag Name="HMI_Gen_Exercise_Active" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[Exercise active for HMI]]></Description>
+<Data Format="L5K"><![CDATA[0]]></Data>
+<Data Format="Decorated"><DataValue DataType="BOOL" Radix="Decimal" Value="0"/></Data>
+</Tag>
+<Tag Name="HMI_Gen_Start_Fail_Alarm" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[Gen start fail alarm for HMI]]></Description>
+<Data Format="L5K"><![CDATA[0]]></Data>
+<Data Format="Decorated"><DataValue DataType="BOOL" Radix="Decimal" Value="0"/></Data>
+</Tag>
+<Tag Name="HMI_Gen_Stop_Fail_Alarm" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[Gen stop fail alarm for HMI]]></Description>
+<Data Format="L5K"><![CDATA[0]]></Data>
+<Data Format="Decorated"><DataValue DataType="BOOL" Radix="Decimal" Value="0"/></Data>
+</Tag>
+<Tag Name="HMI_Gen_Fault_Alarm" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[Gen fault alarm for HMI]]></Description>
+<Data Format="L5K"><![CDATA[0]]></Data>
+<Data Format="Decorated"><DataValue DataType="BOOL" Radix="Decimal" Value="0"/></Data>
+</Tag>
+<Tag Name="HMI_Utility_Present" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[Utility present for HMI]]></Description>
+<Data Format="L5K"><![CDATA[0]]></Data>
+<Data Format="Decorated"><DataValue DataType="BOOL" Radix="Decimal" Value="0"/></Data>
+</Tag>
+<Tag Name="HMI_Sump_Pump_Running" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[Pump running for HMI]]></Description>
+<Data Format="L5K"><![CDATA[0]]></Data>
+<Data Format="Decorated"><DataValue DataType="BOOL" Radix="Decimal" Value="0"/></Data>
+</Tag>
+<Tag Name="HMI_Sump_Float_Active" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[Float active for HMI]]></Description>
+<Data Format="L5K"><![CDATA[0]]></Data>
+<Data Format="Decorated"><DataValue DataType="BOOL" Radix="Decimal" Value="0"/></Data>
+</Tag>
+<Tag Name="HMI_Sump_Test_Active" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[Sump test active for HMI]]></Description>
+<Data Format="L5K"><![CDATA[0]]></Data>
+<Data Format="Decorated"><DataValue DataType="BOOL" Radix="Decimal" Value="0"/></Data>
+</Tag>
+<Tag Name="HMI_Sump_Max_Run_Alarm" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[Sump max run alarm for HMI]]></Description>
+<Data Format="L5K"><![CDATA[0]]></Data>
+<Data Format="Decorated"><DataValue DataType="BOOL" Radix="Decimal" Value="0"/></Data>
+</Tag>
+<Tag Name="HMI_Sump_Last_Test_OK" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[Last test OK for HMI]]></Description>
+<Data Format="L5K"><![CDATA[0]]></Data>
+<Data Format="Decorated"><DataValue DataType="BOOL" Radix="Decimal" Value="0"/></Data>
+</Tag>
+<Tag Name="HMI_Any_Alarm" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[Any active alarm for HMI banner]]></Description>
+<Data Format="L5K"><![CDATA[0]]></Data>
+<Data Format="Decorated"><DataValue DataType="BOOL" Radix="Decimal" Value="0"/></Data>
+</Tag>
+<Tag Name="HMI_HVAC_Furnace_Running" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[Furnace running for HMI]]></Description>
+<Data Format="L5K"><![CDATA[0]]></Data>
+<Data Format="Decorated"><DataValue DataType="BOOL" Radix="Decimal" Value="0"/></Data>
+</Tag>
+<Tag Name="HMI_HVAC_Filter_Change_Due" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[Filter change due for HMI]]></Description>
+<Data Format="L5K"><![CDATA[0]]></Data>
+<Data Format="Decorated"><DataValue DataType="BOOL" Radix="Decimal" Value="0"/></Data>
+</Tag>
+<Tag Name="HMI_HVAC_Short_Cycle_Alarm" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[Short cycle alarm for HMI]]></Description>
+<Data Format="L5K"><![CDATA[0]]></Data>
+<Data Format="Decorated"><DataValue DataType="BOOL" Radix="Decimal" Value="0"/></Data>
+</Tag>
+<Tag Name="HMI_Elec_Overload_Alarm" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[Overload alarm for HMI]]></Description>
+<Data Format="L5K"><![CDATA[0]]></Data>
+<Data Format="Decorated"><DataValue DataType="BOOL" Radix="Decimal" Value="0"/></Data>
+</Tag>
+<Tag Name="HMI_Elec_Gen_Overload_Alarm" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[Generator overload alarm for HMI]]></Description>
+<Data Format="L5K"><![CDATA[0]]></Data>
+<Data Format="Decorated"><DataValue DataType="BOOL" Radix="Decimal" Value="0"/></Data>
+</Tag>
+<Tag Name="Gen_State" TagType="Base" DataType="DINT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[Generator state machine]]></Description>
+<Data Format="L5K"><![CDATA[0]]></Data>
+<Data Format="Decorated"><DataValue DataType="DINT" Radix="Decimal" Value="0"/></Data>
+</Tag>
+<Tag Name="Gen_Crank_Attempts" TagType="Base" DataType="DINT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[Generator crank attempt counter]]></Description>
+<Data Format="L5K"><![CDATA[0]]></Data>
+<Data Format="Decorated"><DataValue DataType="DINT" Radix="Decimal" Value="0"/></Data>
+</Tag>
+<Tag Name="Gen_Total_Run_Seconds" TagType="Base" DataType="DINT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[Total generator run time in seconds]]></Description>
+<Data Format="L5K"><![CDATA[0]]></Data>
+<Data Format="Decorated"><DataValue DataType="DINT" Radix="Decimal" Value="0"/></Data>
+</Tag>
+<Tag Name="Exercise_Seconds" TagType="Base" DataType="DINT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[Seconds since last exercise]]></Description>
+<Data Format="L5K"><![CDATA[0]]></Data>
+<Data Format="Decorated"><DataValue DataType="DINT" Radix="Decimal" Value="0"/></Data>
+</Tag>
+<Tag Name="Sump_State" TagType="Base" DataType="DINT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[Sump pump state machine]]></Description>
+<Data Format="L5K"><![CDATA[0]]></Data>
+<Data Format="Decorated"><DataValue DataType="DINT" Radix="Decimal" Value="0"/></Data>
+</Tag>
+<Tag Name="Sump_Cycle_Count" TagType="Base" DataType="DINT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[Total pump cycles]]></Description>
+<Data Format="L5K"><![CDATA[0]]></Data>
+<Data Format="Decorated"><DataValue DataType="DINT" Radix="Decimal" Value="0"/></Data>
+</Tag>
+<Tag Name="Sump_Total_Run_Seconds" TagType="Base" DataType="DINT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[Total pump run time in seconds]]></Description>
+<Data Format="L5K"><![CDATA[0]]></Data>
+<Data Format="Decorated"><DataValue DataType="DINT" Radix="Decimal" Value="0"/></Data>
+</Tag>
+<Tag Name="Sump_Current_Run_Seconds" TagType="Base" DataType="DINT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[Current cycle run time]]></Description>
+<Data Format="L5K"><![CDATA[0]]></Data>
+<Data Format="Decorated"><DataValue DataType="DINT" Radix="Decimal" Value="0"/></Data>
+</Tag>
+<Tag Name="Sump_Last_Run_Seconds" TagType="Base" DataType="DINT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[Last cycle run duration]]></Description>
+<Data Format="L5K"><![CDATA[0]]></Data>
+<Data Format="Decorated"><DataValue DataType="DINT" Radix="Decimal" Value="0"/></Data>
+</Tag>
+<Tag Name="Sump_Test_Seconds" TagType="Base" DataType="DINT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[Seconds since last sump test]]></Description>
+<Data Format="L5K"><![CDATA[0]]></Data>
+<Data Format="Decorated"><DataValue DataType="DINT" Radix="Decimal" Value="0"/></Data>
+</Tag>
+<Tag Name="HVAC_Cycle_Count" TagType="Base" DataType="DINT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[Total furnace cycles]]></Description>
+<Data Format="L5K"><![CDATA[0]]></Data>
+<Data Format="Decorated"><DataValue DataType="DINT" Radix="Decimal" Value="0"/></Data>
+</Tag>
+<Tag Name="HVAC_Current_Run_Seconds" TagType="Base" DataType="DINT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[Current furnace run time]]></Description>
+<Data Format="L5K"><![CDATA[0]]></Data>
+<Data Format="Decorated"><DataValue DataType="DINT" Radix="Decimal" Value="0"/></Data>
+</Tag>
+<Tag Name="HVAC_Last_Run_Seconds" TagType="Base" DataType="DINT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[Last furnace run duration]]></Description>
+<Data Format="L5K"><![CDATA[0]]></Data>
+<Data Format="Decorated"><DataValue DataType="DINT" Radix="Decimal" Value="0"/></Data>
+</Tag>
+<Tag Name="HVAC_Total_Run_Seconds" TagType="Base" DataType="DINT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[Total furnace run time in seconds]]></Description>
+<Data Format="L5K"><![CDATA[0]]></Data>
+<Data Format="Decorated"><DataValue DataType="DINT" Radix="Decimal" Value="0"/></Data>
+</Tag>
+<Tag Name="HVAC_Filter_Run_Seconds" TagType="Base" DataType="DINT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[Blower run time since filter change]]></Description>
+<Data Format="L5K"><![CDATA[0]]></Data>
+<Data Format="Decorated"><DataValue DataType="DINT" Radix="Decimal" Value="0"/></Data>
+</Tag>
+<Tag Name="HVAC_Short_Cycle_Count" TagType="Base" DataType="DINT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[Consecutive short cycles detected]]></Description>
+<Data Format="L5K"><![CDATA[0]]></Data>
+<Data Format="Decorated"><DataValue DataType="DINT" Radix="Decimal" Value="0"/></Data>
+</Tag>
+<Tag Name="HMI_Gen_State" TagType="Base" DataType="DINT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[Generator state for HMI display]]></Description>
+<Data Format="L5K"><![CDATA[0]]></Data>
+<Data Format="Decorated"><DataValue DataType="DINT" Radix="Decimal" Value="0"/></Data>
+</Tag>
+<Tag Name="HMI_Gen_Total_Run_Hours" TagType="Base" DataType="DINT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[Generator total run hours for HMI]]></Description>
+<Data Format="L5K"><![CDATA[0]]></Data>
+<Data Format="Decorated"><DataValue DataType="DINT" Radix="Decimal" Value="0"/></Data>
+</Tag>
+<Tag Name="HMI_Gen_Crank_Attempts" TagType="Base" DataType="DINT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[Crank attempts for HMI]]></Description>
+<Data Format="L5K"><![CDATA[0]]></Data>
+<Data Format="Decorated"><DataValue DataType="DINT" Radix="Decimal" Value="0"/></Data>
+</Tag>
+<Tag Name="HMI_Sump_State" TagType="Base" DataType="DINT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[Sump state for HMI display]]></Description>
+<Data Format="L5K"><![CDATA[0]]></Data>
+<Data Format="Decorated"><DataValue DataType="DINT" Radix="Decimal" Value="0"/></Data>
+</Tag>
+<Tag Name="HMI_Sump_Cycle_Count" TagType="Base" DataType="DINT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[Pump cycle count for HMI]]></Description>
+<Data Format="L5K"><![CDATA[0]]></Data>
+<Data Format="Decorated"><DataValue DataType="DINT" Radix="Decimal" Value="0"/></Data>
+</Tag>
+<Tag Name="HMI_Sump_Total_Run_Hours" TagType="Base" DataType="DINT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[Pump total run hours for HMI]]></Description>
+<Data Format="L5K"><![CDATA[0]]></Data>
+<Data Format="Decorated"><DataValue DataType="DINT" Radix="Decimal" Value="0"/></Data>
+</Tag>
+<Tag Name="HMI_Sump_Last_Run_Seconds" TagType="Base" DataType="DINT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[Last run duration for HMI]]></Description>
+<Data Format="L5K"><![CDATA[0]]></Data>
+<Data Format="Decorated"><DataValue DataType="DINT" Radix="Decimal" Value="0"/></Data>
+</Tag>
+<Tag Name="HMI_HVAC_Cycle_Count" TagType="Base" DataType="DINT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[Furnace cycles for HMI]]></Description>
+<Data Format="L5K"><![CDATA[0]]></Data>
+<Data Format="Decorated"><DataValue DataType="DINT" Radix="Decimal" Value="0"/></Data>
+</Tag>
+<Tag Name="HMI_HVAC_Total_Run_Hours" TagType="Base" DataType="DINT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[Furnace run hours for HMI]]></Description>
+<Data Format="L5K"><![CDATA[0]]></Data>
+<Data Format="Decorated"><DataValue DataType="DINT" Radix="Decimal" Value="0"/></Data>
+</Tag>
+<Tag Name="HMI_HVAC_Last_Run_Seconds" TagType="Base" DataType="DINT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[Last furnace run for HMI]]></Description>
+<Data Format="L5K"><![CDATA[0]]></Data>
+<Data Format="Decorated"><DataValue DataType="DINT" Radix="Decimal" Value="0"/></Data>
+</Tag>
+<Tag Name="HMI_HVAC_Filter_Run_Hours" TagType="Base" DataType="DINT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[Filter hours for HMI]]></Description>
+<Data Format="L5K"><![CDATA[0]]></Data>
+<Data Format="Decorated"><DataValue DataType="DINT" Radix="Decimal" Value="0"/></Data>
+</Tag>
+<Tag Name="Outdoor_Temp_F" TagType="Base" DataType="REAL" Radix="Float" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[Scaled outdoor temperature in F]]></Description>
+<Data Format="L5K"><![CDATA[0.00000000e+000]]></Data>
+<Data Format="Decorated"><DataValue DataType="REAL" Radix="Float" Value="0.0"/></Data>
+</Tag>
+<Tag Name="House_Current_Amps" TagType="Base" DataType="REAL" Radix="Float" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[Scaled whole house current in amps]]></Description>
+<Data Format="L5K"><![CDATA[0.00000000e+000]]></Data>
+<Data Format="Decorated"><DataValue DataType="REAL" Radix="Float" Value="0.0"/></Data>
+</Tag>
+<Tag Name="Elec_Current_Amps" TagType="Base" DataType="REAL" Radix="Float" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[Current whole house amps]]></Description>
+<Data Format="L5K"><![CDATA[0.00000000e+000]]></Data>
+<Data Format="Decorated"><DataValue DataType="REAL" Radix="Float" Value="0.0"/></Data>
+</Tag>
+<Tag Name="Elec_Peak_Amps" TagType="Base" DataType="REAL" Radix="Float" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[Peak current since last reset]]></Description>
+<Data Format="L5K"><![CDATA[0.00000000e+000]]></Data>
+<Data Format="Decorated"><DataValue DataType="REAL" Radix="Float" Value="0.0"/></Data>
+</Tag>
+<Tag Name="Elec_Gen_Max_Amps" TagType="Base" DataType="REAL" Radix="Float" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[Generator max amp threshold]]></Description>
+<Data Format="L5K"><![CDATA[8.00000000e+001]]></Data>
+<Data Format="Decorated"><DataValue DataType="REAL" Radix="Float" Value="80.0"/></Data>
+</Tag>
+<Tag Name="Elec_Watt_Seconds" TagType="Base" DataType="REAL" Radix="Float" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[Accumulated watt-seconds for kWh calc]]></Description>
+<Data Format="L5K"><![CDATA[0.00000000e+000]]></Data>
+<Data Format="Decorated"><DataValue DataType="REAL" Radix="Float" Value="0.0"/></Data>
+</Tag>
+<Tag Name="Elec_Total_kWh" TagType="Base" DataType="REAL" Radix="Float" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[Total energy consumed in kWh]]></Description>
+<Data Format="L5K"><![CDATA[0.00000000e+000]]></Data>
+<Data Format="Decorated"><DataValue DataType="REAL" Radix="Float" Value="0.0"/></Data>
+</Tag>
+<Tag Name="Elec_Watt_Seconds_Temp" TagType="Base" DataType="REAL" Radix="Float" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[Temp variable for watt calculation]]></Description>
+<Data Format="L5K"><![CDATA[0.00000000e+000]]></Data>
+<Data Format="Decorated"><DataValue DataType="REAL" Radix="Float" Value="0.0"/></Data>
+</Tag>
+<Tag Name="HVAC_Outdoor_Temp_Min" TagType="Base" DataType="REAL" Radix="Float" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[Daily outdoor temp minimum]]></Description>
+<Data Format="L5K"><![CDATA[1.20000000e+002]]></Data>
+<Data Format="Decorated"><DataValue DataType="REAL" Radix="Float" Value="120.0"/></Data>
+</Tag>
+<Tag Name="HVAC_Outdoor_Temp_Max" TagType="Base" DataType="REAL" Radix="Float" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[Daily outdoor temp maximum]]></Description>
+<Data Format="L5K"><![CDATA[-4.00000000e+001]]></Data>
+<Data Format="Decorated"><DataValue DataType="REAL" Radix="Float" Value="-40.0"/></Data>
+</Tag>
+<Tag Name="HMI_Outdoor_Temp" TagType="Base" DataType="REAL" Radix="Float" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[Outdoor temp for HMI]]></Description>
+<Data Format="L5K"><![CDATA[0.00000000e+000]]></Data>
+<Data Format="Decorated"><DataValue DataType="REAL" Radix="Float" Value="0.0"/></Data>
+</Tag>
+<Tag Name="HMI_Outdoor_Temp_Min" TagType="Base" DataType="REAL" Radix="Float" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[Daily temp min for HMI]]></Description>
+<Data Format="L5K"><![CDATA[0.00000000e+000]]></Data>
+<Data Format="Decorated"><DataValue DataType="REAL" Radix="Float" Value="0.0"/></Data>
+</Tag>
+<Tag Name="HMI_Outdoor_Temp_Max" TagType="Base" DataType="REAL" Radix="Float" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[Daily temp max for HMI]]></Description>
+<Data Format="L5K"><![CDATA[0.00000000e+000]]></Data>
+<Data Format="Decorated"><DataValue DataType="REAL" Radix="Float" Value="0.0"/></Data>
+</Tag>
+<Tag Name="HMI_Elec_Current_Amps" TagType="Base" DataType="REAL" Radix="Float" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[Current amps for HMI]]></Description>
+<Data Format="L5K"><![CDATA[0.00000000e+000]]></Data>
+<Data Format="Decorated"><DataValue DataType="REAL" Radix="Float" Value="0.0"/></Data>
+</Tag>
+<Tag Name="HMI_Elec_Peak_Amps" TagType="Base" DataType="REAL" Radix="Float" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[Peak amps for HMI]]></Description>
+<Data Format="L5K"><![CDATA[0.00000000e+000]]></Data>
+<Data Format="Decorated"><DataValue DataType="REAL" Radix="Float" Value="0.0"/></Data>
+</Tag>
+<Tag Name="HMI_Elec_Total_kWh" TagType="Base" DataType="REAL" Radix="Float" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[Total kWh for HMI]]></Description>
+<Data Format="L5K"><![CDATA[0.00000000e+000]]></Data>
+<Data Format="Decorated"><DataValue DataType="REAL" Radix="Float" Value="0.0"/></Data>
+</Tag>
+<Tag Name="Power_Loss_Delay" TagType="Base" DataType="TIMER" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[5s delay to confirm power loss]]></Description>
+<Data Format="L5K"><![CDATA[[0,5000,0]]]></Data>
+<Data Format="Decorated">
+<Structure DataType="TIMER">
+<DataValueMember Name="PRE" DataType="DINT" Radix="Decimal" Value="5000"/>
+<DataValueMember Name="ACC" DataType="DINT" Radix="Decimal" Value="0"/>
+<DataValueMember Name="EN" DataType="BOOL" Value="0"/>
+<DataValueMember Name="TT" DataType="BOOL" Value="0"/>
+<DataValueMember Name="DN" DataType="BOOL" Value="0"/>
+</Structure>
+</Data>
+</Tag>
+<Tag Name="Gen_Start_Timeout" TagType="Base" DataType="TIMER" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[30s crank timeout]]></Description>
+<Data Format="L5K"><![CDATA[[0,30000,0]]]></Data>
+<Data Format="Decorated">
+<Structure DataType="TIMER">
+<DataValueMember Name="PRE" DataType="DINT" Radix="Decimal" Value="30000"/>
+<DataValueMember Name="ACC" DataType="DINT" Radix="Decimal" Value="0"/>
+<DataValueMember Name="EN" DataType="BOOL" Value="0"/>
+<DataValueMember Name="TT" DataType="BOOL" Value="0"/>
+<DataValueMember Name="DN" DataType="BOOL" Value="0"/>
+</Structure>
+</Data>
+</Tag>
+<Tag Name="Gen_Warmup_Timer" TagType="Base" DataType="TIMER" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[30s generator warmup]]></Description>
+<Data Format="L5K"><![CDATA[[0,30000,0]]]></Data>
+<Data Format="Decorated">
+<Structure DataType="TIMER">
+<DataValueMember Name="PRE" DataType="DINT" Radix="Decimal" Value="30000"/>
+<DataValueMember Name="ACC" DataType="DINT" Radix="Decimal" Value="0"/>
+<DataValueMember Name="EN" DataType="BOOL" Value="0"/>
+<DataValueMember Name="TT" DataType="BOOL" Value="0"/>
+<DataValueMember Name="DN" DataType="BOOL" Value="0"/>
+</Structure>
+</Data>
+</Tag>
+<Tag Name="Gen_Cooldown_Timer" TagType="Base" DataType="TIMER" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[2min cooldown before shutdown]]></Description>
+<Data Format="L5K"><![CDATA[[0,120000,0]]]></Data>
+<Data Format="Decorated">
+<Structure DataType="TIMER">
+<DataValueMember Name="PRE" DataType="DINT" Radix="Decimal" Value="120000"/>
+<DataValueMember Name="ACC" DataType="DINT" Radix="Decimal" Value="0"/>
+<DataValueMember Name="EN" DataType="BOOL" Value="0"/>
+<DataValueMember Name="TT" DataType="BOOL" Value="0"/>
+<DataValueMember Name="DN" DataType="BOOL" Value="0"/>
+</Structure>
+</Data>
+</Tag>
+<Tag Name="Gen_Stop_Timeout" TagType="Base" DataType="TIMER" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[30s stop confirmation timeout]]></Description>
+<Data Format="L5K"><![CDATA[[0,30000,0]]]></Data>
+<Data Format="Decorated">
+<Structure DataType="TIMER">
+<DataValueMember Name="PRE" DataType="DINT" Radix="Decimal" Value="30000"/>
+<DataValueMember Name="ACC" DataType="DINT" Radix="Decimal" Value="0"/>
+<DataValueMember Name="EN" DataType="BOOL" Value="0"/>
+<DataValueMember Name="TT" DataType="BOOL" Value="0"/>
+<DataValueMember Name="DN" DataType="BOOL" Value="0"/>
+</Structure>
+</Data>
+</Tag>
+<Tag Name="Exercise_Run_Timer" TagType="Base" DataType="TIMER" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[15min exercise run duration]]></Description>
+<Data Format="L5K"><![CDATA[[0,900000,0]]]></Data>
+<Data Format="Decorated">
+<Structure DataType="TIMER">
+<DataValueMember Name="PRE" DataType="DINT" Radix="Decimal" Value="900000"/>
+<DataValueMember Name="ACC" DataType="DINT" Radix="Decimal" Value="0"/>
+<DataValueMember Name="EN" DataType="BOOL" Value="0"/>
+<DataValueMember Name="TT" DataType="BOOL" Value="0"/>
+<DataValueMember Name="DN" DataType="BOOL" Value="0"/>
+</Structure>
+</Data>
+</Tag>
+<Tag Name="Transfer_Delay" TagType="Base" DataType="TIMER" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[3s ATS transfer delay]]></Description>
+<Data Format="L5K"><![CDATA[[0,3000,0]]]></Data>
+<Data Format="Decorated">
+<Structure DataType="TIMER">
+<DataValueMember Name="PRE" DataType="DINT" Radix="Decimal" Value="3000"/>
+<DataValueMember Name="ACC" DataType="DINT" Radix="Decimal" Value="0"/>
+<DataValueMember Name="EN" DataType="BOOL" Value="0"/>
+<DataValueMember Name="TT" DataType="BOOL" Value="0"/>
+<DataValueMember Name="DN" DataType="BOOL" Value="0"/>
+</Structure>
+</Data>
+</Tag>
+<Tag Name="Gen_Utility_Return_Timer" TagType="Base" DataType="TIMER" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[5s utility return stability]]></Description>
+<Data Format="L5K"><![CDATA[[0,5000,0]]]></Data>
+<Data Format="Decorated">
+<Structure DataType="TIMER">
+<DataValueMember Name="PRE" DataType="DINT" Radix="Decimal" Value="5000"/>
+<DataValueMember Name="ACC" DataType="DINT" Radix="Decimal" Value="0"/>
+<DataValueMember Name="EN" DataType="BOOL" Value="0"/>
+<DataValueMember Name="TT" DataType="BOOL" Value="0"/>
+<DataValueMember Name="DN" DataType="BOOL" Value="0"/>
+</Structure>
+</Data>
+</Tag>
+<Tag Name="Sump_Debounce" TagType="Base" DataType="TIMER" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[2s float switch debounce]]></Description>
+<Data Format="L5K"><![CDATA[[0,2000,0]]]></Data>
+<Data Format="Decorated">
+<Structure DataType="TIMER">
+<DataValueMember Name="PRE" DataType="DINT" Radix="Decimal" Value="2000"/>
+<DataValueMember Name="ACC" DataType="DINT" Radix="Decimal" Value="0"/>
+<DataValueMember Name="EN" DataType="BOOL" Value="0"/>
+<DataValueMember Name="TT" DataType="BOOL" Value="0"/>
+<DataValueMember Name="DN" DataType="BOOL" Value="0"/>
+</Structure>
+</Data>
+</Tag>
+<Tag Name="Sump_Max_Run" TagType="Base" DataType="TIMER" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[5min max pump run time]]></Description>
+<Data Format="L5K"><![CDATA[[0,300000,0]]]></Data>
+<Data Format="Decorated">
+<Structure DataType="TIMER">
+<DataValueMember Name="PRE" DataType="DINT" Radix="Decimal" Value="300000"/>
+<DataValueMember Name="ACC" DataType="DINT" Radix="Decimal" Value="0"/>
+<DataValueMember Name="EN" DataType="BOOL" Value="0"/>
+<DataValueMember Name="TT" DataType="BOOL" Value="0"/>
+<DataValueMember Name="DN" DataType="BOOL" Value="0"/>
+</Structure>
+</Data>
+</Tag>
+<Tag Name="Sump_Off_Delay" TagType="Base" DataType="TIMER" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[10s pump off delay after float drops]]></Description>
+<Data Format="L5K"><![CDATA[[0,10000,0]]]></Data>
+<Data Format="Decorated">
+<Structure DataType="TIMER">
+<DataValueMember Name="PRE" DataType="DINT" Radix="Decimal" Value="10000"/>
+<DataValueMember Name="ACC" DataType="DINT" Radix="Decimal" Value="0"/>
+<DataValueMember Name="EN" DataType="BOOL" Value="0"/>
+<DataValueMember Name="TT" DataType="BOOL" Value="0"/>
+<DataValueMember Name="DN" DataType="BOOL" Value="0"/>
+</Structure>
+</Data>
+</Tag>
+<Tag Name="Sump_Test_Run_Timer" TagType="Base" DataType="TIMER" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[15s test run duration]]></Description>
+<Data Format="L5K"><![CDATA[[0,15000,0]]]></Data>
+<Data Format="Decorated">
+<Structure DataType="TIMER">
+<DataValueMember Name="PRE" DataType="DINT" Radix="Decimal" Value="15000"/>
+<DataValueMember Name="ACC" DataType="DINT" Radix="Decimal" Value="0"/>
+<DataValueMember Name="EN" DataType="BOOL" Value="0"/>
+<DataValueMember Name="TT" DataType="BOOL" Value="0"/>
+<DataValueMember Name="DN" DataType="BOOL" Value="0"/>
+</Structure>
+</Data>
+</Tag>
+<Tag Name="Heat_Call_Debounce" TagType="Base" DataType="TIMER" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[5s thermostat call debounce]]></Description>
+<Data Format="L5K"><![CDATA[[0,5000,0]]]></Data>
+<Data Format="Decorated">
+<Structure DataType="TIMER">
+<DataValueMember Name="PRE" DataType="DINT" Radix="Decimal" Value="5000"/>
+<DataValueMember Name="ACC" DataType="DINT" Radix="Decimal" Value="0"/>
+<DataValueMember Name="EN" DataType="BOOL" Value="0"/>
+<DataValueMember Name="TT" DataType="BOOL" Value="0"/>
+<DataValueMember Name="DN" DataType="BOOL" Value="0"/>
+</Structure>
+</Data>
+</Tag>
+<Tag Name="Short_Cycle_Timer" TagType="Base" DataType="TIMER" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[3min short cycle detection window]]></Description>
+<Data Format="L5K"><![CDATA[[0,180000,0]]]></Data>
+<Data Format="Decorated">
+<Structure DataType="TIMER">
+<DataValueMember Name="PRE" DataType="DINT" Radix="Decimal" Value="180000"/>
+<DataValueMember Name="ACC" DataType="DINT" Radix="Decimal" Value="0"/>
+<DataValueMember Name="EN" DataType="BOOL" Value="0"/>
+<DataValueMember Name="TT" DataType="BOOL" Value="0"/>
+<DataValueMember Name="DN" DataType="BOOL" Value="0"/>
+</Structure>
+</Data>
+</Tag>
+<Tag Name="Pulse_1s_Timer" TagType="Base" DataType="TIMER" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[1 second pulse timer]]></Description>
+<Data Format="L5K"><![CDATA[[0,1000,0]]]></Data>
+<Data Format="Decorated">
+<Structure DataType="TIMER">
+<DataValueMember Name="PRE" DataType="DINT" Radix="Decimal" Value="1000"/>
+<DataValueMember Name="ACC" DataType="DINT" Radix="Decimal" Value="0"/>
+<DataValueMember Name="EN" DataType="BOOL" Value="0"/>
+<DataValueMember Name="TT" DataType="BOOL" Value="0"/>
+<DataValueMember Name="DN" DataType="BOOL" Value="0"/>
+</Structure>
+</Data>
+</Tag>
+<Tag Name="Elec_Overload_Timer" TagType="Base" DataType="TIMER" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[5s sustained overload detection]]></Description>
+<Data Format="L5K"><![CDATA[[0,5000,0]]]></Data>
+<Data Format="Decorated">
+<Structure DataType="TIMER">
+<DataValueMember Name="PRE" DataType="DINT" Radix="Decimal" Value="5000"/>
+<DataValueMember Name="ACC" DataType="DINT" Radix="Decimal" Value="0"/>
+<DataValueMember Name="EN" DataType="BOOL" Value="0"/>
+<DataValueMember Name="TT" DataType="BOOL" Value="0"/>
+<DataValueMember Name="DN" DataType="BOOL" Value="0"/>
+</Structure>
+</Data>
+</Tag>
+<Tag Name="Elec_Gen_Overload_Timer" TagType="Base" DataType="TIMER" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[3s generator overload detection]]></Description>
+<Data Format="L5K"><![CDATA[[0,3000,0]]]></Data>
+<Data Format="Decorated">
+<Structure DataType="TIMER">
+<DataValueMember Name="PRE" DataType="DINT" Radix="Decimal" Value="3000"/>
+<DataValueMember Name="ACC" DataType="DINT" Radix="Decimal" Value="0"/>
+<DataValueMember Name="EN" DataType="BOOL" Value="0"/>
+<DataValueMember Name="TT" DataType="BOOL" Value="0"/>
+<DataValueMember Name="DN" DataType="BOOL" Value="0"/>
+</Structure>
+</Data>
+</Tag>
+</Tags>
+<Programs>
+<Program Name="MainProgram" TestEdits="false" MainRoutineName="MainRoutine" Disabled="false" UseAsFolder="false">
+<Tags/>
+<Routines>
+<Routine Name="MainRoutine" Type="RLL">
+<RLLContent>
+<Rung Number="0" Type="N">
+<Comment><![CDATA[Call Input Mapping]]></Comment>
+<Text><![CDATA[JSR(Input_Mapping,0);]]></Text>
+</Rung>
+<Rung Number="1" Type="N">
+<Comment><![CDATA[Call Generator Control]]></Comment>
+<Text><![CDATA[JSR(Generator_Control,0);]]></Text>
+</Rung>
+<Rung Number="2" Type="N">
+<Comment><![CDATA[Call Sump Pump Control]]></Comment>
+<Text><![CDATA[JSR(Sump_Pump_Control,0);]]></Text>
+</Rung>
+<Rung Number="3" Type="N">
+<Comment><![CDATA[Call HVAC Monitor]]></Comment>
+<Text><![CDATA[JSR(HVAC_Monitor,0);]]></Text>
+</Rung>
+<Rung Number="4" Type="N">
+<Comment><![CDATA[Call Electrical Monitor]]></Comment>
+<Text><![CDATA[JSR(Electrical_Monitor,0);]]></Text>
+</Rung>
+<Rung Number="5" Type="N">
+<Comment><![CDATA[Call HMI Interface]]></Comment>
+<Text><![CDATA[JSR(HMI_Interface,0);]]></Text>
+</Rung>
+<Rung Number="6" Type="N">
+<Comment><![CDATA[Call Output Mapping]]></Comment>
+<Text><![CDATA[JSR(Output_Mapping,0);]]></Text>
+</Rung>
+</RLLContent>
+</Routine>
+<Routine Name="Input_Mapping" Type="RLL">
+<RLLContent>
+<Rung Number="0" Type="N">
+<Comment><![CDATA[Pt00: Utility power present]]></Comment>
+<Text><![CDATA[XIC(Local:1:I.Pt00.Data)OTE(Utility_Power_Present);]]></Text>
+</Rung>
+<Rung Number="1" Type="N">
+<Comment><![CDATA[Pt01: Generator running feedback]]></Comment>
+<Text><![CDATA[XIC(Local:1:I.Pt01.Data)OTE(Gen_Running);]]></Text>
+</Rung>
+<Rung Number="2" Type="N">
+<Comment><![CDATA[Pt02: Generator fault]]></Comment>
+<Text><![CDATA[XIC(Local:1:I.Pt02.Data)OTE(Gen_Fault);]]></Text>
+</Rung>
+<Rung Number="3" Type="N">
+<Comment><![CDATA[Pt03: Generator ready]]></Comment>
+<Text><![CDATA[XIC(Local:1:I.Pt03.Data)OTE(Gen_Ready);]]></Text>
+</Rung>
+<Rung Number="4" Type="N">
+<Comment><![CDATA[Pt04: ATS utility position]]></Comment>
+<Text><![CDATA[XIC(Local:1:I.Pt04.Data)OTE(ATS_Utility_Pos);]]></Text>
+</Rung>
+<Rung Number="5" Type="N">
+<Comment><![CDATA[Pt05: ATS generator position]]></Comment>
+<Text><![CDATA[XIC(Local:1:I.Pt05.Data)OTE(ATS_Generator_Pos);]]></Text>
+</Rung>
+<Rung Number="6" Type="N">
+<Comment><![CDATA[Pt06: Sump pit float switch]]></Comment>
+<Text><![CDATA[XIC(Local:1:I.Pt06.Data)OTE(Sump_Float_High);]]></Text>
+</Rung>
+<Rung Number="7" Type="N">
+<Comment><![CDATA[Pt07: Thermostat heat call]]></Comment>
+<Text><![CDATA[XIC(Local:1:I.Pt07.Data)OTE(Thermostat_W_Call);]]></Text>
+</Rung>
+<Rung Number="8" Type="N">
+<Comment><![CDATA[Outdoor temp: subtract 20% offset (4mA on 0-20mA range)]]></Comment>
+<Text><![CDATA[SUB(Local:3:I.Ch00.Data,20.0,Outdoor_Temp_F);]]></Text>
+</Rung>
+<Rung Number="9" Type="N">
+<Comment><![CDATA[Outdoor temp: scale 0-80% to -40 to 120F (x2.0 - 40)]]></Comment>
+<Text><![CDATA[MUL(Outdoor_Temp_F,2.0,Outdoor_Temp_F);]]></Text>
+</Rung>
+<Rung Number="10" Type="N">
+<Comment><![CDATA[Outdoor temp: offset -40F]]></Comment>
+<Text><![CDATA[SUB(Outdoor_Temp_F,40.0,Outdoor_Temp_F);]]></Text>
+</Rung>
+<Rung Number="11" Type="N">
+<Comment><![CDATA[House current: subtract 20% offset (4mA on 0-20mA range)]]></Comment>
+<Text><![CDATA[SUB(Local:3:I.Ch01.Data,20.0,House_Current_Amps);]]></Text>
+</Rung>
+<Rung Number="12" Type="N">
+<Comment><![CDATA[House current: scale 0-80% to 0-200A (x2.5)]]></Comment>
+<Text><![CDATA[MUL(House_Current_Amps,2.5,House_Current_Amps);]]></Text>
+</Rung>
+<Rung Number="13" Type="N">
+<Comment><![CDATA[Clamp outdoor temp low]]></Comment>
+<Text><![CDATA[LES(Outdoor_Temp_F,-40.0)MOV(-40.0,Outdoor_Temp_F);]]></Text>
+</Rung>
+<Rung Number="14" Type="N">
+<Comment><![CDATA[Clamp outdoor temp high]]></Comment>
+<Text><![CDATA[GRT(Outdoor_Temp_F,120.0)MOV(120.0,Outdoor_Temp_F);]]></Text>
+</Rung>
+<Rung Number="15" Type="N">
+<Comment><![CDATA[Clamp current low]]></Comment>
+<Text><![CDATA[LES(House_Current_Amps,0.0)MOV(0.0,House_Current_Amps);]]></Text>
+</Rung>
+<Rung Number="16" Type="N">
+<Comment><![CDATA[Clamp current high]]></Comment>
+<Text><![CDATA[GRT(House_Current_Amps,200.0)MOV(200.0,House_Current_Amps);]]></Text>
+</Rung>
+</RLLContent>
+</Routine>
+<Routine Name="Generator_Control" Type="RLL">
+<RLLContent>
+<Rung Number="0" Type="N">
+<Comment><![CDATA[Power loss confirm delay 5s]]></Comment>
+<Text><![CDATA[XIO(Utility_Power_Present)TON(Power_Loss_Delay,5000,0);]]></Text>
+</Rung>
+<Rung Number="1" Type="N">
+<Comment><![CDATA[Generator crank timeout 30s]]></Comment>
+<Text><![CDATA[[EQU(Gen_State,20),EQU(Gen_State,95)]TON(Gen_Start_Timeout,30000,0);]]></Text>
+</Rung>
+<Rung Number="2" Type="N">
+<Comment><![CDATA[Generator warmup 30s]]></Comment>
+<Text><![CDATA[EQU(Gen_State,30)TON(Gen_Warmup_Timer,30000,0);]]></Text>
+</Rung>
+<Rung Number="3" Type="N">
+<Comment><![CDATA[Generator cooldown 120s]]></Comment>
+<Text><![CDATA[[EQU(Gen_State,60),EQU(Gen_State,105)]TON(Gen_Cooldown_Timer,120000,0);]]></Text>
+</Rung>
+<Rung Number="4" Type="N">
+<Comment><![CDATA[Generator stop timeout 30s]]></Comment>
+<Text><![CDATA[[EQU(Gen_State,70),EQU(Gen_State,110)]TON(Gen_Stop_Timeout,30000,0);]]></Text>
+</Rung>
+<Rung Number="5" Type="N">
+<Comment><![CDATA[Exercise run timer 15min]]></Comment>
+<Text><![CDATA[EQU(Gen_State,100)TON(Exercise_Run_Timer,900000,0);]]></Text>
+</Rung>
+<Rung Number="6" Type="N">
+<Comment><![CDATA[ATS transfer delay 3s]]></Comment>
+<Text><![CDATA[EQU(Gen_State,40)TON(Transfer_Delay,3000,0);]]></Text>
+</Rung>
+<Rung Number="7" Type="N">
+<Comment><![CDATA[Utility return stability 5s]]></Comment>
+<Text><![CDATA[EQU(Gen_State,50)XIC(Utility_Power_Present)TON(Gen_Utility_Return_Timer,5000,0);]]></Text>
+</Rung>
+<Rung Number="8" Type="N">
+<Comment><![CDATA[1-second pulse timer]]></Comment>
+<Text><![CDATA[XIO(Pulse_1s)TON(Pulse_1s_Timer,1000,0);]]></Text>
+</Rung>
+<Rung Number="9" Type="N">
+<Comment><![CDATA[1-second pulse output]]></Comment>
+<Text><![CDATA[XIC(Pulse_1s_Timer.DN)OTE(Pulse_1s);]]></Text>
+</Rung>
+<Rung Number="10" Type="N">
+<Comment><![CDATA[Count seconds for weekly exercise schedule]]></Comment>
+<Text><![CDATA[XIC(Pulse_1s)ONS(Exercise_Count_ONS)ADD(Exercise_Seconds,1,Exercise_Seconds);]]></Text>
+</Rung>
+<Rung Number="11" Type="N">
+<Comment><![CDATA[Trigger exercise at 1 week (604800s)]]></Comment>
+<Text><![CDATA[GEQ(Exercise_Seconds,604800)OTL(Exercise_Trigger);]]></Text>
+</Rung>
+<Rung Number="12" Type="N">
+<Comment><![CDATA[Reset exercise second counter after trigger]]></Comment>
+<Text><![CDATA[XIC(Exercise_Trigger)MOV(0,Exercise_Seconds);]]></Text>
+</Rung>
+<Rung Number="13" Type="N">
+<Comment><![CDATA[HMI manual exercise request]]></Comment>
+<Text><![CDATA[XIC(HMI_Exercise_Request)OTL(Exercise_Trigger);]]></Text>
+</Rung>
+<Rung Number="14" Type="N">
+<Comment><![CDATA[Clear HMI exercise request]]></Comment>
+<Text><![CDATA[XIC(HMI_Exercise_Request)OTU(HMI_Exercise_Request);]]></Text>
+</Rung>
+<Rung Number="15" Type="N">
+<Comment><![CDATA[Gen start cmd - active in run/warmup/transfer/exercise states]]></Comment>
+<Text><![CDATA[[EQU(Gen_State,10),EQU(Gen_State,20),EQU(Gen_State,30),EQU(Gen_State,40),EQU(Gen_State,50),EQU(Gen_State,55),EQU(Gen_State,60),EQU(Gen_State,90),EQU(Gen_State,95),EQU(Gen_State,100),EQU(Gen_State,105)]OTE(Gen_Start_Cmd);]]></Text>
+</Rung>
+<Rung Number="16" Type="N">
+<Comment><![CDATA[ATS transfer cmd - active during generator operation]]></Comment>
+<Text><![CDATA[[EQU(Gen_State,40),EQU(Gen_State,50)]OTE(ATS_Transfer_Cmd);]]></Text>
+</Rung>
+<Rung Number="17" Type="N">
+<Comment><![CDATA[On utility power flag]]></Comment>
+<Text><![CDATA[[EQU(Gen_State,0),EQU(Gen_State,55),EQU(Gen_State,60),EQU(Gen_State,70),EQU(Gen_State,90),EQU(Gen_State,95),EQU(Gen_State,100),EQU(Gen_State,105),EQU(Gen_State,110),EQU(Gen_State,999)]OTE(Gen_On_Utility);]]></Text>
+</Rung>
+<Rung Number="18" Type="N">
+<Comment><![CDATA[On generator power flag]]></Comment>
+<Text><![CDATA[EQU(Gen_State,50)OTE(Gen_On_Generator);]]></Text>
+</Rung>
+<Rung Number="19" Type="N">
+<Comment><![CDATA[Exercise active flag]]></Comment>
+<Text><![CDATA[[EQU(Gen_State,90),EQU(Gen_State,95),EQU(Gen_State,100),EQU(Gen_State,105)]OTE(Gen_Exercise_Active);]]></Text>
+</Rung>
+<Rung Number="20" Type="N">
+<Comment><![CDATA[State 0->10: Power loss confirmed]]></Comment>
+<Text><![CDATA[EQU(Gen_State,0)XIC(Power_Loss_Delay.DN)MOV(10,Gen_State);]]></Text>
+</Rung>
+<Rung Number="21" Type="N">
+<Comment><![CDATA[State 0->90: Exercise trigger, no fault]]></Comment>
+<Text><![CDATA[EQU(Gen_State,0)XIC(Exercise_Trigger)XIO(Gen_Fault)XIO(Power_Loss_Delay.DN)MOV(90,Gen_State);]]></Text>
+</Rung>
+<Rung Number="22" Type="N">
+<Comment><![CDATA[State 90: Clear exercise trigger]]></Comment>
+<Text><![CDATA[EQU(Gen_State,90)OTU(Exercise_Trigger);]]></Text>
+</Rung>
+<Rung Number="23" Type="N">
+<Comment><![CDATA[State 10->20: Start commanded]]></Comment>
+<Text><![CDATA[EQU(Gen_State,10)MOV(20,Gen_State);]]></Text>
+</Rung>
+<Rung Number="24" Type="N">
+<Comment><![CDATA[State 20->30: Generator running confirmed]]></Comment>
+<Text><![CDATA[EQU(Gen_State,20)XIC(Gen_Running)MOV(30,Gen_State);]]></Text>
+</Rung>
+<Rung Number="25" Type="N">
+<Comment><![CDATA[State 20: Increment crank attempts on timeout]]></Comment>
+<Text><![CDATA[EQU(Gen_State,20)XIC(Gen_Start_Timeout.DN)ONS(Crank_Attempt_ONS)ADD(Gen_Crank_Attempts,1,Gen_Crank_Attempts);]]></Text>
+</Rung>
+<Rung Number="26" Type="N">
+<Comment><![CDATA[State 20->999: Start fail after 3 attempts]]></Comment>
+<Text><![CDATA[EQU(Gen_State,20)XIC(Gen_Start_Timeout.DN)GEQ(Gen_Crank_Attempts,3)OTL(Gen_Start_Fail);]]></Text>
+</Rung>
+<Rung Number="27" Type="N">
+<Text><![CDATA[EQU(Gen_State,20)XIC(Gen_Start_Timeout.DN)GEQ(Gen_Crank_Attempts,3)MOV(999,Gen_State);]]></Text>
+</Rung>
+<Rung Number="28" Type="N">
+<Comment><![CDATA[State 20->10: Retry start (under 3 attempts)]]></Comment>
+<Text><![CDATA[EQU(Gen_State,20)XIC(Gen_Start_Timeout.DN)LES(Gen_Crank_Attempts,3)MOV(10,Gen_State);]]></Text>
+</Rung>
+<Rung Number="29" Type="N">
+<Comment><![CDATA[State 30->40: Warmup complete]]></Comment>
+<Text><![CDATA[EQU(Gen_State,30)XIC(Gen_Warmup_Timer.DN)MOV(40,Gen_State);]]></Text>
+</Rung>
+<Rung Number="30" Type="N">
+<Comment><![CDATA[State 30->999: Fault during warmup]]></Comment>
+<Text><![CDATA[EQU(Gen_State,30)XIC(Gen_Fault)MOV(999,Gen_State);]]></Text>
+</Rung>
+<Rung Number="31" Type="N">
+<Comment><![CDATA[State 40->50: ATS transfer confirmed]]></Comment>
+<Text><![CDATA[EQU(Gen_State,40)XIC(Transfer_Delay.DN)XIC(ATS_Generator_Pos)MOV(50,Gen_State);]]></Text>
+</Rung>
+<Rung Number="32" Type="N">
+<Comment><![CDATA[State 40->999: Fault during transfer]]></Comment>
+<Text><![CDATA[EQU(Gen_State,40)XIC(Gen_Fault)MOV(999,Gen_State);]]></Text>
+</Rung>
+<Rung Number="33" Type="N">
+<Comment><![CDATA[State 50: Track generator run time]]></Comment>
+<Text><![CDATA[EQU(Gen_State,50)XIC(Pulse_1s)ADD(Gen_Total_Run_Seconds,1,Gen_Total_Run_Seconds);]]></Text>
+</Rung>
+<Rung Number="34" Type="N">
+<Comment><![CDATA[State 50->55: Utility returned stable 5s]]></Comment>
+<Text><![CDATA[EQU(Gen_State,50)XIC(Gen_Utility_Return_Timer.DN)MOV(55,Gen_State);]]></Text>
+</Rung>
+<Rung Number="35" Type="N">
+<Comment><![CDATA[State 50->999: Fault while on generator]]></Comment>
+<Text><![CDATA[EQU(Gen_State,50)XIC(Gen_Fault)MOV(999,Gen_State);]]></Text>
+</Rung>
+<Rung Number="36" Type="N">
+<Comment><![CDATA[State 55->60: ATS back to utility confirmed]]></Comment>
+<Text><![CDATA[EQU(Gen_State,55)XIC(ATS_Utility_Pos)MOV(60,Gen_State);]]></Text>
+</Rung>
+<Rung Number="37" Type="N">
+<Comment><![CDATA[State 60->70: Cooldown complete]]></Comment>
+<Text><![CDATA[EQU(Gen_State,60)XIC(Gen_Cooldown_Timer.DN)MOV(70,Gen_State);]]></Text>
+</Rung>
+<Rung Number="38" Type="N">
+<Comment><![CDATA[State 70: Clear crank attempts on successful stop]]></Comment>
+<Text><![CDATA[EQU(Gen_State,70)XIO(Gen_Running)MOV(0,Gen_Crank_Attempts);]]></Text>
+</Rung>
+<Rung Number="39" Type="N">
+<Comment><![CDATA[State 70->0: Generator stopped]]></Comment>
+<Text><![CDATA[EQU(Gen_State,70)XIO(Gen_Running)MOV(0,Gen_State);]]></Text>
+</Rung>
+<Rung Number="40" Type="N">
+<Comment><![CDATA[State 70->999: Stop timeout]]></Comment>
+<Text><![CDATA[EQU(Gen_State,70)XIC(Gen_Stop_Timeout.DN)OTL(Gen_Stop_Fail);]]></Text>
+</Rung>
+<Rung Number="41" Type="N">
+<Text><![CDATA[EQU(Gen_State,70)XIC(Gen_Stop_Timeout.DN)MOV(999,Gen_State);]]></Text>
+</Rung>
+<Rung Number="42" Type="N">
+<Comment><![CDATA[State 90->95: Exercise start transition]]></Comment>
+<Text><![CDATA[EQU(Gen_State,90)MOV(95,Gen_State);]]></Text>
+</Rung>
+<Rung Number="43" Type="N">
+<Comment><![CDATA[State 95->100: Exercise generator running]]></Comment>
+<Text><![CDATA[EQU(Gen_State,95)XIC(Gen_Running)MOV(100,Gen_State);]]></Text>
+</Rung>
+<Rung Number="44" Type="N">
+<Comment><![CDATA[State 95->999: Exercise start timeout]]></Comment>
+<Text><![CDATA[EQU(Gen_State,95)XIC(Gen_Start_Timeout.DN)OTL(Gen_Start_Fail);]]></Text>
+</Rung>
+<Rung Number="45" Type="N">
+<Text><![CDATA[EQU(Gen_State,95)XIC(Gen_Start_Timeout.DN)MOV(999,Gen_State);]]></Text>
+</Rung>
+<Rung Number="46" Type="N">
+<Comment><![CDATA[State 100: Track exercise run time]]></Comment>
+<Text><![CDATA[EQU(Gen_State,100)XIC(Pulse_1s)ADD(Gen_Total_Run_Seconds,1,Gen_Total_Run_Seconds);]]></Text>
+</Rung>
+<Rung Number="47" Type="N">
+<Comment><![CDATA[State 100->105: Exercise run complete]]></Comment>
+<Text><![CDATA[EQU(Gen_State,100)XIC(Exercise_Run_Timer.DN)MOV(105,Gen_State);]]></Text>
+</Rung>
+<Rung Number="48" Type="N">
+<Comment><![CDATA[State 100->30: Power loss during exercise - switch to real operation]]></Comment>
+<Text><![CDATA[EQU(Gen_State,100)XIO(Utility_Power_Present)MOV(30,Gen_State);]]></Text>
+</Rung>
+<Rung Number="49" Type="N">
+<Comment><![CDATA[State 100->999: Fault during exercise]]></Comment>
+<Text><![CDATA[EQU(Gen_State,100)XIC(Gen_Fault)MOV(999,Gen_State);]]></Text>
+</Rung>
+<Rung Number="50" Type="N">
+<Comment><![CDATA[State 105->110: Exercise cooldown complete]]></Comment>
+<Text><![CDATA[EQU(Gen_State,105)XIC(Gen_Cooldown_Timer.DN)MOV(110,Gen_State);]]></Text>
+</Rung>
+<Rung Number="51" Type="N">
+<Comment><![CDATA[State 110: Clear crank attempts on exercise shutdown]]></Comment>
+<Text><![CDATA[EQU(Gen_State,110)XIO(Gen_Running)MOV(0,Gen_Crank_Attempts);]]></Text>
+</Rung>
+<Rung Number="52" Type="N">
+<Comment><![CDATA[State 110->0: Exercise shutdown complete]]></Comment>
+<Text><![CDATA[EQU(Gen_State,110)XIO(Gen_Running)MOV(0,Gen_State);]]></Text>
+</Rung>
+<Rung Number="53" Type="N">
+<Comment><![CDATA[State 110->999: Exercise stop timeout]]></Comment>
+<Text><![CDATA[EQU(Gen_State,110)XIC(Gen_Stop_Timeout.DN)OTL(Gen_Stop_Fail);]]></Text>
+</Rung>
+<Rung Number="54" Type="N">
+<Text><![CDATA[EQU(Gen_State,110)XIC(Gen_Stop_Timeout.DN)MOV(999,Gen_State);]]></Text>
+</Rung>
+<Rung Number="55" Type="N">
+<Comment><![CDATA[Fault reset from HMI - clear start fail]]></Comment>
+<Text><![CDATA[XIC(HMI_Gen_Fault_Reset)XIO(Gen_Fault)OTU(Gen_Start_Fail);]]></Text>
+</Rung>
+<Rung Number="56" Type="N">
+<Comment><![CDATA[Fault reset - clear stop fail]]></Comment>
+<Text><![CDATA[XIC(HMI_Gen_Fault_Reset)XIO(Gen_Fault)OTU(Gen_Stop_Fail);]]></Text>
+</Rung>
+<Rung Number="57" Type="N">
+<Comment><![CDATA[Fault reset - clear crank attempts]]></Comment>
+<Text><![CDATA[XIC(HMI_Gen_Fault_Reset)XIO(Gen_Fault)MOV(0,Gen_Crank_Attempts);]]></Text>
+</Rung>
+<Rung Number="58" Type="N">
+<Comment><![CDATA[Fault reset - return to idle]]></Comment>
+<Text><![CDATA[XIC(HMI_Gen_Fault_Reset)XIO(Gen_Fault)MOV(0,Gen_State);]]></Text>
+</Rung>
+<Rung Number="59" Type="N">
+<Comment><![CDATA[Clear HMI fault reset]]></Comment>
+<Text><![CDATA[XIC(HMI_Gen_Fault_Reset)OTU(HMI_Gen_Fault_Reset);]]></Text>
+</Rung>
+</RLLContent>
+</Routine>
+<Routine Name="Sump_Pump_Control" Type="RLL">
+<RLLContent>
+<Rung Number="0" Type="N">
+<Comment><![CDATA[Float switch debounce 2s]]></Comment>
+<Text><![CDATA[XIC(Sump_Float_High)TON(Sump_Debounce,2000,0);]]></Text>
+</Rung>
+<Rung Number="1" Type="N">
+<Comment><![CDATA[Max pump run time 5min]]></Comment>
+<Text><![CDATA[XIC(Sump_Pump_Run)TON(Sump_Max_Run,300000,0);]]></Text>
+</Rung>
+<Rung Number="2" Type="N">
+<Comment><![CDATA[Pump off delay 10s after float drops]]></Comment>
+<Text><![CDATA[XIO(Sump_Float_High)XIC(Sump_Pump_Run)TON(Sump_Off_Delay,10000,0);]]></Text>
+</Rung>
+<Rung Number="3" Type="N">
+<Comment><![CDATA[Test run timer 15s]]></Comment>
+<Text><![CDATA[EQU(Sump_State,30)TON(Sump_Test_Run_Timer,15000,0);]]></Text>
+</Rung>
+<Rung Number="4" Type="N">
+<Comment><![CDATA[Count seconds for weekly sump test]]></Comment>
+<Text><![CDATA[XIC(Pulse_1s)ADD(Sump_Test_Seconds,1,Sump_Test_Seconds);]]></Text>
+</Rung>
+<Rung Number="5" Type="N">
+<Comment><![CDATA[Trigger sump test at 1 week]]></Comment>
+<Text><![CDATA[GEQ(Sump_Test_Seconds,604800)OTL(Sump_Test_Trigger);]]></Text>
+</Rung>
+<Rung Number="6" Type="N">
+<Comment><![CDATA[Reset sump test counter after trigger]]></Comment>
+<Text><![CDATA[XIC(Sump_Test_Trigger)MOV(0,Sump_Test_Seconds);]]></Text>
+</Rung>
+<Rung Number="7" Type="N">
+<Comment><![CDATA[HMI manual sump test request]]></Comment>
+<Text><![CDATA[XIC(HMI_Sump_Test_Request)OTL(Sump_Test_Trigger);]]></Text>
+</Rung>
+<Rung Number="8" Type="N">
+<Comment><![CDATA[Clear HMI sump test request]]></Comment>
+<Text><![CDATA[XIC(HMI_Sump_Test_Request)OTU(HMI_Sump_Test_Request);]]></Text>
+</Rung>
+<Rung Number="9" Type="N">
+<Comment><![CDATA[State 0->10: Float debounced high]]></Comment>
+<Text><![CDATA[EQU(Sump_State,0)XIC(Sump_Debounce.DN)MOV(10,Sump_State);]]></Text>
+</Rung>
+<Rung Number="10" Type="N">
+<Comment><![CDATA[State 0->30: Test triggered]]></Comment>
+<Text><![CDATA[EQU(Sump_State,0)XIC(Sump_Test_Trigger)XIO(Sump_Debounce.DN)MOV(30,Sump_State);]]></Text>
+</Rung>
+<Rung Number="11" Type="N">
+<Comment><![CDATA[Clear test trigger on entry]]></Comment>
+<Text><![CDATA[EQU(Sump_State,30)OTU(Sump_Test_Trigger);]]></Text>
+</Rung>
+<Rung Number="12" Type="N">
+<Comment><![CDATA[State 10: Count pump cycle]]></Comment>
+<Text><![CDATA[EQU(Sump_State,10)ONS(Sump_Cycle_ONS)ADD(Sump_Cycle_Count,1,Sump_Cycle_Count);]]></Text>
+</Rung>
+<Rung Number="13" Type="N">
+<Comment><![CDATA[State 10->20: Start pumping]]></Comment>
+<Text><![CDATA[EQU(Sump_State,10)MOV(20,Sump_State);]]></Text>
+</Rung>
+<Rung Number="14" Type="N">
+<Comment><![CDATA[State 20: Track current run time]]></Comment>
+<Text><![CDATA[EQU(Sump_State,20)XIC(Pulse_1s)ADD(Sump_Current_Run_Seconds,1,Sump_Current_Run_Seconds);]]></Text>
+</Rung>
+<Rung Number="15" Type="N">
+<Comment><![CDATA[State 20: Track total run time]]></Comment>
+<Text><![CDATA[EQU(Sump_State,20)XIC(Pulse_1s)ADD(Sump_Total_Run_Seconds,1,Sump_Total_Run_Seconds);]]></Text>
+</Rung>
+<Rung Number="16" Type="N">
+<Comment><![CDATA[State 20->999: Max run time exceeded - set fault]]></Comment>
+<Text><![CDATA[EQU(Sump_State,20)XIC(Sump_Max_Run.DN)OTL(Sump_Max_Run_Fault);]]></Text>
+</Rung>
+<Rung Number="17" Type="N">
+<Comment><![CDATA[State 20: Save last run on fault]]></Comment>
+<Text><![CDATA[EQU(Sump_State,20)XIC(Sump_Max_Run.DN)MOV(Sump_Current_Run_Seconds,Sump_Last_Run_Seconds);]]></Text>
+</Rung>
+<Rung Number="18" Type="N">
+<Comment><![CDATA[State 20: Clear current run on fault]]></Comment>
+<Text><![CDATA[EQU(Sump_State,20)XIC(Sump_Max_Run.DN)MOV(0,Sump_Current_Run_Seconds);]]></Text>
+</Rung>
+<Rung Number="19" Type="N">
+<Comment><![CDATA[State 20->999: Transition to fault]]></Comment>
+<Text><![CDATA[EQU(Sump_State,20)XIC(Sump_Max_Run.DN)MOV(999,Sump_State);]]></Text>
+</Rung>
+<Rung Number="20" Type="N">
+<Comment><![CDATA[State 20: Save last run on completion]]></Comment>
+<Text><![CDATA[EQU(Sump_State,20)XIC(Sump_Off_Delay.DN)MOV(Sump_Current_Run_Seconds,Sump_Last_Run_Seconds);]]></Text>
+</Rung>
+<Rung Number="21" Type="N">
+<Comment><![CDATA[State 20: Clear current run on completion]]></Comment>
+<Text><![CDATA[EQU(Sump_State,20)XIC(Sump_Off_Delay.DN)MOV(0,Sump_Current_Run_Seconds);]]></Text>
+</Rung>
+<Rung Number="22" Type="N">
+<Comment><![CDATA[State 20->0: Float dropped, off delay done]]></Comment>
+<Text><![CDATA[EQU(Sump_State,20)XIC(Sump_Off_Delay.DN)MOV(0,Sump_State);]]></Text>
+</Rung>
+<Rung Number="23" Type="N">
+<Comment><![CDATA[State 30: Set test active]]></Comment>
+<Text><![CDATA[EQU(Sump_State,30)OTL(Sump_Test_Active);]]></Text>
+</Rung>
+<Rung Number="24" Type="N">
+<Comment><![CDATA[State 30->0: Test complete - clear active]]></Comment>
+<Text><![CDATA[EQU(Sump_State,30)XIC(Sump_Test_Run_Timer.DN)OTU(Sump_Test_Active);]]></Text>
+</Rung>
+<Rung Number="25" Type="N">
+<Comment><![CDATA[State 30: Set last test OK]]></Comment>
+<Text><![CDATA[EQU(Sump_State,30)XIC(Sump_Test_Run_Timer.DN)OTL(Sump_Last_Test_OK);]]></Text>
+</Rung>
+<Rung Number="26" Type="N">
+<Comment><![CDATA[State 30->0: Test complete transition]]></Comment>
+<Text><![CDATA[EQU(Sump_State,30)XIC(Sump_Test_Run_Timer.DN)MOV(0,Sump_State);]]></Text>
+</Rung>
+<Rung Number="27" Type="N">
+<Comment><![CDATA[State 30->20: Real high water during test]]></Comment>
+<Text><![CDATA[EQU(Sump_State,30)XIC(Sump_Float_High)XIO(Sump_Test_Run_Timer.DN)OTU(Sump_Test_Active);]]></Text>
+</Rung>
+<Rung Number="28" Type="N">
+<Text><![CDATA[EQU(Sump_State,30)XIC(Sump_Float_High)XIO(Sump_Test_Run_Timer.DN)MOV(20,Sump_State);]]></Text>
+</Rung>
+<Rung Number="29" Type="N">
+<Comment><![CDATA[Sump pump run output]]></Comment>
+<Text><![CDATA[[EQU(Sump_State,10),EQU(Sump_State,20),EQU(Sump_State,30),EQU(Sump_State,999)XIC(Sump_Float_High)]OTE(Sump_Pump_Run);]]></Text>
+</Rung>
+<Rung Number="30" Type="N">
+<Comment><![CDATA[Sump fault reset from HMI]]></Comment>
+<Text><![CDATA[XIC(HMI_Sump_Fault_Reset)OTU(Sump_Max_Run_Fault);]]></Text>
+</Rung>
+<Rung Number="31" Type="N">
+<Text><![CDATA[XIC(HMI_Sump_Fault_Reset)MOV(0,Sump_State);]]></Text>
+</Rung>
+<Rung Number="32" Type="N">
+<Text><![CDATA[XIC(HMI_Sump_Fault_Reset)OTU(HMI_Sump_Fault_Reset);]]></Text>
+</Rung>
+</RLLContent>
+</Routine>
+<Routine Name="HVAC_Monitor" Type="RLL">
+<RLLContent>
+<Rung Number="0" Type="N">
+<Comment><![CDATA[Heat call debounce 5s]]></Comment>
+<Text><![CDATA[XIC(Thermostat_W_Call)TON(Heat_Call_Debounce,5000,0);]]></Text>
+</Rung>
+<Rung Number="1" Type="N">
+<Comment><![CDATA[Short cycle detection window 3min]]></Comment>
+<Text><![CDATA[XIO(Thermostat_W_Call)XIC(HVAC_Was_Running)TON(Short_Cycle_Timer,180000,0);]]></Text>
+</Rung>
+<Rung Number="2" Type="N">
+<Comment><![CDATA[Count furnace cycle on start]]></Comment>
+<Text><![CDATA[XIC(Heat_Call_Debounce.DN)XIO(HVAC_Furnace_Running)ADD(HVAC_Cycle_Count,1,HVAC_Cycle_Count);]]></Text>
+</Rung>
+<Rung Number="3" Type="N">
+<Comment><![CDATA[Clear current run seconds on start]]></Comment>
+<Text><![CDATA[XIC(Heat_Call_Debounce.DN)XIO(HVAC_Furnace_Running)MOV(0,HVAC_Current_Run_Seconds);]]></Text>
+</Rung>
+<Rung Number="4" Type="N">
+<Comment><![CDATA[Short cycle check - restart within 3min window]]></Comment>
+<Text><![CDATA[XIC(Heat_Call_Debounce.DN)XIO(HVAC_Furnace_Running)XIC(Short_Cycle_Timer.TT)ADD(HVAC_Short_Cycle_Count,1,HVAC_Short_Cycle_Count);]]></Text>
+</Rung>
+<Rung Number="5" Type="N">
+<Comment><![CDATA[Clear short cycle count if not short cycling]]></Comment>
+<Text><![CDATA[XIC(Heat_Call_Debounce.DN)XIO(HVAC_Furnace_Running)XIO(Short_Cycle_Timer.TT)MOV(0,HVAC_Short_Cycle_Count);]]></Text>
+</Rung>
+<Rung Number="6" Type="N">
+<Comment><![CDATA[Short cycle alarm at 3 consecutive]]></Comment>
+<Text><![CDATA[GEQ(HVAC_Short_Cycle_Count,3)OTL(HVAC_Short_Cycle_Alarm);]]></Text>
+</Rung>
+<Rung Number="7" Type="N">
+<Comment><![CDATA[Latch furnace running]]></Comment>
+<Text><![CDATA[XIC(Heat_Call_Debounce.DN)OTL(HVAC_Furnace_Running);]]></Text>
+</Rung>
+<Rung Number="8" Type="N">
+<Comment><![CDATA[Save last run on shutdown]]></Comment>
+<Text><![CDATA[XIO(Thermostat_W_Call)XIC(HVAC_Furnace_Running)MOV(HVAC_Current_Run_Seconds,HVAC_Last_Run_Seconds);]]></Text>
+</Rung>
+<Rung Number="9" Type="N">
+<Comment><![CDATA[Set was running flag]]></Comment>
+<Text><![CDATA[XIO(Thermostat_W_Call)XIC(HVAC_Furnace_Running)OTL(HVAC_Was_Running);]]></Text>
+</Rung>
+<Rung Number="10" Type="N">
+<Comment><![CDATA[Clear furnace running on shutdown]]></Comment>
+<Text><![CDATA[XIO(Thermostat_W_Call)OTU(HVAC_Furnace_Running);]]></Text>
+</Rung>
+<Rung Number="11" Type="N">
+<Comment><![CDATA[Clear was running after short cycle window]]></Comment>
+<Text><![CDATA[XIC(Short_Cycle_Timer.DN)OTU(HVAC_Was_Running);]]></Text>
+</Rung>
+<Rung Number="12" Type="N">
+<Comment><![CDATA[Track current furnace run time]]></Comment>
+<Text><![CDATA[XIC(HVAC_Furnace_Running)XIC(Pulse_1s)ADD(HVAC_Current_Run_Seconds,1,HVAC_Current_Run_Seconds);]]></Text>
+</Rung>
+<Rung Number="13" Type="N">
+<Comment><![CDATA[Track total furnace run time]]></Comment>
+<Text><![CDATA[XIC(HVAC_Furnace_Running)XIC(Pulse_1s)ADD(HVAC_Total_Run_Seconds,1,HVAC_Total_Run_Seconds);]]></Text>
+</Rung>
+<Rung Number="14" Type="N">
+<Comment><![CDATA[Track filter run time]]></Comment>
+<Text><![CDATA[XIC(HVAC_Furnace_Running)XIC(Pulse_1s)ADD(HVAC_Filter_Run_Seconds,1,HVAC_Filter_Run_Seconds);]]></Text>
+</Rung>
+<Rung Number="15" Type="N">
+<Comment><![CDATA[Filter change due at 300 hours (1080000s)]]></Comment>
+<Text><![CDATA[GEQ(HVAC_Filter_Run_Seconds,1080000)OTL(HVAC_Filter_Change_Due);]]></Text>
+</Rung>
+<Rung Number="16" Type="N">
+<Comment><![CDATA[HMI filter reset - clear hours]]></Comment>
+<Text><![CDATA[XIC(HMI_Filter_Reset)MOV(0,HVAC_Filter_Run_Seconds);]]></Text>
+</Rung>
+<Rung Number="17" Type="N">
+<Comment><![CDATA[HMI filter reset - clear flag]]></Comment>
+<Text><![CDATA[XIC(HMI_Filter_Reset)OTU(HVAC_Filter_Change_Due);]]></Text>
+</Rung>
+<Rung Number="18" Type="N">
+<Text><![CDATA[XIC(HMI_Filter_Reset)OTU(HMI_Filter_Reset);]]></Text>
+</Rung>
+<Rung Number="19" Type="N">
+<Comment><![CDATA[Track outdoor temp minimum]]></Comment>
+<Text><![CDATA[LES(Outdoor_Temp_F,HVAC_Outdoor_Temp_Min)MOV(Outdoor_Temp_F,HVAC_Outdoor_Temp_Min);]]></Text>
+</Rung>
+<Rung Number="20" Type="N">
+<Comment><![CDATA[Track outdoor temp maximum]]></Comment>
+<Text><![CDATA[GRT(Outdoor_Temp_F,HVAC_Outdoor_Temp_Max)MOV(Outdoor_Temp_F,HVAC_Outdoor_Temp_Max);]]></Text>
+</Rung>
+<Rung Number="21" Type="N">
+<Comment><![CDATA[HMI min/max reset]]></Comment>
+<Text><![CDATA[XIC(HMI_Temp_MinMax_Reset)MOV(Outdoor_Temp_F,HVAC_Outdoor_Temp_Min);]]></Text>
+</Rung>
+<Rung Number="22" Type="N">
+<Text><![CDATA[XIC(HMI_Temp_MinMax_Reset)MOV(Outdoor_Temp_F,HVAC_Outdoor_Temp_Max);]]></Text>
+</Rung>
+<Rung Number="23" Type="N">
+<Text><![CDATA[XIC(HMI_Temp_MinMax_Reset)OTU(HMI_Temp_MinMax_Reset);]]></Text>
+</Rung>
+<Rung Number="24" Type="N">
+<Comment><![CDATA[HMI HVAC alarm reset]]></Comment>
+<Text><![CDATA[XIC(HMI_HVAC_Alarm_Reset)OTU(HVAC_Short_Cycle_Alarm);]]></Text>
+</Rung>
+<Rung Number="25" Type="N">
+<Text><![CDATA[XIC(HMI_HVAC_Alarm_Reset)MOV(0,HVAC_Short_Cycle_Count);]]></Text>
+</Rung>
+<Rung Number="26" Type="N">
+<Text><![CDATA[XIC(HMI_HVAC_Alarm_Reset)OTU(HMI_HVAC_Alarm_Reset);]]></Text>
+</Rung>
+</RLLContent>
+</Routine>
+<Routine Name="Electrical_Monitor" Type="RLL">
+<RLLContent>
+<Rung Number="0" Type="N">
+<Comment><![CDATA[Copy current reading]]></Comment>
+<Text><![CDATA[MOV(House_Current_Amps,Elec_Current_Amps);]]></Text>
+</Rung>
+<Rung Number="1" Type="N">
+<Comment><![CDATA[Track peak current]]></Comment>
+<Text><![CDATA[GRT(Elec_Current_Amps,Elec_Peak_Amps)MOV(Elec_Current_Amps,Elec_Peak_Amps);]]></Text>
+</Rung>
+<Rung Number="2" Type="N">
+<Comment><![CDATA[Overload timer - sustained >180A for 5s]]></Comment>
+<Text><![CDATA[GRT(Elec_Current_Amps,180.0)TON(Elec_Overload_Timer,5000,0);]]></Text>
+</Rung>
+<Rung Number="3" Type="N">
+<Comment><![CDATA[Set overload alarm]]></Comment>
+<Text><![CDATA[XIC(Elec_Overload_Timer.DN)OTL(Elec_Overload_Alarm);]]></Text>
+</Rung>
+<Rung Number="4" Type="N">
+<Comment><![CDATA[Generator overload - sustained above threshold for 3s]]></Comment>
+<Text><![CDATA[XIC(Gen_On_Generator)GRT(Elec_Current_Amps,Elec_Gen_Max_Amps)TON(Elec_Gen_Overload_Timer,3000,0);]]></Text>
+</Rung>
+<Rung Number="5" Type="N">
+<Comment><![CDATA[Set generator overload alarm]]></Comment>
+<Text><![CDATA[XIC(Elec_Gen_Overload_Timer.DN)OTL(Elec_Gen_Overload_Alarm);]]></Text>
+</Rung>
+<Rung Number="6" Type="N">
+<Comment><![CDATA[Calculate watts this second]]></Comment>
+<Text><![CDATA[XIC(Pulse_1s)MUL(Elec_Current_Amps,240.0,Elec_Watt_Seconds_Temp);]]></Text>
+</Rung>
+<Rung Number="7" Type="N">
+<Comment><![CDATA[Add to watt-seconds accumulator]]></Comment>
+<Text><![CDATA[XIC(Pulse_1s)ADD(Elec_Watt_Seconds,Elec_Watt_Seconds_Temp,Elec_Watt_Seconds);]]></Text>
+</Rung>
+<Rung Number="8" Type="N">
+<Comment><![CDATA[Convert to kWh at 3600000 watt-seconds]]></Comment>
+<Text><![CDATA[GEQ(Elec_Watt_Seconds,3600000.0)ADD(Elec_Total_kWh,1.0,Elec_Total_kWh);]]></Text>
+</Rung>
+<Rung Number="9" Type="N">
+<Comment><![CDATA[Subtract 3600000 from accumulator]]></Comment>
+<Text><![CDATA[GEQ(Elec_Watt_Seconds,3600000.0)SUB(Elec_Watt_Seconds,3600000.0,Elec_Watt_Seconds);]]></Text>
+</Rung>
+<Rung Number="10" Type="N">
+<Comment><![CDATA[HMI peak current reset]]></Comment>
+<Text><![CDATA[XIC(HMI_Elec_Peak_Reset)MOV(0.0,Elec_Peak_Amps);]]></Text>
+</Rung>
+<Rung Number="11" Type="N">
+<Text><![CDATA[XIC(HMI_Elec_Peak_Reset)OTU(HMI_Elec_Peak_Reset);]]></Text>
+</Rung>
+<Rung Number="12" Type="N">
+<Comment><![CDATA[HMI electrical alarm reset]]></Comment>
+<Text><![CDATA[XIC(HMI_Elec_Alarm_Reset)OTU(Elec_Overload_Alarm);]]></Text>
+</Rung>
+<Rung Number="13" Type="N">
+<Text><![CDATA[XIC(HMI_Elec_Alarm_Reset)OTU(Elec_Gen_Overload_Alarm);]]></Text>
+</Rung>
+<Rung Number="14" Type="N">
+<Text><![CDATA[XIC(HMI_Elec_Alarm_Reset)OTU(HMI_Elec_Alarm_Reset);]]></Text>
+</Rung>
+</RLLContent>
+</Routine>
+<Routine Name="HMI_Interface" Type="RLL">
+<RLLContent>
+<Rung Number="0" Type="N">
+<Comment><![CDATA[Generator state to HMI]]></Comment>
+<Text><![CDATA[MOV(Gen_State,HMI_Gen_State);]]></Text>
+</Rung>
+<Rung Number="1" Type="N">
+<Comment><![CDATA[Generator running to HMI]]></Comment>
+<Text><![CDATA[XIC(Gen_Running)OTE(HMI_Gen_Running);]]></Text>
+</Rung>
+<Rung Number="2" Type="N">
+<Comment><![CDATA[On utility to HMI]]></Comment>
+<Text><![CDATA[XIC(Gen_On_Utility)OTE(HMI_Gen_On_Utility);]]></Text>
+</Rung>
+<Rung Number="3" Type="N">
+<Comment><![CDATA[On generator to HMI]]></Comment>
+<Text><![CDATA[XIC(Gen_On_Generator)OTE(HMI_Gen_On_Generator);]]></Text>
+</Rung>
+<Rung Number="4" Type="N">
+<Comment><![CDATA[Exercise active to HMI]]></Comment>
+<Text><![CDATA[XIC(Gen_Exercise_Active)OTE(HMI_Gen_Exercise_Active);]]></Text>
+</Rung>
+<Rung Number="5" Type="N">
+<Comment><![CDATA[Start fail alarm to HMI]]></Comment>
+<Text><![CDATA[XIC(Gen_Start_Fail)OTE(HMI_Gen_Start_Fail_Alarm);]]></Text>
+</Rung>
+<Rung Number="6" Type="N">
+<Comment><![CDATA[Stop fail alarm to HMI]]></Comment>
+<Text><![CDATA[XIC(Gen_Stop_Fail)OTE(HMI_Gen_Stop_Fail_Alarm);]]></Text>
+</Rung>
+<Rung Number="7" Type="N">
+<Comment><![CDATA[Gen fault alarm to HMI]]></Comment>
+<Text><![CDATA[XIC(Gen_Fault)OTE(HMI_Gen_Fault_Alarm);]]></Text>
+</Rung>
+<Rung Number="8" Type="N">
+<Comment><![CDATA[Utility present to HMI]]></Comment>
+<Text><![CDATA[XIC(Utility_Power_Present)OTE(HMI_Utility_Present);]]></Text>
+</Rung>
+<Rung Number="9" Type="N">
+<Comment><![CDATA[Gen run hours to HMI (seconds / 3600)]]></Comment>
+<Text><![CDATA[DIV(Gen_Total_Run_Seconds,3600,HMI_Gen_Total_Run_Hours);]]></Text>
+</Rung>
+<Rung Number="10" Type="N">
+<Comment><![CDATA[Gen crank attempts to HMI]]></Comment>
+<Text><![CDATA[MOV(Gen_Crank_Attempts,HMI_Gen_Crank_Attempts);]]></Text>
+</Rung>
+<Rung Number="11" Type="N">
+<Comment><![CDATA[Sump state to HMI]]></Comment>
+<Text><![CDATA[MOV(Sump_State,HMI_Sump_State);]]></Text>
+</Rung>
+<Rung Number="12" Type="N">
+<Comment><![CDATA[Sump pump running to HMI]]></Comment>
+<Text><![CDATA[XIC(Sump_Pump_Run)OTE(HMI_Sump_Pump_Running);]]></Text>
+</Rung>
+<Rung Number="13" Type="N">
+<Comment><![CDATA[Sump float active to HMI]]></Comment>
+<Text><![CDATA[XIC(Sump_Float_High)OTE(HMI_Sump_Float_Active);]]></Text>
+</Rung>
+<Rung Number="14" Type="N">
+<Comment><![CDATA[Sump test active to HMI]]></Comment>
+<Text><![CDATA[XIC(Sump_Test_Active)OTE(HMI_Sump_Test_Active);]]></Text>
+</Rung>
+<Rung Number="15" Type="N">
+<Comment><![CDATA[Sump max run alarm to HMI]]></Comment>
+<Text><![CDATA[XIC(Sump_Max_Run_Fault)OTE(HMI_Sump_Max_Run_Alarm);]]></Text>
+</Rung>
+<Rung Number="16" Type="N">
+<Comment><![CDATA[Sump cycle count to HMI]]></Comment>
+<Text><![CDATA[MOV(Sump_Cycle_Count,HMI_Sump_Cycle_Count);]]></Text>
+</Rung>
+<Rung Number="17" Type="N">
+<Comment><![CDATA[Sump run hours to HMI]]></Comment>
+<Text><![CDATA[DIV(Sump_Total_Run_Seconds,3600,HMI_Sump_Total_Run_Hours);]]></Text>
+</Rung>
+<Rung Number="18" Type="N">
+<Comment><![CDATA[Sump last run to HMI]]></Comment>
+<Text><![CDATA[MOV(Sump_Last_Run_Seconds,HMI_Sump_Last_Run_Seconds);]]></Text>
+</Rung>
+<Rung Number="19" Type="N">
+<Comment><![CDATA[Sump last test OK to HMI]]></Comment>
+<Text><![CDATA[XIC(Sump_Last_Test_OK)OTE(HMI_Sump_Last_Test_OK);]]></Text>
+</Rung>
+<Rung Number="20" Type="N">
+<Comment><![CDATA[Furnace running to HMI]]></Comment>
+<Text><![CDATA[XIC(HVAC_Furnace_Running)OTE(HMI_HVAC_Furnace_Running);]]></Text>
+</Rung>
+<Rung Number="21" Type="N">
+<Comment><![CDATA[HVAC cycle count to HMI]]></Comment>
+<Text><![CDATA[MOV(HVAC_Cycle_Count,HMI_HVAC_Cycle_Count);]]></Text>
+</Rung>
+<Rung Number="22" Type="N">
+<Comment><![CDATA[HVAC run hours to HMI]]></Comment>
+<Text><![CDATA[DIV(HVAC_Total_Run_Seconds,3600,HMI_HVAC_Total_Run_Hours);]]></Text>
+</Rung>
+<Rung Number="23" Type="N">
+<Comment><![CDATA[HVAC last run to HMI]]></Comment>
+<Text><![CDATA[MOV(HVAC_Last_Run_Seconds,HMI_HVAC_Last_Run_Seconds);]]></Text>
+</Rung>
+<Rung Number="24" Type="N">
+<Comment><![CDATA[Filter run hours to HMI]]></Comment>
+<Text><![CDATA[DIV(HVAC_Filter_Run_Seconds,3600,HMI_HVAC_Filter_Run_Hours);]]></Text>
+</Rung>
+<Rung Number="25" Type="N">
+<Comment><![CDATA[Filter change due to HMI]]></Comment>
+<Text><![CDATA[XIC(HVAC_Filter_Change_Due)OTE(HMI_HVAC_Filter_Change_Due);]]></Text>
+</Rung>
+<Rung Number="26" Type="N">
+<Comment><![CDATA[Short cycle alarm to HMI]]></Comment>
+<Text><![CDATA[XIC(HVAC_Short_Cycle_Alarm)OTE(HMI_HVAC_Short_Cycle_Alarm);]]></Text>
+</Rung>
+<Rung Number="27" Type="N">
+<Comment><![CDATA[Outdoor temp to HMI]]></Comment>
+<Text><![CDATA[MOV(Outdoor_Temp_F,HMI_Outdoor_Temp);]]></Text>
+</Rung>
+<Rung Number="28" Type="N">
+<Comment><![CDATA[Outdoor temp min to HMI]]></Comment>
+<Text><![CDATA[MOV(HVAC_Outdoor_Temp_Min,HMI_Outdoor_Temp_Min);]]></Text>
+</Rung>
+<Rung Number="29" Type="N">
+<Comment><![CDATA[Outdoor temp max to HMI]]></Comment>
+<Text><![CDATA[MOV(HVAC_Outdoor_Temp_Max,HMI_Outdoor_Temp_Max);]]></Text>
+</Rung>
+<Rung Number="30" Type="N">
+<Comment><![CDATA[Current amps to HMI]]></Comment>
+<Text><![CDATA[MOV(Elec_Current_Amps,HMI_Elec_Current_Amps);]]></Text>
+</Rung>
+<Rung Number="31" Type="N">
+<Comment><![CDATA[Peak amps to HMI]]></Comment>
+<Text><![CDATA[MOV(Elec_Peak_Amps,HMI_Elec_Peak_Amps);]]></Text>
+</Rung>
+<Rung Number="32" Type="N">
+<Comment><![CDATA[Total kWh to HMI]]></Comment>
+<Text><![CDATA[MOV(Elec_Total_kWh,HMI_Elec_Total_kWh);]]></Text>
+</Rung>
+<Rung Number="33" Type="N">
+<Comment><![CDATA[Overload alarm to HMI]]></Comment>
+<Text><![CDATA[XIC(Elec_Overload_Alarm)OTE(HMI_Elec_Overload_Alarm);]]></Text>
+</Rung>
+<Rung Number="34" Type="N">
+<Comment><![CDATA[Gen overload alarm to HMI]]></Comment>
+<Text><![CDATA[XIC(Elec_Gen_Overload_Alarm)OTE(HMI_Elec_Gen_Overload_Alarm);]]></Text>
+</Rung>
+<Rung Number="35" Type="N">
+<Comment><![CDATA[Any alarm active for HMI banner]]></Comment>
+<Text><![CDATA[[XIC(Gen_Start_Fail),XIC(Gen_Stop_Fail),XIC(Gen_Fault),XIC(Sump_Max_Run_Fault),XIC(HVAC_Short_Cycle_Alarm),XIC(HVAC_Filter_Change_Due),XIC(Elec_Overload_Alarm),XIC(Elec_Gen_Overload_Alarm)]OTE(HMI_Any_Alarm);]]></Text>
+</Rung>
+</RLLContent>
+</Routine>
+<Routine Name="Output_Mapping" Type="RLL">
+<RLLContent>
+<Rung Number="0" Type="N">
+<Comment><![CDATA[Gen start command to Pt00]]></Comment>
+<Text><![CDATA[XIC(Gen_Start_Cmd)OTE(Local:2:O.Pt00.Data);]]></Text>
+</Rung>
+<Rung Number="1" Type="N">
+<Comment><![CDATA[ATS transfer command to Pt01]]></Comment>
+<Text><![CDATA[XIC(ATS_Transfer_Cmd)OTE(Local:2:O.Pt01.Data);]]></Text>
+</Rung>
+<Rung Number="2" Type="N">
+<Comment><![CDATA[Sump pump run to Pt02]]></Comment>
+<Text><![CDATA[XIC(Sump_Pump_Run)OTE(Local:2:O.Pt02.Data);]]></Text>
+</Rung>
+</RLLContent>
+</Routine>
+</Routines>
+</Program>
+</Programs>
+<Tasks>
+<Task Name="MainTask" Type="CONTINUOUS" Priority="10" Watchdog="500" DisableUpdateOutputs="false" InhibitTask="false">
+<ScheduledPrograms>
+<ScheduledProgram Name="MainProgram"/>
+</ScheduledPrograms>
+</Task>
+</Tasks>
+<CST MasterID="0"/>
+<WallClockTime LocalTimeAdjustment="0" TimeZone="0"/>
+<Trends/>
+<DataLogs/>
+<TimeSynchronize Priority1="128" Priority2="128" PTPEnable="false"/>
+<EthernetPorts>
+<EthernetPort Port="1" Label="A1" PortEnabled="true"/>
+<EthernetPort Port="2" Label="A2" PortEnabled="true"/>
+</EthernetPorts>
+</Controller>
+</RSLogix5000Content>
