@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HomePLC HMI</title>
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<!-- Header -->
+<div class="header">
+    <h1>HomePLC Dashboard</h1>
+    <div class="conn-status">
+        <span id="connText">Connecting...</span>
+        <div id="connDot" class="conn-dot"></div>
+    </div>
+</div>
+
+<!-- Alarm Banner -->
+<div id="alarmBanner" class="alarm-banner">
+    <span id="alarmText"></span>
+</div>
+
+<!-- Simulation Control Panel (shown/hidden by JS based on _sim_mode) -->
+<div id="simPanel" class="dashboard" style="padding-bottom:0; display:none;">
+    <div class="card" style="grid-column: 1 / -1;">
+        <div class="card-header">
+            <h2>Simulation Control Panel</h2>
+            <span class="state-badge state-exercise">SIM MODE</span>
+        </div>
+        <div class="card-body">
+            <div style="display:flex; flex-wrap:wrap; gap:16px; align-items:start;">
+                <!-- Toggle switches -->
+                <div style="flex:1; min-width:200px;">
+                    <div style="font-weight:600; margin-bottom:8px; color:var(--accent);">Digital Inputs</div>
+                    <label class="sim-toggle"><input type="checkbox" id="simUtility" checked onchange="simInput('utility_power',this.checked)"> Utility Power</label>
+                    <label class="sim-toggle"><input type="checkbox" id="simGenFault" onchange="simInput('gen_fault',this.checked)"> Generator Fault</label>
+                    <label class="sim-toggle"><input type="checkbox" id="simGenReady" checked onchange="simInput('gen_ready',this.checked)"> Generator Ready</label>
+                    <label class="sim-toggle"><input type="checkbox" id="simFloat" onchange="simInput('float_high',this.checked)"> Sump Float High</label>
+                    <label class="sim-toggle"><input type="checkbox" id="simThermostat" onchange="simInput('thermostat_call',this.checked)"> Thermostat Call</label>
+                </div>
+                <!-- Analog sliders -->
+                <div style="flex:1; min-width:250px;">
+                    <div style="font-weight:600; margin-bottom:8px; color:var(--accent);">Analog Inputs (4-20mA on 0-20mA)</div>
+                    <div class="sim-slider-row">
+                        <span class="status-label">Outdoor Temp</span>
+                        <input type="range" id="simTemp" min="20" max="100" step="0.5" value="62.5" oninput="simInput('outdoor_temp_pct',parseFloat(this.value));document.getElementById('simTempVal').textContent=((this.value-20)*2-40).toFixed(0)+'F'">
+                        <span id="simTempVal" style="min-width:45px;text-align:right;">50F</span>
+                    </div>
+                    <div class="sim-slider-row">
+                        <span class="status-label">House Current</span>
+                        <input type="range" id="simCurrent" min="20" max="100" step="0.5" value="35" oninput="simInput('house_current_pct',parseFloat(this.value));document.getElementById('simCurrentVal').textContent=((this.value-20)*2.5).toFixed(0)+'A'">
+                        <span id="simCurrentVal" style="min-width:45px;text-align:right;">38A</span>
+                    </div>
+                </div>
+                <!-- Speed control -->
+                <div style="flex:0.5; min-width:150px;">
+                    <div style="font-weight:600; margin-bottom:8px; color:var(--accent);">Sim Speed</div>
+                    <div class="sim-slider-row">
+                        <input type="range" id="simSpeed" min="1" max="50" value="10" oninput="simInput('speed_multiplier',parseInt(this.value));document.getElementById('simSpeedVal').textContent=this.value+'x'">
+                        <span id="simSpeedVal" style="min-width:35px;text-align:right;">10x</span>
+                    </div>
+                    <div style="font-size:0.75rem;color:var(--text-dim);margin-top:4px;">Timers run at this speed</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Dashboard Grid -->
+<div class="dashboard">
+
+    <!-- ============ GENERATOR CARD ============ -->
+    <div class="card">
+        <div class="card-header">
+            <h2>Generator / ATS</h2>
+            <span id="genStateBadge" class="state-badge state-idle">IDLE</span>
+        </div>
+        <div class="card-body">
+            <div class="status-row">
+                <span class="status-label">Utility Power</span>
+                <span class="status-value"><span id="indUtility" class="indicator ind-off"></span><span id="txtUtility">--</span></span>
+            </div>
+            <div class="status-row">
+                <span class="status-label">Power Source</span>
+                <span class="status-value" id="txtPowerSource">--</span>
+            </div>
+            <div class="status-row">
+                <span class="status-label">Generator Running</span>
+                <span class="status-value"><span id="indGenRun" class="indicator ind-off"></span><span id="txtGenRun">--</span></span>
+            </div>
+            <div class="status-row">
+                <span class="status-label">Gen Start Cmd</span>
+                <span class="status-value"><span id="indGenStart" class="indicator ind-off"></span><span id="txtGenStart">OFF</span></span>
+            </div>
+            <div class="status-row">
+                <span class="status-label">ATS Transfer Cmd</span>
+                <span class="status-value"><span id="indATS" class="indicator ind-off"></span><span id="txtATS">OFF</span></span>
+            </div>
+            <div class="status-row">
+                <span class="status-label">ATS Position</span>
+                <span class="status-value" id="txtATSPos">--</span>
+            </div>
+            <div class="status-row">
+                <span class="status-label">Generator Fault</span>
+                <span class="status-value"><span id="indGenFault" class="indicator ind-off"></span><span id="txtGenFault">--</span></span>
+            </div>
+            <div class="status-row">
+                <span class="status-label">Start Fail</span>
+                <span class="status-value"><span id="indStartFail" class="indicator ind-off"></span><span id="txtStartFail">--</span></span>
+            </div>
+            <div class="status-row">
+                <span class="status-label">Stop Fail</span>
+                <span class="status-value"><span id="indStopFail" class="indicator ind-off"></span><span id="txtStopFail">--</span></span>
+            </div>
+            <div class="status-row">
+                <span class="status-label">Crank Attempts</span>
+                <span class="status-value" id="txtCrankAttempts">--</span>
+            </div>
+            <div class="status-row">
+                <span class="status-label">Exercise Active</span>
+                <span class="status-value"><span id="indExercise" class="indicator ind-off"></span><span id="txtExercise">--</span></span>
+            </div>
+            <div class="status-row">
+                <span class="status-label">Total Run Hours</span>
+                <span class="status-value" id="txtGenHours">--</span>
+            </div>
+            <div class="btn-row">
+                <button class="btn btn-green" onclick="plcWrite('HMI_Exercise_Request')">Start Exercise</button>
+                <button class="btn btn-red" onclick="plcWrite('HMI_Gen_Fault_Reset')">Reset Fault</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============ SUMP PUMP CARD ============ -->
+    <div class="card">
+        <div class="card-header">
+            <h2>Sump Pump</h2>
+            <span id="sumpStateBadge" class="state-badge state-idle">IDLE</span>
+        </div>
+        <div class="card-body">
+            <div class="status-row">
+                <span class="status-label">Float Switch</span>
+                <span class="status-value"><span id="indFloat" class="indicator ind-off"></span><span id="txtFloat">--</span></span>
+            </div>
+            <div class="status-row">
+                <span class="status-label">Pump Running</span>
+                <span class="status-value"><span id="indPump" class="indicator ind-off"></span><span id="txtPump">--</span></span>
+            </div>
+            <div class="status-row">
+                <span class="status-label">Max Run Fault</span>
+                <span class="status-value"><span id="indSumpFault" class="indicator ind-off"></span><span id="txtSumpFault">--</span></span>
+            </div>
+            <div class="status-row">
+                <span class="status-label">Test Active</span>
+                <span class="status-value"><span id="indSumpTest" class="indicator ind-off"></span><span id="txtSumpTest">--</span></span>
+            </div>
+            <div class="status-row">
+                <span class="status-label">Last Test OK</span>
+                <span class="status-value"><span id="indLastTestOK" class="indicator ind-off"></span><span id="txtLastTestOK">--</span></span>
+            </div>
+            <div class="big-row">
+                <div class="item"><div class="val" id="txtSumpCycles">--</div><div class="lbl">Cycles</div></div>
+                <div class="item"><div class="val" id="txtSumpHours">--</div><div class="lbl">Run Hours</div></div>
+                <div class="item"><div class="val" id="txtSumpLastRun">--</div><div class="lbl">Last Run (sec)</div></div>
+            </div>
+            <div class="status-row">
+                <span class="status-label">Current Run Time</span>
+                <span class="status-value" id="txtSumpCurrentRun">-- sec</span>
+            </div>
+            <div class="btn-row">
+                <button class="btn btn-green" onclick="plcWrite('HMI_Sump_Test_Request')">Run Test</button>
+                <button class="btn btn-red" onclick="plcWrite('HMI_Sump_Fault_Reset')">Reset Fault</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============ HVAC CARD ============ -->
+    <div class="card">
+        <div class="card-header">
+            <h2>HVAC / Furnace</h2>
+            <span id="hvacStateBadge" class="state-badge state-idle">IDLE</span>
+        </div>
+        <div class="card-body">
+            <div class="status-row">
+                <span class="status-label">Thermostat Call</span>
+                <span class="status-value"><span id="indTstat" class="indicator ind-off"></span><span id="txtTstat">--</span></span>
+            </div>
+            <div class="status-row">
+                <span class="status-label">Furnace Running</span>
+                <span class="status-value"><span id="indFurnace" class="indicator ind-off"></span><span id="txtFurnace">--</span></span>
+            </div>
+            <div class="status-row">
+                <span class="status-label">Short Cycle Alarm</span>
+                <span class="status-value"><span id="indShortCycle" class="indicator ind-off"></span><span id="txtShortCycle">--</span></span>
+            </div>
+            <div class="status-row">
+                <span class="status-label">Short Cycle Count</span>
+                <span class="status-value" id="txtShortCycleCount">--</span>
+            </div>
+            <div class="status-row">
+                <span class="status-label">Filter Change Due</span>
+                <span class="status-value"><span id="indFilter" class="indicator ind-off"></span><span id="txtFilter">--</span></span>
+            </div>
+            <div class="big-row">
+                <div class="item"><div class="val" id="txtHvacCycles">--</div><div class="lbl">Cycles</div></div>
+                <div class="item"><div class="val" id="txtHvacHours">--</div><div class="lbl">Run Hours</div></div>
+                <div class="item"><div class="val" id="txtFilterHours">--</div><div class="lbl">Filter Hours</div></div>
+            </div>
+            <div class="status-row">
+                <span class="status-label">Current Run</span>
+                <span class="status-value" id="txtHvacCurrentRun">-- sec</span>
+            </div>
+            <div class="status-row">
+                <span class="status-label">Last Run</span>
+                <span class="status-value" id="txtHvacLastRun">-- sec</span>
+            </div>
+            <div class="btn-row">
+                <button class="btn btn-yellow" onclick="plcWrite('HMI_Filter_Reset')">Reset Filter Hours</button>
+                <button class="btn btn-red" onclick="plcWrite('HMI_HVAC_Alarm_Reset')">Reset Alarm</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============ OUTDOOR TEMP CARD ============ -->
+    <div class="card">
+        <div class="card-header">
+            <h2>Outdoor Temperature</h2>
+        </div>
+        <div class="card-body">
+            <div class="temp-display">
+                <div class="temp-item">
+                    <div class="val temp-min" id="txtTempMin">--</div>
+                    <div class="lbl">Low</div>
+                </div>
+                <div class="temp-item">
+                    <div class="val temp-current" id="txtTempCurrent">--</div>
+                    <div class="lbl">Current</div>
+                </div>
+                <div class="temp-item">
+                    <div class="val temp-max" id="txtTempMax">--</div>
+                    <div class="lbl">High</div>
+                </div>
+            </div>
+            <div class="btn-row">
+                <button class="btn" onclick="plcWrite('HMI_Temp_MinMax_Reset')">Reset Min/Max</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============ ELECTRICAL CARD ============ -->
+    <div class="card">
+        <div class="card-header">
+            <h2>Electrical</h2>
+        </div>
+        <div class="card-body">
+            <div class="big-value" id="txtAmps">-- <span class="unit">Amps</span></div>
+            <div class="power-bar-container">
+                <div id="powerBar" class="power-bar" style="width:0%; background:var(--green);">0A</div>
+            </div>
+            <div class="status-row">
+                <span class="status-label">Peak Amps</span>
+                <span class="status-value" id="txtPeakAmps">--</span>
+            </div>
+            <div class="status-row">
+                <span class="status-label">Total Energy</span>
+                <span class="status-value" id="txtKwh">-- kWh</span>
+            </div>
+            <div class="status-row">
+                <span class="status-label">Gen Max Threshold</span>
+                <span class="status-value" id="txtGenMaxAmps">-- A</span>
+            </div>
+            <div class="status-row">
+                <span class="status-label">Overload Alarm</span>
+                <span class="status-value"><span id="indOverload" class="indicator ind-off"></span><span id="txtOverload">--</span></span>
+            </div>
+            <div class="status-row">
+                <span class="status-label">Gen Overload Alarm</span>
+                <span class="status-value"><span id="indGenOverload" class="indicator ind-off"></span><span id="txtGenOverload">--</span></span>
+            </div>
+            <div class="btn-row">
+                <button class="btn" onclick="plcWrite('HMI_Elec_Peak_Reset')">Reset Peak</button>
+                <button class="btn btn-red" onclick="plcWrite('HMI_Elec_Alarm_Reset')">Reset Alarms</button>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script>
+// ============================================================
+// DATA POLLING
+// ============================================================
+let D = {};
+
+async function fetchData() {
+    try {
+        const resp = await fetch('/api/data');
+        D = await resp.json();
+        updateUI();
+    } catch(e) {
+        document.getElementById('connDot').className = 'conn-dot';
+        document.getElementById('connText').textContent = 'HMI Server Error';
+    }
+}
+
+async function plcWrite(tag) {
+    try {
+        await fetch('/api/write', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({tag: tag, value: true})
+        });
+    } catch(e) {}
+}
+
+async function simInput(name, value) {
+    try {
+        await fetch('/api/sim', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({input: name, value: value})
+        });
+    } catch(e) {}
+}
+
+// ============================================================
+// UI UPDATE
+// ============================================================
+function val(tag, def) { return D[tag] !== undefined && D[tag] !== null ? D[tag] : def; }
+
+function setInd(id, on, colorOn='ind-green', colorOff='ind-off') {
+    document.getElementById(id).className = 'indicator ' + (on ? colorOn : colorOff);
+}
+
+function setText(id, text) { document.getElementById(id).textContent = text; }
+
+function setBadge(id, text, cls) {
+    const el = document.getElementById(id);
+    el.textContent = text;
+    el.className = 'state-badge ' + cls;
+}
+
+function genStateName(s) {
+    const map = {
+        0:'IDLE', 10:'START CMD', 20:'CRANKING', 30:'WARMUP',
+        40:'TRANSFERRING', 50:'ON GENERATOR', 55:'RETURNING',
+        60:'COOLDOWN', 70:'SHUTDOWN', 90:'EXERCISE START',
+        95:'EXERCISE CRANK', 100:'EXERCISING', 105:'EX COOLDOWN',
+        110:'EX SHUTDOWN', 999:'FAULT'
+    };
+    return map[s] || ('STATE '+s);
+}
+
+function genStateClass(s) {
+    if (s === 0) return 'state-idle';
+    if (s === 999) return 'state-fault';
+    if (s >= 90 && s <= 110) return 'state-exercise';
+    if (s === 50) return 'state-running';
+    return 'state-transition';
+}
+
+function sumpStateName(s) {
+    const map = {0:'IDLE', 10:'STARTING', 20:'PUMPING', 30:'TEST RUN', 999:'FAULT'};
+    return map[s] || ('STATE '+s);
+}
+
+function sumpStateClass(s) {
+    if (s === 0) return 'state-idle';
+    if (s === 999) return 'state-fault';
+    if (s === 30) return 'state-exercise';
+    return 'state-running';
+}
+
+function updateUI() {
+    // Connection
+    const conn = val('_plc_connected', false);
+    const isSim = val('_sim_mode', false);
+    document.getElementById('connDot').className = 'conn-dot' + (conn ? ' connected' : '');
+    setText('connText', isSim ? 'SIMULATION' : (conn ? 'PLC Connected' : ('Disconnected: ' + val('_plc_error',''))));
+
+    // Show/hide sim panel based on server _sim_mode
+    document.getElementById('simPanel').style.display = isSim ? '' : 'none';
+
+    // Sync sim input controls with actual sim state
+    if (isSim && D._sim_inputs) {
+        const si = D._sim_inputs;
+        document.getElementById('simUtility').checked = si.utility_power;
+        document.getElementById('simGenFault').checked = si.gen_fault;
+        document.getElementById('simGenReady').checked = si.gen_ready;
+        document.getElementById('simFloat').checked = si.float_high;
+        document.getElementById('simThermostat').checked = si.thermostat_call;
+    }
+
+    // Alarm banner
+    const alarms = [];
+    if (val('Gen_Start_Fail',false)) alarms.push('GEN START FAIL');
+    if (val('Gen_Stop_Fail',false)) alarms.push('GEN STOP FAIL');
+    if (val('Gen_Fault',false)) alarms.push('GEN FAULT');
+    if (val('Sump_Max_Run_Fault',false)) alarms.push('SUMP MAX RUN');
+    if (val('HVAC_Short_Cycle_Alarm',false)) alarms.push('HVAC SHORT CYCLE');
+    if (val('HVAC_Filter_Change_Due',false)) alarms.push('FILTER CHANGE DUE');
+    if (val('Elec_Overload_Alarm',false)) alarms.push('ELECTRICAL OVERLOAD');
+    if (val('Elec_Gen_Overload_Alarm',false)) alarms.push('GEN OVERLOAD');
+
+    const banner = document.getElementById('alarmBanner');
+    if (alarms.length > 0) {
+        banner.className = 'alarm-banner active';
+        setText('alarmText', 'ACTIVE ALARMS: ' + alarms.join(' | '));
+    } else {
+        banner.className = 'alarm-banner';
+    }
+
+    // ---- GENERATOR ----
+    const gs = val('Gen_State', 0);
+    setBadge('genStateBadge', genStateName(gs), genStateClass(gs));
+
+    const utilPresent = val('Utility_Power_Present', false);
+    setInd('indUtility', utilPresent, 'ind-green', 'ind-red');
+    setText('txtUtility', utilPresent ? 'PRESENT' : 'LOST');
+
+    const onUtil = val('Gen_On_Utility', false);
+    const onGen = val('Gen_On_Generator', false);
+    setText('txtPowerSource', onGen ? 'GENERATOR' : (onUtil ? 'UTILITY' : '--'));
+
+    const genRun = val('Gen_Running', false);
+    setInd('indGenRun', genRun);
+    setText('txtGenRun', genRun ? 'RUNNING' : 'STOPPED');
+
+    const genStartCmd = val('Gen_Start_Cmd', false);
+    setInd('indGenStart', genStartCmd, 'ind-yellow');
+    setText('txtGenStart', genStartCmd ? 'ON' : 'OFF');
+
+    const atsCmd = val('ATS_Transfer_Cmd', false);
+    setInd('indATS', atsCmd, 'ind-yellow');
+    setText('txtATS', atsCmd ? 'TRANSFER' : 'OFF');
+
+    const atsUtil = val('ATS_Utility_Pos', false);
+    const atsGen = val('ATS_Generator_Pos', false);
+    setText('txtATSPos', atsGen ? 'GENERATOR' : (atsUtil ? 'UTILITY' : 'TRANSIT'));
+
+    const genFault = val('Gen_Fault', false);
+    setInd('indGenFault', genFault, 'ind-red');
+    setText('txtGenFault', genFault ? 'FAULTED' : 'OK');
+
+    const startFail = val('Gen_Start_Fail', false);
+    setInd('indStartFail', startFail, 'ind-red');
+    setText('txtStartFail', startFail ? 'FAIL' : 'OK');
+
+    const stopFail = val('Gen_Stop_Fail', false);
+    setInd('indStopFail', stopFail, 'ind-red');
+    setText('txtStopFail', stopFail ? 'FAIL' : 'OK');
+
+    setText('txtCrankAttempts', val('Gen_Crank_Attempts', 0));
+
+    const exActive = val('Gen_Exercise_Active', false);
+    setInd('indExercise', exActive, 'ind-blue');
+    setText('txtExercise', exActive ? 'ACTIVE' : 'OFF');
+
+    setText('txtGenHours', val('Gen_Total_Run_Hours', 0) + ' hrs');
+
+    // ---- SUMP PUMP ----
+    const ss = val('Sump_State', 0);
+    setBadge('sumpStateBadge', sumpStateName(ss), sumpStateClass(ss));
+
+    const floatHigh = val('Sump_Float_High', false);
+    setInd('indFloat', floatHigh, 'ind-yellow');
+    setText('txtFloat', floatHigh ? 'HIGH' : 'LOW');
+
+    const pumpRun = val('Sump_Pump_Run', false);
+    setInd('indPump', pumpRun, 'ind-blue');
+    setText('txtPump', pumpRun ? 'RUNNING' : 'OFF');
+
+    const sumpFault = val('Sump_Max_Run_Fault', false);
+    setInd('indSumpFault', sumpFault, 'ind-red');
+    setText('txtSumpFault', sumpFault ? 'FAULT' : 'OK');
+
+    const sumpTest = val('Sump_Test_Active', false);
+    setInd('indSumpTest', sumpTest, 'ind-blue');
+    setText('txtSumpTest', sumpTest ? 'ACTIVE' : 'OFF');
+
+    const testOK = val('Sump_Last_Test_OK', false);
+    setInd('indLastTestOK', testOK, 'ind-green');
+    setText('txtLastTestOK', testOK ? 'PASS' : '--');
+
+    setText('txtSumpCycles', val('Sump_Cycle_Count', 0));
+    setText('txtSumpHours', val('Sump_Total_Run_Hours', 0));
+    setText('txtSumpLastRun', val('Sump_Last_Run_Seconds', 0));
+    setText('txtSumpCurrentRun', val('Sump_Current_Run_Seconds', 0) + ' sec');
+
+    // ---- HVAC ----
+    const furnRun = val('HVAC_Furnace_Running', false);
+    setBadge('hvacStateBadge', furnRun ? 'HEATING' : 'IDLE', furnRun ? 'state-running' : 'state-idle');
+
+    const tstat = val('Thermostat_W_Call', false);
+    setInd('indTstat', tstat, 'ind-yellow');
+    setText('txtTstat', tstat ? 'CALLING' : 'OFF');
+
+    setInd('indFurnace', furnRun, 'ind-orange');
+    setText('txtFurnace', furnRun ? 'RUNNING' : 'OFF');
+
+    const shortCycle = val('HVAC_Short_Cycle_Alarm', false);
+    setInd('indShortCycle', shortCycle, 'ind-red');
+    setText('txtShortCycle', shortCycle ? 'ALARM' : 'OK');
+    setText('txtShortCycleCount', val('HVAC_Short_Cycle_Count', 0));
+
+    const filterDue = val('HVAC_Filter_Change_Due', false);
+    setInd('indFilter', filterDue, 'ind-yellow');
+    setText('txtFilter', filterDue ? 'CHANGE FILTER' : 'OK');
+
+    setText('txtHvacCycles', val('HVAC_Cycle_Count', 0));
+    setText('txtHvacHours', val('HVAC_Total_Run_Hours', 0));
+    setText('txtFilterHours', val('HVAC_Filter_Run_Hours', 0));
+    setText('txtHvacCurrentRun', val('HVAC_Current_Run_Seconds', 0) + ' sec');
+    setText('txtHvacLastRun', val('HVAC_Last_Run_Seconds', 0) + ' sec');
+
+    // ---- OUTDOOR TEMP ----
+    const tempF = val('Outdoor_Temp_F', null);
+    setText('txtTempCurrent', tempF !== null ? tempF.toFixed(1) + '\u00B0F' : '--');
+    const tempMin = val('HVAC_Outdoor_Temp_Min', null);
+    setText('txtTempMin', tempMin !== null ? tempMin.toFixed(1) + '\u00B0F' : '--');
+    const tempMax = val('HVAC_Outdoor_Temp_Max', null);
+    setText('txtTempMax', tempMax !== null ? tempMax.toFixed(1) + '\u00B0F' : '--');
+
+    // ---- ELECTRICAL ----
+    const amps = val('Elec_Current_Amps', 0) || 0;
+    document.getElementById('txtAmps').innerHTML = amps.toFixed(1) + ' <span class="unit">Amps</span>';
+
+    const pct = Math.min(amps / 200 * 100, 100);
+    const bar = document.getElementById('powerBar');
+    bar.style.width = pct + '%';
+    bar.textContent = amps.toFixed(0) + 'A';
+    if (amps > 180) { bar.style.background = 'var(--red)'; }
+    else if (amps > 120) { bar.style.background = 'var(--yellow)'; }
+    else { bar.style.background = 'var(--green)'; }
+
+    setText('txtPeakAmps', (val('Elec_Peak_Amps', 0) || 0).toFixed(1) + ' A');
+    setText('txtKwh', (val('Elec_Total_kWh', 0) || 0).toFixed(1) + ' kWh');
+    setText('txtGenMaxAmps', (val('Elec_Gen_Max_Amps', 80) || 80).toFixed(0) + ' A');
+
+    const overload = val('Elec_Overload_Alarm', false);
+    setInd('indOverload', overload, 'ind-red');
+    setText('txtOverload', overload ? 'ALARM' : 'OK');
+
+    const genOL = val('Elec_Gen_Overload_Alarm', false);
+    setInd('indGenOverload', genOL, 'ind-red');
+    setText('txtGenOverload', genOL ? 'ALARM' : 'OK');
+}
+
+// Poll every 1 second
+setInterval(fetchData, 1000);
+fetchData();
+</script>
+
+</body>
+</html>
