@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HomePLC - History</title>
+<link rel="stylesheet" href="/static/style.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style>
+.history-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 16px;
+}
+
+.controls-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.controls-row label {
+    color: var(--text-dim);
+    font-size: 0.85rem;
+}
+
+.controls-row select,
+.controls-row input {
+    background: var(--bg);
+    border: 1px solid var(--card-border);
+    color: var(--text);
+    padding: 6px 10px;
+    border-radius: 4px;
+    font-size: 0.85rem;
+}
+
+.controls-row select {
+    min-width: 220px;
+}
+
+.time-btns {
+    display: flex;
+    gap: 4px;
+}
+
+.time-btn {
+    padding: 6px 12px;
+    border: 1px solid var(--card-border);
+    border-radius: 4px;
+    background: var(--bg);
+    color: var(--text);
+    cursor: pointer;
+    font-size: 0.8rem;
+    transition: all 0.2s;
+}
+
+.time-btn:hover {
+    background: var(--card-border);
+    border-color: var(--accent);
+}
+
+.time-btn.active {
+    background: var(--accent);
+    color: #fff;
+    border-color: var(--accent);
+}
+
+.tag-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 12px;
+}
+
+.tag-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: #fff;
+}
+
+.tag-chip .chip-remove {
+    cursor: pointer;
+    font-size: 0.9rem;
+    opacity: 0.7;
+}
+
+.tag-chip .chip-remove:hover {
+    opacity: 1;
+}
+
+.chart-card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 16px;
+}
+
+.chart-wrapper {
+    position: relative;
+    height: 400px;
+}
+
+.stats-row {
+    display: flex;
+    gap: 24px;
+    margin-top: 12px;
+    flex-wrap: wrap;
+}
+
+.stat-item {
+    text-align: center;
+}
+
+.stat-item .stat-label {
+    font-size: 0.75rem;
+    color: var(--text-dim);
+    text-transform: uppercase;
+}
+
+.stat-item .stat-value {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--accent);
+    font-family: 'Consolas', 'Courier New', monospace;
+}
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<div class="header">
+    <div style="display:flex; align-items:center; gap:16px;">
+        <h1>HomePLC History</h1>
+        <a href="/" class="nav-link">Dashboard</a>
+        <a href="/viz" class="nav-link">Visualization</a>
+        <a href="/settings" class="nav-link">Settings</a>
+    </div>
+    <div class="conn-status">
+        <span id="connText">Connecting...</span>
+        <div id="connDot" class="conn-dot"></div>
+    </div>
+</div>
+
+<div class="history-container">
+
+    <!-- Controls -->
+    <div class="controls-row">
+        <label>Tag:</label>
+        <select id="tagSelect">
+            <option value="">-- select a tag --</option>
+        </select>
+        <button class="btn btn-green" onclick="addSelectedTag()">Add to Chart</button>
+
+        <label style="margin-left:16px;">Range:</label>
+        <div class="time-btns">
+            <button class="time-btn" data-hours="1" onclick="setRange(1, this)">1h</button>
+            <button class="time-btn" data-hours="6" onclick="setRange(6, this)">6h</button>
+            <button class="time-btn active" data-hours="24" onclick="setRange(24, this)">24h</button>
+            <button class="time-btn" data-hours="168" onclick="setRange(168, this)">7d</button>
+            <button class="time-btn" data-hours="720" onclick="setRange(720, this)">30d</button>
+        </div>
+    </div>
+
+    <!-- Active tag chips -->
+    <div id="tagChips" class="tag-chips"></div>
+
+    <!-- Chart -->
+    <div class="chart-card">
+        <div class="chart-wrapper">
+            <canvas id="historyChart"></canvas>
+        </div>
+        <div id="statsRow" class="stats-row"></div>
+    </div>
+
+</div>
+
+<script>
+const TAG_COLORS = [
+    '#00b4d8', '#2ecc71', '#e74c3c', '#f39c12', '#9b59b6',
+    '#3498db', '#e67e22', '#1abc9c', '#e91e63', '#8bc34a'
+];
+
+let activeTags = [];
+let currentHours = 24;
+let chart = null;
+let refreshTimer = null;
+
+// Initialize chart
+const ctx = document.getElementById('historyChart').getContext('2d');
+chart = new Chart(ctx, {
+    type: 'line',
+    data: { datasets: [] },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        interaction: {
+            mode: 'index',
+            intersect: false,
+        },
+        scales: {
+            x: {
+                type: 'category',
+                ticks: {
+                    color: '#888',
+                    maxTicksLimit: 20,
+                    maxRotation: 45,
+                    font: { size: 10 }
+                },
+                grid: { color: 'rgba(255,255,255,0.06)' }
+            },
+            y: {
+                ticks: { color: '#888', font: { size: 11 } },
+                grid: { color: 'rgba(255,255,255,0.06)' }
+            }
+        },
+        plugins: {
+            legend: {
+                labels: {
+                    color: '#e0e0e0',
+                    font: { size: 12 }
+                }
+            },
+            tooltip: {
+                backgroundColor: '#16213e',
+                titleColor: '#00b4d8',
+                bodyColor: '#e0e0e0',
+                borderColor: '#0f3460',
+                borderWidth: 1,
+            }
+        }
+    }
+});
+
+// Load available tags
+async function loadTags() {
+    try {
+        const resp = await fetch('/api/history/tags');
+        const tags = await resp.json();
+        const sel = document.getElementById('tagSelect');
+        sel.innerHTML = '<option value="">-- select a tag --</option>';
+        for (const tag of tags) {
+            const opt = document.createElement('option');
+            opt.value = tag;
+            opt.textContent = tag;
+            sel.appendChild(opt);
+        }
+    } catch(e) {
+        console.error('Failed to load tags:', e);
+    }
+}
+
+function addSelectedTag() {
+    const sel = document.getElementById('tagSelect');
+    const tag = sel.value;
+    if (!tag || activeTags.includes(tag)) return;
+    activeTags.push(tag);
+    updateChips();
+    refreshChart();
+}
+
+function removeTag(tag) {
+    activeTags = activeTags.filter(t => t !== tag);
+    updateChips();
+    refreshChart();
+}
+
+function updateChips() {
+    const container = document.getElementById('tagChips');
+    container.innerHTML = '';
+    activeTags.forEach((tag, i) => {
+        const color = TAG_COLORS[i % TAG_COLORS.length];
+        const chip = document.createElement('span');
+        chip.className = 'tag-chip';
+        chip.style.background = color;
+        chip.innerHTML = `${tag} <span class="chip-remove" onclick="removeTag('${tag}')">&times;</span>`;
+        container.appendChild(chip);
+    });
+}
+
+function setRange(hours, btn) {
+    currentHours = hours;
+    document.querySelectorAll('.time-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    refreshChart();
+}
+
+async function refreshChart() {
+    if (activeTags.length === 0) {
+        chart.data.labels = [];
+        chart.data.datasets = [];
+        chart.update();
+        document.getElementById('statsRow').innerHTML = '';
+        return;
+    }
+
+    // Fetch data for all active tags in parallel
+    const results = await Promise.all(
+        activeTags.map(async (tag) => {
+            try {
+                const resp = await fetch(`/api/history?tag=${encodeURIComponent(tag)}&hours=${currentHours}`);
+                return { tag, data: await resp.json() };
+            } catch(e) {
+                return { tag, data: [] };
+            }
+        })
+    );
+
+    // Build unified label set from the tag with the most data points
+    let allTimestamps = new Set();
+    results.forEach(r => {
+        r.data.forEach(d => allTimestamps.add(d.timestamp));
+    });
+    const labels = Array.from(allTimestamps).sort();
+
+    // Format labels for display
+    const displayLabels = labels.map(ts => {
+        const d = new Date(ts);
+        if (currentHours <= 24) {
+            return d.toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'});
+        }
+        return d.toLocaleDateString([], {month: 'short', day: 'numeric'}) + ' ' +
+               d.toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'});
+    });
+
+    // Build datasets
+    const datasets = results.map((r, i) => {
+        const color = TAG_COLORS[i % TAG_COLORS.length];
+        // Create a map for quick lookup
+        const valMap = {};
+        r.data.forEach(d => { valMap[d.timestamp] = d.value; });
+
+        return {
+            label: r.tag,
+            data: labels.map(ts => valMap[ts] !== undefined ? valMap[ts] : null),
+            borderColor: color,
+            backgroundColor: color + '20',
+            borderWidth: 2,
+            pointRadius: labels.length > 200 ? 0 : 2,
+            pointHoverRadius: 4,
+            fill: false,
+            tension: 0.2,
+            spanGaps: true,
+        };
+    });
+
+    chart.data.labels = displayLabels;
+    chart.data.datasets = datasets;
+    chart.update();
+
+    // Stats
+    let statsHtml = '';
+    results.forEach((r, i) => {
+        if (r.data.length === 0) return;
+        const values = r.data.map(d => d.value);
+        const current = values[values.length - 1];
+        const min = Math.min(...values);
+        const max = Math.max(...values);
+        const color = TAG_COLORS[i % TAG_COLORS.length];
+        statsHtml += `
+            <div class="stat-item">
+                <div class="stat-label" style="color:${color}">${r.tag}</div>
+                <div class="stat-value">Now: ${current !== null ? Number(current).toFixed(2) : '--'}</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-label">Min</div>
+                <div class="stat-value">${min.toFixed(2)}</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-label">Max</div>
+                <div class="stat-value">${max.toFixed(2)}</div>
+            </div>
+        `;
+    });
+    document.getElementById('statsRow').innerHTML = statsHtml;
+}
+
+// Connection status check
+async function checkConn() {
+    try {
+        const resp = await fetch('/api/data');
+        const data = await resp.json();
+        const conn = data._plc_connected;
+        const isSim = data._sim_mode;
+        document.getElementById('connDot').className = 'conn-dot' + (conn ? ' connected' : '');
+        document.getElementById('connText').textContent = isSim ? 'SIMULATION' : (conn ? 'PLC Connected' : 'Disconnected');
+    } catch(e) {
+        document.getElementById('connDot').className = 'conn-dot';
+        document.getElementById('connText').textContent = 'HMI Server Error';
+    }
+}
+
+// Init
+loadTags();
+checkConn();
+setInterval(checkConn, 5000);
+
+// Auto-refresh chart every 60 seconds
+setInterval(() => {
+    if (activeTags.length > 0) refreshChart();
+}, 60000);
+</script>
+
+</body>
+</html>

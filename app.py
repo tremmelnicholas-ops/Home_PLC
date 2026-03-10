@@ -5,6 +5,8 @@ import sys
 import time
 import threading
 from flask import Flask, render_template, jsonify, request
+from datalogger import DataLogger
+from alerts import AlertManager
 
 # ============================================================
 # CONFIGURATION
@@ -42,6 +44,38 @@ READ_TAGS = [
     "Elec_Overload_Alarm", "Elec_Gen_Overload_Alarm",
     "Elec_Gen_Max_Amps",
     "HVAC_Outdoor_Temp_Min", "HVAC_Outdoor_Temp_Max",
+    # Freeze monitoring
+    "Freeze_Warning", "Freeze_Critical",
+    "Freeze_Warning_SP", "Freeze_Critical_SP",
+    # Sump cycle rate
+    "Sump_Hourly_Cycle_Count", "Sump_Cycle_Rate_Alarm", "Sump_Cycle_Rate_Max",
+    # Leak detection
+    "Leak_Zone1", "Leak_Zone2", "Leak_Zone3", "Leak_Any_Alarm",
+    # Garage door
+    "Garage_Door_Closed", "Garage_Door_Open",
+    "Garage_Open_Seconds", "Garage_Open_Alarm", "Garage_Open_Max_Seconds",
+    # Well pump / water pressure
+    "Water_Pressure_PSI", "Well_Pump_Running",
+    "Well_Pump_Cycle_Count", "Well_Pump_Current_Run_Seconds",
+    "Well_Pump_Last_Run_Seconds", "Well_Pump_Short_Cycle_Count",
+    "Well_Pump_Short_Cycle_Alarm", "Water_Pressure_Low_Alarm",
+    "Water_Pressure_Low_SP",
+    # Generator exercise schedule
+    "Exercise_Schedule_Day", "Exercise_Schedule_Hour", "Exercise_Duration_Minutes",
+    # Load shedding
+    "Load_Shed_Active", "Load_Shed_Threshold",
+    "Load_Shed_HVAC", "Load_Shed_NonCritical1", "Load_Shed_NonCritical2",
+    # Maintenance tracking
+    "Maint_Gen_Oil_Due", "Maint_Gen_Oil_Hours", "Maint_Gen_Run_Since_Oil",
+    "Maint_Sump_Inspect_Due", "Maint_Sump_Inspect_Cycles",
+    "Maint_Sump_Cycles_Since_Inspect",
+    "Maint_Furnace_Inspect_Due", "Maint_Furnace_Inspect_Hours",
+    "Maint_Furnace_Run_Since_Inspect",
+    # HVAC efficiency
+    "HVAC_Efficiency_Pct", "HVAC_HDD_Runtime_Ratio",
+    "HVAC_HDD_Baseline_Ratio", "HVAC_Efficiency_Alarm",
+    "HVAC_Efficiency_Threshold", "HVAC_Daily_Run_Seconds",
+    "HVAC_HDD_Accumulated",
 ]
 
 WRITE_TAGS = [
@@ -49,6 +83,12 @@ WRITE_TAGS = [
     "HMI_Sump_Test_Request", "HMI_Sump_Fault_Reset",
     "HMI_Filter_Reset", "HMI_Temp_MinMax_Reset", "HMI_HVAC_Alarm_Reset",
     "HMI_Elec_Peak_Reset", "HMI_Elec_Alarm_Reset",
+    "HMI_Freeze_Alarm_Reset", "HMI_Leak_Alarm_Reset",
+    "HMI_Garage_Alarm_Reset", "HMI_Well_Alarm_Reset",
+    "HMI_Load_Shed_Reset",
+    "HMI_Maint_Gen_Oil_Reset", "HMI_Maint_Sump_Reset",
+    "HMI_Maint_Furnace_Reset",
+    "HMI_HVAC_Efficiency_Reset",
 ]
 
 # ============================================================
@@ -110,6 +150,17 @@ def write_tag(tag_name, value):
 # FLASK APP
 # ============================================================
 app = Flask(__name__)
+data_logger = DataLogger("data/homeplc_history.db")
+alert_manager = AlertManager()
+
+
+def get_current_tag_data():
+    """Return current tag dict for use by data logger."""
+    if SIM_MODE:
+        return sim.get_all_tags()
+    else:
+        with lock:
+            return dict(tag_data)
 
 
 @app.route("/")
@@ -120,6 +171,16 @@ def index():
 @app.route("/viz")
 def viz():
     return render_template("viz.html", sim_mode=SIM_MODE)
+
+
+@app.route("/history")
+def history():
+    return render_template("history.html", sim_mode=SIM_MODE)
+
+
+@app.route("/settings")
+def settings():
+    return render_template("settings.html", sim_mode=SIM_MODE)
 
 
 @app.route("/api/data")
@@ -145,6 +206,16 @@ def api_data():
     data["HVAC_Total_Run_Hours"] = round(hvac_sec / 3600, 1)
     filter_sec = data.get("HVAC_Filter_Run_Seconds", 0) or 0
     data["HVAC_Filter_Run_Hours"] = round(filter_sec / 3600, 1)
+
+    # Maintenance computed values
+    maint_gen_oil_sec = data.get("Maint_Gen_Run_Since_Oil", 0) or 0
+    data["Maint_Gen_Hours_Since_Oil"] = round(maint_gen_oil_sec / 3600, 1)
+    maint_furnace_sec = data.get("Maint_Furnace_Run_Since_Inspect", 0) or 0
+    data["Maint_Furnace_Hours_Since_Inspect"] = round(maint_furnace_sec / 3600, 1)
+
+    # Well pump total cycles (pass through from tags)
+    data["Well_Pump_Total_Cycles"] = data.get("Well_Pump_Cycle_Count", 0)
+
     return jsonify(data)
 
 
@@ -190,6 +261,58 @@ def api_sim():
 
 
 # ============================================================
+# HISTORY API
+# ============================================================
+@app.route("/api/history")
+def api_history():
+    """Return historical data for a tag. Query params: tag, hours."""
+    tag = request.args.get("tag", "")
+    hours = int(request.args.get("hours", 24))
+    if not tag:
+        return jsonify({"error": "tag parameter required"}), 400
+    data = data_logger.get_history(tag, hours=hours)
+    return jsonify(data)
+
+
+@app.route("/api/history/tags")
+def api_history_tags():
+    """Return list of logged tag names."""
+    return jsonify(data_logger.get_available_tags())
+
+
+# ============================================================
+# ALERTS API
+# ============================================================
+@app.route("/api/alerts/config", methods=["GET"])
+def api_alerts_config_get():
+    """Return alert config (password masked)."""
+    return jsonify(alert_manager.get_config_safe())
+
+
+@app.route("/api/alerts/config", methods=["POST"])
+def api_alerts_config_post():
+    """Update alert config."""
+    body = request.get_json()
+    if not body:
+        return jsonify({"error": "No data"}), 400
+    alert_manager.update_config(body)
+    return jsonify({"success": True})
+
+
+@app.route("/api/alerts/test", methods=["POST"])
+def api_alerts_test():
+    """Send a test email."""
+    ok = alert_manager.send_test()
+    return jsonify({"success": ok})
+
+
+@app.route("/api/alerts/log")
+def api_alerts_log():
+    """Return recent alerts."""
+    return jsonify(alert_manager.get_log())
+
+
+# ============================================================
 # START
 # ============================================================
 if __name__ == "__main__":
@@ -204,6 +327,23 @@ if __name__ == "__main__":
         print(f"HomePLC HMI - LIVE MODE (PLC: {PLC_IP})")
         t = threading.Thread(target=plc_poll_thread, daemon=True)
         t.start()
+
+    # Start data logger background thread
+    data_logger.start(get_current_tag_data, interval=60)
+
+    # Start alert checking background thread
+    def alert_check_thread():
+        while True:
+            try:
+                tag_dict = get_current_tag_data()
+                if tag_dict:
+                    alert_manager.check_and_send(tag_dict)
+            except Exception as e:
+                print(f"Alert check error: {e}")
+            time.sleep(10)
+
+    alert_thread = threading.Thread(target=alert_check_thread, daemon=True)
+    alert_thread.start()
 
     print(f"Open browser to: http://localhost:5000")
     app.run(host="0.0.0.0", port=5000, debug=False)

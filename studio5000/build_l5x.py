@@ -30,15 +30,16 @@ def dint_tag(name, desc, val="0"):
 </Tag>'''
 
 def real_tag(name, desc, val="0.0"):
-    l5k_val = f"{float(val):.8e}" if val != "0.0" else "0.00000000e+000"
-    if val == "0.0":
+    fval = float(val)
+    if fval == 0.0:
         l5k_val = "0.00000000e+000"
-    elif val == "80.0":
-        l5k_val = "8.00000000e+001"
-    elif val == "120.0":
-        l5k_val = "1.20000000e+002"
-    elif val == "-40.0":
-        l5k_val = "-4.00000000e+001"
+    else:
+        l5k_val = f"{fval:.8e}"
+        # Fix Python's e notation to match L5X format (e+001 not e+01)
+        parts = l5k_val.split('e')
+        sign = '+' if not parts[1].startswith('-') else '-'
+        exp = abs(int(parts[1]))
+        l5k_val = f"{parts[0]}e{sign}{exp:03d}"
     return f'''<Tag Name="{name}" TagType="Base" DataType="REAL" Radix="Float" Constant="false" ExternalAccess="Read/Write">
 <Description><![CDATA[{desc}]]></Description>
 <Data Format="L5K"><![CDATA[{l5k_val}]]></Data>
@@ -124,6 +125,61 @@ bool_tags = [
     ("HMI_HVAC_Short_Cycle_Alarm", "Short cycle alarm for HMI"),
     ("HMI_Elec_Overload_Alarm", "Overload alarm for HMI"),
     ("HMI_Elec_Gen_Overload_Alarm", "Generator overload alarm for HMI"),
+    # Feature 3: Freeze Protection
+    ("Freeze_Warning", "Freeze warning - temp below warning setpoint"),
+    ("Freeze_Critical", "Freeze critical - temp below critical setpoint"),
+    ("HMI_Freeze_Alarm_Reset", "HMI freeze alarm reset"),
+    # Feature 2: Sump Cycle Rate Alarm
+    ("Sump_Cycle_Rate_Alarm", "Sump pump excessive cycle rate alarm"),
+    ("Sump_Cycle_Rate_ONS", "One-shot for sump cycle rate counting"),
+    # Feature 9: Water Leak Detection
+    ("Leak_Zone1", "Leak sensor zone 1"),
+    ("Leak_Zone2", "Leak sensor zone 2"),
+    ("Leak_Zone3", "Leak sensor zone 3"),
+    ("Leak_Any_Alarm", "Any leak zone alarm active"),
+    ("HMI_Leak_Alarm_Reset", "HMI leak alarm reset"),
+    # Feature 10: Garage Door Monitor
+    ("Garage_Door_Closed", "Garage door closed limit switch NC"),
+    ("Garage_Door_Open", "Garage door is open"),
+    ("Garage_Open_Alarm", "Garage door open too long alarm"),
+    ("HMI_Garage_Alarm_Reset", "HMI garage alarm reset"),
+    # Feature 11: Well Pump / Water Pressure
+    ("Well_Pump_Running", "Well pump running feedback"),
+    ("Well_Pump_Cycle_ONS", "One-shot for well pump cycle counting"),
+    ("Well_Pump_Short_Cycle_Alarm", "Well pump short cycle alarm"),
+    ("Water_Pressure_Low_Alarm", "Water pressure low alarm"),
+    ("HMI_Well_Alarm_Reset", "HMI well pump alarm reset"),
+    # Feature 4: Load Shedding
+    ("Load_Shed_Active", "Load shedding active"),
+    ("Load_Shed_HVAC", "Load shed HVAC output"),
+    ("Load_Shed_NonCritical1", "Load shed non-critical 1 output"),
+    ("Load_Shed_NonCritical2", "Load shed non-critical 2 output"),
+    ("HMI_Load_Shed_Reset", "HMI load shed reset"),
+    # Feature 8: Maintenance Schedules
+    ("Maint_Gen_Oil_Due", "Generator oil change due"),
+    ("Maint_Sump_Inspect_Due", "Sump pump inspection due"),
+    ("Maint_Furnace_Inspect_Due", "Furnace inspection due"),
+    ("HMI_Maint_Gen_Oil_Reset", "HMI gen oil maintenance reset"),
+    ("HMI_Maint_Sump_Reset", "HMI sump maintenance reset"),
+    ("HMI_Maint_Furnace_Reset", "HMI furnace maintenance reset"),
+    ("Maint_Sump_Cycle_ONS", "One-shot for maintenance sump cycle counting"),
+    # Feature 7: HVAC Efficiency
+    ("HVAC_Efficiency_Alarm", "HVAC efficiency degradation alarm"),
+    ("HMI_HVAC_Efficiency_Reset", "HMI HVAC efficiency reset"),
+    # HMI tags for new features
+    ("HMI_Freeze_Warning", "Freeze warning for HMI"),
+    ("HMI_Freeze_Critical", "Freeze critical for HMI"),
+    ("HMI_Sump_Cycle_Rate_Alarm", "Sump cycle rate alarm for HMI"),
+    ("HMI_Leak_Any_Alarm", "Leak alarm for HMI"),
+    ("HMI_Garage_Open_Alarm", "Garage open alarm for HMI"),
+    ("HMI_Well_Pump_Running", "Well pump running for HMI"),
+    ("HMI_Well_Short_Cycle_Alarm", "Well pump short cycle alarm for HMI"),
+    ("HMI_Water_Pressure_Low_Alarm", "Water pressure low alarm for HMI"),
+    ("HMI_Load_Shed_Active", "Load shed active for HMI"),
+    ("HMI_Maint_Gen_Oil_Due", "Gen oil due for HMI"),
+    ("HMI_Maint_Sump_Inspect_Due", "Sump inspect due for HMI"),
+    ("HMI_Maint_Furnace_Inspect_Due", "Furnace inspect due for HMI"),
+    ("HMI_HVAC_Efficiency_Alarm", "HVAC efficiency alarm for HMI"),
 ]
 for name, desc in bool_tags:
     tags.append(bool_tag(name, desc))
@@ -158,9 +214,50 @@ dint_tags = [
     ("HMI_HVAC_Total_Run_Hours", "Furnace run hours for HMI"),
     ("HMI_HVAC_Last_Run_Seconds", "Last furnace run for HMI"),
     ("HMI_HVAC_Filter_Run_Hours", "Filter hours for HMI"),
+    # Feature 1: Exercise Scheduler
+    ("Exercise_Schedule_Day", "Exercise day of week 0=Sun 6=Sat", "6"),
+    ("Exercise_Schedule_Hour", "Exercise hour of day 0-23", "10"),
+    ("Exercise_Duration_Minutes", "Exercise duration in minutes", "15"),
+    # Feature 2: Sump Cycle Rate Alarm
+    ("Sump_Hourly_Cycle_Count", "Sump pump starts in current hour"),
+    ("Sump_Hourly_Seconds", "Seconds counter for hourly cycle rate"),
+    ("Sump_Cycle_Rate_Max", "Max sump cycles per hour before alarm", "10"),
+    # Feature 10: Garage Door Monitor
+    ("Garage_Open_Seconds", "Garage door open duration seconds"),
+    ("Garage_Open_Max_Seconds", "Max garage open seconds before alarm", "1800"),
+    # Feature 11: Well Pump / Water Pressure
+    ("Well_Pump_Cycle_Count", "Total well pump cycles"),
+    ("Well_Pump_Current_Run_Seconds", "Current well pump run seconds"),
+    ("Well_Pump_Last_Run_Seconds", "Last well pump run duration seconds"),
+    ("Well_Pump_Short_Cycle_Count", "Consecutive well pump short cycles"),
+    ("Well_Pump_Min_Run_Seconds", "Minimum expected well pump run seconds", "30"),
+    # Feature 8: Maintenance Schedules
+    ("Maint_Gen_Oil_Hours", "Gen oil change interval hours", "200"),
+    ("Maint_Gen_Run_Since_Oil", "Gen run seconds since last oil change"),
+    ("Maint_Sump_Inspect_Cycles", "Sump inspect interval cycles", "500"),
+    ("Maint_Sump_Cycles_Since_Inspect", "Sump cycles since last inspection"),
+    ("Maint_Furnace_Inspect_Hours", "Furnace inspect interval hours", "1000"),
+    ("Maint_Furnace_Run_Since_Inspect", "Furnace run seconds since last inspection"),
+    ("Maint_Gen_Hours_Since_Oil", "Gen hours since oil change"),
+    ("Maint_Furnace_Hours_Since_Inspect", "Furnace hours since inspection"),
+    # Feature 7: HVAC Efficiency
+    ("HVAC_Daily_Run_Seconds", "Daily furnace run seconds for efficiency calc"),
+    ("HVAC_HDD_Hourly_Seconds", "Seconds counter for HDD hourly calc"),
+    # HMI tags for new features
+    ("HMI_Garage_Open_Seconds", "Garage open seconds for HMI"),
+    ("HMI_Well_Pump_Cycle_Count", "Well pump cycles for HMI"),
+    ("HMI_Well_Pump_Last_Run_Seconds", "Well pump last run for HMI"),
+    ("HMI_Maint_Gen_Hours_Since_Oil", "Gen hours since oil for HMI"),
+    ("HMI_Maint_Sump_Cycles_Since_Inspect", "Sump cycles since inspect for HMI"),
+    ("HMI_Maint_Furnace_Hours_Since_Inspect", "Furnace hours since inspect for HMI"),
 ]
-for name, desc in dint_tags:
-    tags.append(dint_tag(name, desc))
+for entry in dint_tags:
+    if len(entry) == 3:
+        name, desc, val = entry
+        tags.append(dint_tag(name, desc, val))
+    else:
+        name, desc = entry
+        tags.append(dint_tag(name, desc))
 
 # === REAL TAGS ===
 real_tags = [
@@ -180,6 +277,25 @@ real_tags = [
     ("HMI_Elec_Current_Amps", "Current amps for HMI", "0.0"),
     ("HMI_Elec_Peak_Amps", "Peak amps for HMI", "0.0"),
     ("HMI_Elec_Total_kWh", "Total kWh for HMI", "0.0"),
+    # Feature 3: Freeze Protection
+    ("Freeze_Warning_SP", "Freeze warning setpoint deg F", "35.0"),
+    ("Freeze_Critical_SP", "Freeze critical setpoint deg F", "20.0"),
+    # Feature 11: Well Pump / Water Pressure
+    ("Water_Pressure_PSI", "Scaled water pressure in PSI", "0.0"),
+    ("Water_Pressure_Raw", "Raw water pressure intermediate calc", "0.0"),
+    ("Water_Pressure_Low_SP", "Water pressure low alarm setpoint PSI", "30.0"),
+    # Feature 4: Load Shedding
+    ("Load_Shed_Threshold", "Load shed current threshold amps", "70.0"),
+    # Feature 7: HVAC Efficiency
+    ("HVAC_HDD_Accumulated", "Accumulated heating degree days", "0.0"),
+    ("HVAC_HDD_Runtime_Ratio", "Runtime to HDD ratio", "0.0"),
+    ("HVAC_HDD_Baseline_Ratio", "Baseline runtime to HDD ratio", "3600.0"),
+    ("HVAC_Efficiency_Pct", "HVAC efficiency percentage", "0.0"),
+    ("HVAC_Efficiency_Threshold", "HVAC efficiency alarm threshold pct", "130.0"),
+    ("HVAC_Daily_HDD", "Daily heating degree days", "0.0"),
+    # HMI tags for new features
+    ("HMI_Water_Pressure_PSI", "Water pressure for HMI", "0.0"),
+    ("HMI_HVAC_Efficiency_Pct", "HVAC efficiency pct for HMI", "0.0"),
 ]
 for name, desc, val in real_tags:
     tags.append(real_tag(name, desc, val))
@@ -203,6 +319,10 @@ timer_tags = [
     ("Pulse_1s_Timer", "1 second pulse timer", 1000),
     ("Elec_Overload_Timer", "5s sustained overload detection", 5000),
     ("Elec_Gen_Overload_Timer", "3s generator overload detection", 3000),
+    # Feature 4: Load Shedding
+    ("Load_Shed_Timer", "10s sustained overload for load shed", 10000),
+    # Feature 11: Well Pump / Water Pressure
+    ("Well_Short_Cycle_Timer", "60s well pump short cycle detection", 60000),
 ]
 for name, desc, preset in timer_tags:
     tags.append(timer_tag(name, desc, preset))
@@ -231,8 +351,12 @@ main_rungs = [
     rung(2, "Call Sump Pump Control", "JSR(Sump_Pump_Control,0);"),
     rung(3, "Call HVAC Monitor", "JSR(HVAC_Monitor,0);"),
     rung(4, "Call Electrical Monitor", "JSR(Electrical_Monitor,0);"),
-    rung(5, "Call HMI Interface", "JSR(HMI_Interface,0);"),
-    rung(6, "Call Output Mapping", "JSR(Output_Mapping,0);"),
+    rung(5, "Call Leak Detection", "JSR(Leak_Detection,0);"),
+    rung(6, "Call Garage Monitor", "JSR(Garage_Monitor,0);"),
+    rung(7, "Call Well Pump Monitor", "JSR(Well_Pump_Monitor,0);"),
+    rung(8, "Call Maintenance Monitor", "JSR(Maintenance_Monitor,0);"),
+    rung(9, "Call HMI Interface", "JSR(HMI_Interface,0);"),
+    rung(10, "Call Output Mapping", "JSR(Output_Mapping,0);"),
 ]
 
 # --- Input_Mapping ---
@@ -254,6 +378,19 @@ input_rungs = [
     rung(14, "Clamp outdoor temp high", "GRT(Outdoor_Temp_F,120.0)MOV(120.0,Outdoor_Temp_F);"),
     rung(15, "Clamp current low", "LES(House_Current_Amps,0.0)MOV(0.0,House_Current_Amps);"),
     rung(16, "Clamp current high", "GRT(House_Current_Amps,200.0)MOV(200.0,House_Current_Amps);"),
+    # Feature 9: Water Leak Detection inputs
+    rung(17, "Pt08: Leak sensor zone 1", "XIC(Local:1:I.Pt08.Data)OTE(Leak_Zone1);"),
+    rung(18, "Pt09: Leak sensor zone 2", "XIC(Local:1:I.Pt09.Data)OTE(Leak_Zone2);"),
+    rung(19, "Pt10: Leak sensor zone 3", "XIC(Local:1:I.Pt10.Data)OTE(Leak_Zone3);"),
+    # Feature 10: Garage Door input (NC switch)
+    rung(20, "Pt11: Garage door closed limit switch NC", "XIC(Local:1:I.Pt11.Data)OTE(Garage_Door_Closed);"),
+    # Feature 11: Well Pump input
+    rung(21, "Pt12: Well pump running feedback", "XIC(Local:1:I.Pt12.Data)OTE(Well_Pump_Running);"),
+    # Feature 11: Water pressure analog scaling Ch02 (4-20mA = 0-100 PSI)
+    rung(22, "Water pressure: subtract 20% offset (4mA)", "SUB(Local:3:I.Ch02.Data,20.0,Water_Pressure_Raw);"),
+    rung(23, "Water pressure: scale to 0-100 PSI (x1.25)", "MUL(Water_Pressure_Raw,1.25,Water_Pressure_PSI);"),
+    rung(24, "Clamp water pressure low", "LES(Water_Pressure_PSI,0.0)MOV(0.0,Water_Pressure_PSI);"),
+    rung(25, "Clamp water pressure high", "GRT(Water_Pressure_PSI,100.0)MOV(100.0,Water_Pressure_PSI);"),
 ]
 
 # --- Generator_Control ---
@@ -276,58 +413,60 @@ gen_rungs = [
     rung(12, "Reset exercise second counter after trigger", "XIC(Exercise_Trigger)MOV(0,Exercise_Seconds);"),
     rung(13, "HMI manual exercise request", "XIC(HMI_Exercise_Request)OTL(Exercise_Trigger);"),
     rung(14, "Clear HMI exercise request", "XIC(HMI_Exercise_Request)OTU(HMI_Exercise_Request);"),
+    # Feature 1: Set exercise run timer preset dynamically from minutes setting
+    rung(15, "Set exercise timer preset from duration setting", "EQU(Gen_State,0)MUL(Exercise_Duration_Minutes,60000,Exercise_Run_Timer.PRE);"),
     # Output control rungs - ONE OTE per output tag
-    rung(15, "Gen start cmd - active in run/warmup/transfer/exercise states",
+    rung(16, "Gen start cmd - active in run/warmup/transfer/exercise states",
          "[EQU(Gen_State,10),EQU(Gen_State,20),EQU(Gen_State,30),EQU(Gen_State,40),EQU(Gen_State,50),EQU(Gen_State,55),EQU(Gen_State,60),EQU(Gen_State,90),EQU(Gen_State,95),EQU(Gen_State,100),EQU(Gen_State,105)]OTE(Gen_Start_Cmd);"),
-    rung(16, "ATS transfer cmd - active during generator operation",
+    rung(17, "ATS transfer cmd - active during generator operation",
          "[EQU(Gen_State,40),EQU(Gen_State,50)]OTE(ATS_Transfer_Cmd);"),
-    rung(17, "On utility power flag",
+    rung(18, "On utility power flag",
          "[EQU(Gen_State,0),EQU(Gen_State,55),EQU(Gen_State,60),EQU(Gen_State,70),EQU(Gen_State,90),EQU(Gen_State,95),EQU(Gen_State,100),EQU(Gen_State,105),EQU(Gen_State,110),EQU(Gen_State,999)]OTE(Gen_On_Utility);"),
-    rung(18, "On generator power flag", "EQU(Gen_State,50)OTE(Gen_On_Generator);"),
-    rung(19, "Exercise active flag",
+    rung(19, "On generator power flag", "EQU(Gen_State,50)OTE(Gen_On_Generator);"),
+    rung(20, "Exercise active flag",
          "[EQU(Gen_State,90),EQU(Gen_State,95),EQU(Gen_State,100),EQU(Gen_State,105)]OTE(Gen_Exercise_Active);"),
     # State transitions
-    rung(20, "State 0->10: Power loss confirmed", "EQU(Gen_State,0)XIC(Power_Loss_Delay.DN)MOV(10,Gen_State);"),
-    rung(21, "State 0->90: Exercise trigger, no fault", "EQU(Gen_State,0)XIC(Exercise_Trigger)XIO(Gen_Fault)XIO(Power_Loss_Delay.DN)MOV(90,Gen_State);"),
-    rung(22, "State 90: Clear exercise trigger", "EQU(Gen_State,90)OTU(Exercise_Trigger);"),
-    rung(23, "State 10->20: Start commanded", "EQU(Gen_State,10)MOV(20,Gen_State);"),
-    rung(24, "State 20->30: Generator running confirmed", "EQU(Gen_State,20)XIC(Gen_Running)MOV(30,Gen_State);"),
-    rung(25, "State 20: Increment crank attempts on timeout", "EQU(Gen_State,20)XIC(Gen_Start_Timeout.DN)ONS(Crank_Attempt_ONS)ADD(Gen_Crank_Attempts,1,Gen_Crank_Attempts);"),
-    rung(26, "State 20->999: Start fail after 3 attempts", "EQU(Gen_State,20)XIC(Gen_Start_Timeout.DN)GEQ(Gen_Crank_Attempts,3)OTL(Gen_Start_Fail);"),
-    rung(27, None, "EQU(Gen_State,20)XIC(Gen_Start_Timeout.DN)GEQ(Gen_Crank_Attempts,3)MOV(999,Gen_State);"),
-    rung(28, "State 20->10: Retry start (under 3 attempts)", "EQU(Gen_State,20)XIC(Gen_Start_Timeout.DN)LES(Gen_Crank_Attempts,3)MOV(10,Gen_State);"),
-    rung(29, "State 30->40: Warmup complete", "EQU(Gen_State,30)XIC(Gen_Warmup_Timer.DN)MOV(40,Gen_State);"),
-    rung(30, "State 30->999: Fault during warmup", "EQU(Gen_State,30)XIC(Gen_Fault)MOV(999,Gen_State);"),
-    rung(31, "State 40->50: ATS transfer confirmed", "EQU(Gen_State,40)XIC(Transfer_Delay.DN)XIC(ATS_Generator_Pos)MOV(50,Gen_State);"),
-    rung(32, "State 40->999: Fault during transfer", "EQU(Gen_State,40)XIC(Gen_Fault)MOV(999,Gen_State);"),
-    rung(33, "State 50: Track generator run time", "EQU(Gen_State,50)XIC(Pulse_1s)ADD(Gen_Total_Run_Seconds,1,Gen_Total_Run_Seconds);"),
-    rung(34, "State 50->55: Utility returned stable 5s", "EQU(Gen_State,50)XIC(Gen_Utility_Return_Timer.DN)MOV(55,Gen_State);"),
-    rung(35, "State 50->999: Fault while on generator", "EQU(Gen_State,50)XIC(Gen_Fault)MOV(999,Gen_State);"),
-    rung(36, "State 55->60: ATS back to utility confirmed", "EQU(Gen_State,55)XIC(ATS_Utility_Pos)MOV(60,Gen_State);"),
-    rung(37, "State 60->70: Cooldown complete", "EQU(Gen_State,60)XIC(Gen_Cooldown_Timer.DN)MOV(70,Gen_State);"),
-    rung(38, "State 70: Clear crank attempts on successful stop", "EQU(Gen_State,70)XIO(Gen_Running)MOV(0,Gen_Crank_Attempts);"),
-    rung(39, "State 70->0: Generator stopped", "EQU(Gen_State,70)XIO(Gen_Running)MOV(0,Gen_State);"),
-    rung(40, "State 70->999: Stop timeout", "EQU(Gen_State,70)XIC(Gen_Stop_Timeout.DN)OTL(Gen_Stop_Fail);"),
-    rung(41, None, "EQU(Gen_State,70)XIC(Gen_Stop_Timeout.DN)MOV(999,Gen_State);"),
-    rung(42, "State 90->95: Exercise start transition", "EQU(Gen_State,90)MOV(95,Gen_State);"),
-    rung(43, "State 95->100: Exercise generator running", "EQU(Gen_State,95)XIC(Gen_Running)MOV(100,Gen_State);"),
-    rung(44, "State 95->999: Exercise start timeout", "EQU(Gen_State,95)XIC(Gen_Start_Timeout.DN)OTL(Gen_Start_Fail);"),
-    rung(45, None, "EQU(Gen_State,95)XIC(Gen_Start_Timeout.DN)MOV(999,Gen_State);"),
-    rung(46, "State 100: Track exercise run time", "EQU(Gen_State,100)XIC(Pulse_1s)ADD(Gen_Total_Run_Seconds,1,Gen_Total_Run_Seconds);"),
-    rung(47, "State 100->105: Exercise run complete", "EQU(Gen_State,100)XIC(Exercise_Run_Timer.DN)MOV(105,Gen_State);"),
-    rung(48, "State 100->30: Power loss during exercise - switch to real operation", "EQU(Gen_State,100)XIO(Utility_Power_Present)MOV(30,Gen_State);"),
-    rung(49, "State 100->999: Fault during exercise", "EQU(Gen_State,100)XIC(Gen_Fault)MOV(999,Gen_State);"),
-    rung(50, "State 105->110: Exercise cooldown complete", "EQU(Gen_State,105)XIC(Gen_Cooldown_Timer.DN)MOV(110,Gen_State);"),
-    rung(51, "State 110: Clear crank attempts on exercise shutdown", "EQU(Gen_State,110)XIO(Gen_Running)MOV(0,Gen_Crank_Attempts);"),
-    rung(52, "State 110->0: Exercise shutdown complete", "EQU(Gen_State,110)XIO(Gen_Running)MOV(0,Gen_State);"),
-    rung(53, "State 110->999: Exercise stop timeout", "EQU(Gen_State,110)XIC(Gen_Stop_Timeout.DN)OTL(Gen_Stop_Fail);"),
-    rung(54, None, "EQU(Gen_State,110)XIC(Gen_Stop_Timeout.DN)MOV(999,Gen_State);"),
+    rung(21, "State 0->10: Power loss confirmed", "EQU(Gen_State,0)XIC(Power_Loss_Delay.DN)MOV(10,Gen_State);"),
+    rung(22, "State 0->90: Exercise trigger, no fault", "EQU(Gen_State,0)XIC(Exercise_Trigger)XIO(Gen_Fault)XIO(Power_Loss_Delay.DN)MOV(90,Gen_State);"),
+    rung(23, "State 90: Clear exercise trigger", "EQU(Gen_State,90)OTU(Exercise_Trigger);"),
+    rung(24, "State 10->20: Start commanded", "EQU(Gen_State,10)MOV(20,Gen_State);"),
+    rung(25, "State 20->30: Generator running confirmed", "EQU(Gen_State,20)XIC(Gen_Running)MOV(30,Gen_State);"),
+    rung(26, "State 20: Increment crank attempts on timeout", "EQU(Gen_State,20)XIC(Gen_Start_Timeout.DN)ONS(Crank_Attempt_ONS)ADD(Gen_Crank_Attempts,1,Gen_Crank_Attempts);"),
+    rung(27, "State 20->999: Start fail after 3 attempts", "EQU(Gen_State,20)XIC(Gen_Start_Timeout.DN)GEQ(Gen_Crank_Attempts,3)OTL(Gen_Start_Fail);"),
+    rung(28, None, "EQU(Gen_State,20)XIC(Gen_Start_Timeout.DN)GEQ(Gen_Crank_Attempts,3)MOV(999,Gen_State);"),
+    rung(29, "State 20->10: Retry start (under 3 attempts)", "EQU(Gen_State,20)XIC(Gen_Start_Timeout.DN)LES(Gen_Crank_Attempts,3)MOV(10,Gen_State);"),
+    rung(30, "State 30->40: Warmup complete", "EQU(Gen_State,30)XIC(Gen_Warmup_Timer.DN)MOV(40,Gen_State);"),
+    rung(31, "State 30->999: Fault during warmup", "EQU(Gen_State,30)XIC(Gen_Fault)MOV(999,Gen_State);"),
+    rung(32, "State 40->50: ATS transfer confirmed", "EQU(Gen_State,40)XIC(Transfer_Delay.DN)XIC(ATS_Generator_Pos)MOV(50,Gen_State);"),
+    rung(33, "State 40->999: Fault during transfer", "EQU(Gen_State,40)XIC(Gen_Fault)MOV(999,Gen_State);"),
+    rung(34, "State 50: Track generator run time", "EQU(Gen_State,50)XIC(Pulse_1s)ADD(Gen_Total_Run_Seconds,1,Gen_Total_Run_Seconds);"),
+    rung(35, "State 50->55: Utility returned stable 5s", "EQU(Gen_State,50)XIC(Gen_Utility_Return_Timer.DN)MOV(55,Gen_State);"),
+    rung(36, "State 50->999: Fault while on generator", "EQU(Gen_State,50)XIC(Gen_Fault)MOV(999,Gen_State);"),
+    rung(37, "State 55->60: ATS back to utility confirmed", "EQU(Gen_State,55)XIC(ATS_Utility_Pos)MOV(60,Gen_State);"),
+    rung(38, "State 60->70: Cooldown complete", "EQU(Gen_State,60)XIC(Gen_Cooldown_Timer.DN)MOV(70,Gen_State);"),
+    rung(39, "State 70: Clear crank attempts on successful stop", "EQU(Gen_State,70)XIO(Gen_Running)MOV(0,Gen_Crank_Attempts);"),
+    rung(40, "State 70->0: Generator stopped", "EQU(Gen_State,70)XIO(Gen_Running)MOV(0,Gen_State);"),
+    rung(41, "State 70->999: Stop timeout", "EQU(Gen_State,70)XIC(Gen_Stop_Timeout.DN)OTL(Gen_Stop_Fail);"),
+    rung(42, None, "EQU(Gen_State,70)XIC(Gen_Stop_Timeout.DN)MOV(999,Gen_State);"),
+    rung(43, "State 90->95: Exercise start transition", "EQU(Gen_State,90)MOV(95,Gen_State);"),
+    rung(44, "State 95->100: Exercise generator running", "EQU(Gen_State,95)XIC(Gen_Running)MOV(100,Gen_State);"),
+    rung(45, "State 95->999: Exercise start timeout", "EQU(Gen_State,95)XIC(Gen_Start_Timeout.DN)OTL(Gen_Start_Fail);"),
+    rung(46, None, "EQU(Gen_State,95)XIC(Gen_Start_Timeout.DN)MOV(999,Gen_State);"),
+    rung(47, "State 100: Track exercise run time", "EQU(Gen_State,100)XIC(Pulse_1s)ADD(Gen_Total_Run_Seconds,1,Gen_Total_Run_Seconds);"),
+    rung(48, "State 100->105: Exercise run complete", "EQU(Gen_State,100)XIC(Exercise_Run_Timer.DN)MOV(105,Gen_State);"),
+    rung(49, "State 100->30: Power loss during exercise - switch to real operation", "EQU(Gen_State,100)XIO(Utility_Power_Present)MOV(30,Gen_State);"),
+    rung(50, "State 100->999: Fault during exercise", "EQU(Gen_State,100)XIC(Gen_Fault)MOV(999,Gen_State);"),
+    rung(51, "State 105->110: Exercise cooldown complete", "EQU(Gen_State,105)XIC(Gen_Cooldown_Timer.DN)MOV(110,Gen_State);"),
+    rung(52, "State 110: Clear crank attempts on exercise shutdown", "EQU(Gen_State,110)XIO(Gen_Running)MOV(0,Gen_Crank_Attempts);"),
+    rung(53, "State 110->0: Exercise shutdown complete", "EQU(Gen_State,110)XIO(Gen_Running)MOV(0,Gen_State);"),
+    rung(54, "State 110->999: Exercise stop timeout", "EQU(Gen_State,110)XIC(Gen_Stop_Timeout.DN)OTL(Gen_Stop_Fail);"),
+    rung(55, None, "EQU(Gen_State,110)XIC(Gen_Stop_Timeout.DN)MOV(999,Gen_State);"),
     # Fault reset
-    rung(55, "Fault reset from HMI - clear start fail", "XIC(HMI_Gen_Fault_Reset)XIO(Gen_Fault)OTU(Gen_Start_Fail);"),
-    rung(56, "Fault reset - clear stop fail", "XIC(HMI_Gen_Fault_Reset)XIO(Gen_Fault)OTU(Gen_Stop_Fail);"),
-    rung(57, "Fault reset - clear crank attempts", "XIC(HMI_Gen_Fault_Reset)XIO(Gen_Fault)MOV(0,Gen_Crank_Attempts);"),
-    rung(58, "Fault reset - return to idle", "XIC(HMI_Gen_Fault_Reset)XIO(Gen_Fault)MOV(0,Gen_State);"),
-    rung(59, "Clear HMI fault reset", "XIC(HMI_Gen_Fault_Reset)OTU(HMI_Gen_Fault_Reset);"),
+    rung(56, "Fault reset from HMI - clear start fail", "XIC(HMI_Gen_Fault_Reset)XIO(Gen_Fault)OTU(Gen_Start_Fail);"),
+    rung(57, "Fault reset - clear stop fail", "XIC(HMI_Gen_Fault_Reset)XIO(Gen_Fault)OTU(Gen_Stop_Fail);"),
+    rung(58, "Fault reset - clear crank attempts", "XIC(HMI_Gen_Fault_Reset)XIO(Gen_Fault)MOV(0,Gen_Crank_Attempts);"),
+    rung(59, "Fault reset - return to idle", "XIC(HMI_Gen_Fault_Reset)XIO(Gen_Fault)MOV(0,Gen_State);"),
+    rung(60, "Clear HMI fault reset", "XIC(HMI_Gen_Fault_Reset)OTU(HMI_Gen_Fault_Reset);"),
 ]
 
 # --- Sump_Pump_Control ---
@@ -372,8 +511,17 @@ sump_rungs = [
          "[EQU(Sump_State,10),EQU(Sump_State,20),EQU(Sump_State,30),EQU(Sump_State,999)XIC(Sump_Float_High)]OTE(Sump_Pump_Run);"),
     # Fault reset
     rung(30, "Sump fault reset from HMI", "XIC(HMI_Sump_Fault_Reset)OTU(Sump_Max_Run_Fault);"),
-    rung(31, None, "XIC(HMI_Sump_Fault_Reset)MOV(0,Sump_State);"),
-    rung(32, None, "XIC(HMI_Sump_Fault_Reset)OTU(HMI_Sump_Fault_Reset);"),
+    rung(31, "Sump fault reset - clear cycle rate alarm", "XIC(HMI_Sump_Fault_Reset)OTU(Sump_Cycle_Rate_Alarm);"),
+    rung(32, None, "XIC(HMI_Sump_Fault_Reset)MOV(0,Sump_State);"),
+    rung(33, None, "XIC(HMI_Sump_Fault_Reset)OTU(HMI_Sump_Fault_Reset);"),
+    # Feature 2: Sump Cycle Rate Alarm - count pump starts per hour
+    rung(34, "Count hourly seconds", "XIC(Pulse_1s)ADD(Sump_Hourly_Seconds,1,Sump_Hourly_Seconds);"),
+    rung(35, "One-shot trigger: pump entering state 10", "EQU(Sump_State,10)XIO(Sump_Cycle_Rate_ONS)ADD(Sump_Hourly_Cycle_Count,1,Sump_Hourly_Cycle_Count);"),
+    rung(36, "Set one-shot bit when in state 10", "EQU(Sump_State,10)OTL(Sump_Cycle_Rate_ONS);"),
+    rung(37, "Clear one-shot bit when not in state 10", "NEQ(Sump_State,10)OTU(Sump_Cycle_Rate_ONS);"),
+    rung(38, "Reset hourly counter at 3600 seconds", "GEQ(Sump_Hourly_Seconds,3600)MOV(0,Sump_Hourly_Cycle_Count);"),
+    rung(39, "Reset hourly seconds at 3600", "GEQ(Sump_Hourly_Seconds,3600)MOV(0,Sump_Hourly_Seconds);"),
+    rung(40, "Cycle rate alarm when count exceeds max", "GEQ(Sump_Hourly_Cycle_Count,Sump_Cycle_Rate_Max)OTL(Sump_Cycle_Rate_Alarm);"),
 ]
 
 # --- HVAC_Monitor ---
@@ -411,6 +559,29 @@ hvac_rungs = [
     rung(24, "HMI HVAC alarm reset", "XIC(HMI_HVAC_Alarm_Reset)OTU(HVAC_Short_Cycle_Alarm);"),
     rung(25, None, "XIC(HMI_HVAC_Alarm_Reset)MOV(0,HVAC_Short_Cycle_Count);"),
     rung(26, None, "XIC(HMI_HVAC_Alarm_Reset)OTU(HMI_HVAC_Alarm_Reset);"),
+    # Feature 3: Freeze Protection
+    rung(27, "Freeze warning when temp at or below warning setpoint", "LEQ(Outdoor_Temp_F,Freeze_Warning_SP)OTL(Freeze_Warning);"),
+    rung(28, "Freeze critical when temp at or below critical setpoint", "LEQ(Outdoor_Temp_F,Freeze_Critical_SP)OTL(Freeze_Critical);"),
+    rung(29, "Clear freeze warning when temp above warning SP and HMI reset", "XIC(HMI_Freeze_Alarm_Reset)GRT(Outdoor_Temp_F,Freeze_Warning_SP)OTU(Freeze_Warning);"),
+    rung(30, "Clear freeze critical when temp above critical SP and HMI reset", "XIC(HMI_Freeze_Alarm_Reset)GRT(Outdoor_Temp_F,Freeze_Critical_SP)OTU(Freeze_Critical);"),
+    rung(31, "Clear HMI freeze alarm reset", "XIC(HMI_Freeze_Alarm_Reset)OTU(HMI_Freeze_Alarm_Reset);"),
+    # Feature 7: HVAC Efficiency
+    rung(32, "Track daily furnace run seconds", "XIC(HVAC_Furnace_Running)XIC(Pulse_1s)ADD(HVAC_Daily_Run_Seconds,1,HVAC_Daily_Run_Seconds);"),
+    rung(33, "Count HDD hourly seconds", "XIC(Pulse_1s)ADD(HVAC_HDD_Hourly_Seconds,1,HVAC_HDD_Hourly_Seconds);"),
+    rung(34, "Accumulate HDD hourly: HDD += max(0,(65-temp)/24) every 3600s", "GEQ(HVAC_HDD_Hourly_Seconds,3600)SUB(65.0,Outdoor_Temp_F,HVAC_Daily_HDD);"),
+    rung(35, "HDD: divide by 24 for hourly fraction", "GEQ(HVAC_HDD_Hourly_Seconds,3600)DIV(HVAC_Daily_HDD,24.0,HVAC_Daily_HDD);"),
+    rung(36, "HDD: clamp negative to zero", "LES(HVAC_Daily_HDD,0.0)MOV(0.0,HVAC_Daily_HDD);"),
+    rung(37, "HDD: add hourly fraction to accumulated", "GEQ(HVAC_HDD_Hourly_Seconds,3600)ADD(HVAC_HDD_Accumulated,HVAC_Daily_HDD,HVAC_HDD_Accumulated);"),
+    rung(38, "HDD: reset hourly seconds counter", "GEQ(HVAC_HDD_Hourly_Seconds,3600)MOV(0,HVAC_HDD_Hourly_Seconds);"),
+    rung(39, "Compute runtime to HDD ratio (avoid div by zero)", "GRT(HVAC_HDD_Accumulated,0.0)DIV(HVAC_Daily_Run_Seconds,HVAC_HDD_Accumulated,HVAC_HDD_Runtime_Ratio);"),
+    rung(40, "Compute efficiency pct = ratio/baseline * 100", "GRT(HVAC_HDD_Baseline_Ratio,0.0)DIV(HVAC_HDD_Runtime_Ratio,HVAC_HDD_Baseline_Ratio,HVAC_Efficiency_Pct);"),
+    rung(41, "Scale efficiency to percentage", "MUL(HVAC_Efficiency_Pct,100.0,HVAC_Efficiency_Pct);"),
+    rung(42, "Efficiency alarm when above threshold", "GRT(HVAC_Efficiency_Pct,HVAC_Efficiency_Threshold)OTL(HVAC_Efficiency_Alarm);"),
+    rung(43, "HMI efficiency reset - clear accumulated data", "XIC(HMI_HVAC_Efficiency_Reset)MOV(0,HVAC_Daily_Run_Seconds);"),
+    rung(44, None, "XIC(HMI_HVAC_Efficiency_Reset)MOV(0.0,HVAC_HDD_Accumulated);"),
+    rung(45, None, "XIC(HMI_HVAC_Efficiency_Reset)MOV(0.0,HVAC_Efficiency_Pct);"),
+    rung(46, None, "XIC(HMI_HVAC_Efficiency_Reset)OTU(HVAC_Efficiency_Alarm);"),
+    rung(47, None, "XIC(HMI_HVAC_Efficiency_Reset)OTU(HMI_HVAC_Efficiency_Reset);"),
 ]
 
 # --- Electrical_Monitor ---
@@ -430,6 +601,14 @@ elec_rungs = [
     rung(12, "HMI electrical alarm reset", "XIC(HMI_Elec_Alarm_Reset)OTU(Elec_Overload_Alarm);"),
     rung(13, None, "XIC(HMI_Elec_Alarm_Reset)OTU(Elec_Gen_Overload_Alarm);"),
     rung(14, None, "XIC(HMI_Elec_Alarm_Reset)OTU(HMI_Elec_Alarm_Reset);"),
+    # Feature 4: Load Shedding
+    rung(15, "Load shed timer - on generator and above threshold for 10s", "XIC(Gen_On_Generator)GRT(Elec_Current_Amps,Load_Shed_Threshold)TON(Load_Shed_Timer,10000,0);"),
+    rung(16, "Latch load shed active", "XIC(Load_Shed_Timer.DN)OTL(Load_Shed_Active);"),
+    rung(17, "Auto-clear load shed when not on generator or HMI reset", "[XIO(Gen_On_Generator),XIC(HMI_Load_Shed_Reset)]OTU(Load_Shed_Active);"),
+    rung(18, "Clear HMI load shed reset", "XIC(HMI_Load_Shed_Reset)OTU(HMI_Load_Shed_Reset);"),
+    rung(19, "Load shed HVAC output", "XIC(Load_Shed_Active)OTE(Load_Shed_HVAC);"),
+    rung(20, "Load shed non-critical 1 output", "XIC(Load_Shed_Active)OTE(Load_Shed_NonCritical1);"),
+    rung(21, "Load shed non-critical 2 output", "XIC(Load_Shed_Active)OTE(Load_Shed_NonCritical2);"),
 ]
 
 # --- HMI_Interface ---
@@ -469,8 +648,38 @@ hmi_rungs = [
     rung(32, "Total kWh to HMI", "MOV(Elec_Total_kWh,HMI_Elec_Total_kWh);"),
     rung(33, "Overload alarm to HMI", "XIC(Elec_Overload_Alarm)OTE(HMI_Elec_Overload_Alarm);"),
     rung(34, "Gen overload alarm to HMI", "XIC(Elec_Gen_Overload_Alarm)OTE(HMI_Elec_Gen_Overload_Alarm);"),
-    rung(35, "Any alarm active for HMI banner",
-         "[XIC(Gen_Start_Fail),XIC(Gen_Stop_Fail),XIC(Gen_Fault),XIC(Sump_Max_Run_Fault),XIC(HVAC_Short_Cycle_Alarm),XIC(HVAC_Filter_Change_Due),XIC(Elec_Overload_Alarm),XIC(Elec_Gen_Overload_Alarm)]OTE(HMI_Any_Alarm);"),
+    # Feature 3: Freeze Protection to HMI
+    rung(35, "Freeze warning to HMI", "XIC(Freeze_Warning)OTE(HMI_Freeze_Warning);"),
+    rung(36, "Freeze critical to HMI", "XIC(Freeze_Critical)OTE(HMI_Freeze_Critical);"),
+    # Feature 2: Sump cycle rate alarm to HMI
+    rung(37, "Sump cycle rate alarm to HMI", "XIC(Sump_Cycle_Rate_Alarm)OTE(HMI_Sump_Cycle_Rate_Alarm);"),
+    # Feature 9: Leak detection to HMI
+    rung(38, "Leak alarm to HMI", "XIC(Leak_Any_Alarm)OTE(HMI_Leak_Any_Alarm);"),
+    # Feature 10: Garage door to HMI
+    rung(39, "Garage open alarm to HMI", "XIC(Garage_Open_Alarm)OTE(HMI_Garage_Open_Alarm);"),
+    rung(40, "Garage open seconds to HMI", "MOV(Garage_Open_Seconds,HMI_Garage_Open_Seconds);"),
+    # Feature 11: Well pump to HMI
+    rung(41, "Well pump running to HMI", "XIC(Well_Pump_Running)OTE(HMI_Well_Pump_Running);"),
+    rung(42, "Well pump short cycle alarm to HMI", "XIC(Well_Pump_Short_Cycle_Alarm)OTE(HMI_Well_Short_Cycle_Alarm);"),
+    rung(43, "Water pressure low alarm to HMI", "XIC(Water_Pressure_Low_Alarm)OTE(HMI_Water_Pressure_Low_Alarm);"),
+    rung(44, "Water pressure to HMI", "MOV(Water_Pressure_PSI,HMI_Water_Pressure_PSI);"),
+    rung(45, "Well pump cycle count to HMI", "MOV(Well_Pump_Cycle_Count,HMI_Well_Pump_Cycle_Count);"),
+    rung(46, "Well pump last run to HMI", "MOV(Well_Pump_Last_Run_Seconds,HMI_Well_Pump_Last_Run_Seconds);"),
+    # Feature 4: Load shedding to HMI
+    rung(47, "Load shed active to HMI", "XIC(Load_Shed_Active)OTE(HMI_Load_Shed_Active);"),
+    # Feature 8: Maintenance to HMI
+    rung(48, "Gen oil due to HMI", "XIC(Maint_Gen_Oil_Due)OTE(HMI_Maint_Gen_Oil_Due);"),
+    rung(49, "Sump inspect due to HMI", "XIC(Maint_Sump_Inspect_Due)OTE(HMI_Maint_Sump_Inspect_Due);"),
+    rung(50, "Furnace inspect due to HMI", "XIC(Maint_Furnace_Inspect_Due)OTE(HMI_Maint_Furnace_Inspect_Due);"),
+    rung(51, "Gen hours since oil to HMI", "MOV(Maint_Gen_Hours_Since_Oil,HMI_Maint_Gen_Hours_Since_Oil);"),
+    rung(52, "Sump cycles since inspect to HMI", "MOV(Maint_Sump_Cycles_Since_Inspect,HMI_Maint_Sump_Cycles_Since_Inspect);"),
+    rung(53, "Furnace hours since inspect to HMI", "MOV(Maint_Furnace_Hours_Since_Inspect,HMI_Maint_Furnace_Hours_Since_Inspect);"),
+    # Feature 7: HVAC efficiency to HMI
+    rung(54, "HVAC efficiency pct to HMI", "MOV(HVAC_Efficiency_Pct,HMI_HVAC_Efficiency_Pct);"),
+    rung(55, "HVAC efficiency alarm to HMI", "XIC(HVAC_Efficiency_Alarm)OTE(HMI_HVAC_Efficiency_Alarm);"),
+    # Combined alarm banner - all alarms
+    rung(56, "Any alarm active for HMI banner",
+         "[XIC(Gen_Start_Fail),XIC(Gen_Stop_Fail),XIC(Gen_Fault),XIC(Sump_Max_Run_Fault),XIC(Sump_Cycle_Rate_Alarm),XIC(HVAC_Short_Cycle_Alarm),XIC(HVAC_Filter_Change_Due),XIC(HVAC_Efficiency_Alarm),XIC(Elec_Overload_Alarm),XIC(Elec_Gen_Overload_Alarm),XIC(Freeze_Warning),XIC(Freeze_Critical),XIC(Leak_Any_Alarm),XIC(Garage_Open_Alarm),XIC(Well_Pump_Short_Cycle_Alarm),XIC(Water_Pressure_Low_Alarm),XIC(Load_Shed_Active),XIC(Maint_Gen_Oil_Due),XIC(Maint_Sump_Inspect_Due),XIC(Maint_Furnace_Inspect_Due)]OTE(HMI_Any_Alarm);"),
 ]
 
 # --- Output_Mapping ---
@@ -478,6 +687,79 @@ output_rungs = [
     rung(0, "Gen start command to Pt00", "XIC(Gen_Start_Cmd)OTE(Local:2:O.Pt00.Data);"),
     rung(1, "ATS transfer command to Pt01", "XIC(ATS_Transfer_Cmd)OTE(Local:2:O.Pt01.Data);"),
     rung(2, "Sump pump run to Pt02", "XIC(Sump_Pump_Run)OTE(Local:2:O.Pt02.Data);"),
+    # Feature 4: Load Shedding outputs
+    rung(3, "Load shed HVAC to Pt03", "XIC(Load_Shed_HVAC)OTE(Local:2:O.Pt03.Data);"),
+    rung(4, "Load shed non-critical 1 to Pt04", "XIC(Load_Shed_NonCritical1)OTE(Local:2:O.Pt04.Data);"),
+    rung(5, "Load shed non-critical 2 to Pt05", "XIC(Load_Shed_NonCritical2)OTE(Local:2:O.Pt05.Data);"),
+]
+
+# --- Leak_Detection (Feature 9) ---
+leak_rungs = [
+    rung(0, "Any leak zone active - latch alarm", "[XIC(Leak_Zone1),XIC(Leak_Zone2),XIC(Leak_Zone3)]OTL(Leak_Any_Alarm);"),
+    rung(1, "Reset leak alarm only when all zones clear", "XIC(HMI_Leak_Alarm_Reset)XIO(Leak_Zone1)XIO(Leak_Zone2)XIO(Leak_Zone3)OTU(Leak_Any_Alarm);"),
+    rung(2, "Clear HMI leak alarm reset", "XIC(HMI_Leak_Alarm_Reset)OTU(HMI_Leak_Alarm_Reset);"),
+]
+
+# --- Garage_Monitor (Feature 10) ---
+garage_rungs = [
+    rung(0, "Garage door open when not closed", "XIO(Garage_Door_Closed)OTE(Garage_Door_Open);"),
+    rung(1, "Track garage open duration", "XIC(Garage_Door_Open)XIC(Pulse_1s)ADD(Garage_Open_Seconds,1,Garage_Open_Seconds);"),
+    rung(2, "Reset open counter when door closed", "XIO(Garage_Door_Open)MOV(0,Garage_Open_Seconds);"),
+    rung(3, "Alarm when open too long", "GEQ(Garage_Open_Seconds,Garage_Open_Max_Seconds)OTL(Garage_Open_Alarm);"),
+    rung(4, "Reset garage alarm when door closed and HMI reset", "XIC(HMI_Garage_Alarm_Reset)XIC(Garage_Door_Closed)OTU(Garage_Open_Alarm);"),
+    rung(5, "Clear HMI garage alarm reset", "XIC(HMI_Garage_Alarm_Reset)OTU(HMI_Garage_Alarm_Reset);"),
+]
+
+# --- Well_Pump_Monitor (Feature 11) ---
+well_rungs = [
+    # Short cycle detection timer
+    rung(0, "Well pump short cycle detection window 60s", "XIO(Well_Pump_Running)TON(Well_Short_Cycle_Timer,60000,0);"),
+    # Cycle counting with one-shot
+    rung(1, "Count well pump cycle on start", "XIC(Well_Pump_Running)XIO(Well_Pump_Cycle_ONS)ADD(Well_Pump_Cycle_Count,1,Well_Pump_Cycle_Count);"),
+    rung(2, "Set well pump cycle one-shot", "XIC(Well_Pump_Running)OTL(Well_Pump_Cycle_ONS);"),
+    rung(3, "Clear well pump cycle one-shot", "XIO(Well_Pump_Running)OTU(Well_Pump_Cycle_ONS);"),
+    # Track current run time
+    rung(4, "Track well pump current run seconds", "XIC(Well_Pump_Running)XIC(Pulse_1s)ADD(Well_Pump_Current_Run_Seconds,1,Well_Pump_Current_Run_Seconds);"),
+    # Detect shutdown - save last run, check short cycle
+    rung(5, "Save last run on pump stop", "XIO(Well_Pump_Running)XIC(Well_Pump_Cycle_ONS)MOV(Well_Pump_Current_Run_Seconds,Well_Pump_Last_Run_Seconds);"),
+    rung(6, "Short cycle detect - run less than minimum", "XIO(Well_Pump_Running)XIC(Well_Pump_Cycle_ONS)LES(Well_Pump_Current_Run_Seconds,Well_Pump_Min_Run_Seconds)ADD(Well_Pump_Short_Cycle_Count,1,Well_Pump_Short_Cycle_Count);"),
+    rung(7, "Clear short cycle count on normal run", "XIO(Well_Pump_Running)XIC(Well_Pump_Cycle_ONS)GEQ(Well_Pump_Current_Run_Seconds,Well_Pump_Min_Run_Seconds)MOV(0,Well_Pump_Short_Cycle_Count);"),
+    rung(8, "Clear current run seconds on pump stop", "XIO(Well_Pump_Running)MOV(0,Well_Pump_Current_Run_Seconds);"),
+    # Short cycle alarm at 3
+    rung(9, "Short cycle alarm at 3 consecutive", "GEQ(Well_Pump_Short_Cycle_Count,3)OTL(Well_Pump_Short_Cycle_Alarm);"),
+    # Low pressure alarm
+    rung(10, "Low water pressure alarm", "LES(Water_Pressure_PSI,Water_Pressure_Low_SP)OTL(Water_Pressure_Low_Alarm);"),
+    rung(11, "Clear low pressure when above setpoint", "GEQ(Water_Pressure_PSI,Water_Pressure_Low_SP)OTU(Water_Pressure_Low_Alarm);"),
+    # HMI reset
+    rung(12, "HMI well alarm reset - clear short cycle alarm", "XIC(HMI_Well_Alarm_Reset)OTU(Well_Pump_Short_Cycle_Alarm);"),
+    rung(13, "HMI well alarm reset - clear short cycle count", "XIC(HMI_Well_Alarm_Reset)MOV(0,Well_Pump_Short_Cycle_Count);"),
+    rung(14, "Clear HMI well alarm reset", "XIC(HMI_Well_Alarm_Reset)OTU(HMI_Well_Alarm_Reset);"),
+]
+
+# --- Maintenance_Monitor (Feature 8) ---
+maint_rungs = [
+    # Generator oil change tracking
+    rung(0, "Track gen run seconds since oil change", "XIC(Gen_Running)XIC(Pulse_1s)ADD(Maint_Gen_Run_Since_Oil,1,Maint_Gen_Run_Since_Oil);"),
+    rung(1, "Convert gen run seconds to hours", "DIV(Maint_Gen_Run_Since_Oil,3600,Maint_Gen_Hours_Since_Oil);"),
+    rung(2, "Gen oil change due", "GEQ(Maint_Gen_Hours_Since_Oil,Maint_Gen_Oil_Hours)OTL(Maint_Gen_Oil_Due);"),
+    rung(3, "HMI gen oil reset", "XIC(HMI_Maint_Gen_Oil_Reset)MOV(0,Maint_Gen_Run_Since_Oil);"),
+    rung(4, None, "XIC(HMI_Maint_Gen_Oil_Reset)OTU(Maint_Gen_Oil_Due);"),
+    rung(5, None, "XIC(HMI_Maint_Gen_Oil_Reset)OTU(HMI_Maint_Gen_Oil_Reset);"),
+    # Sump pump inspection tracking - count pump starts with one-shot
+    rung(6, "Track sump cycles since inspection", "XIC(Sump_Pump_Run)XIO(Maint_Sump_Cycle_ONS)ADD(Maint_Sump_Cycles_Since_Inspect,1,Maint_Sump_Cycles_Since_Inspect);"),
+    rung(7, "Set maint sump cycle one-shot", "XIC(Sump_Pump_Run)OTL(Maint_Sump_Cycle_ONS);"),
+    rung(8, "Clear maint sump cycle one-shot", "XIO(Sump_Pump_Run)OTU(Maint_Sump_Cycle_ONS);"),
+    rung(9, "Sump inspection due", "GEQ(Maint_Sump_Cycles_Since_Inspect,Maint_Sump_Inspect_Cycles)OTL(Maint_Sump_Inspect_Due);"),
+    rung(10, "HMI sump inspect reset - clear cycle counter", "XIC(HMI_Maint_Sump_Reset)MOV(0,Maint_Sump_Cycles_Since_Inspect);"),
+    rung(11, None, "XIC(HMI_Maint_Sump_Reset)OTU(Maint_Sump_Inspect_Due);"),
+    rung(12, None, "XIC(HMI_Maint_Sump_Reset)OTU(HMI_Maint_Sump_Reset);"),
+    # Furnace inspection tracking
+    rung(13, "Track furnace run seconds since inspection", "XIC(HVAC_Furnace_Running)XIC(Pulse_1s)ADD(Maint_Furnace_Run_Since_Inspect,1,Maint_Furnace_Run_Since_Inspect);"),
+    rung(14, "Convert furnace run seconds to hours", "DIV(Maint_Furnace_Run_Since_Inspect,3600,Maint_Furnace_Hours_Since_Inspect);"),
+    rung(15, "Furnace inspection due", "GEQ(Maint_Furnace_Hours_Since_Inspect,Maint_Furnace_Inspect_Hours)OTL(Maint_Furnace_Inspect_Due);"),
+    rung(16, "HMI furnace inspect reset", "XIC(HMI_Maint_Furnace_Reset)MOV(0,Maint_Furnace_Run_Since_Inspect);"),
+    rung(17, None, "XIC(HMI_Maint_Furnace_Reset)OTU(Maint_Furnace_Inspect_Due);"),
+    rung(18, None, "XIC(HMI_Maint_Furnace_Reset)OTU(HMI_Maint_Furnace_Reset);"),
 ]
 
 def build_routine(name, rung_list):
@@ -498,6 +780,10 @@ programs_section = '''<Programs>
    + build_routine("Sump_Pump_Control", sump_rungs) + "\n" \
    + build_routine("HVAC_Monitor", hvac_rungs) + "\n" \
    + build_routine("Electrical_Monitor", elec_rungs) + "\n" \
+   + build_routine("Leak_Detection", leak_rungs) + "\n" \
+   + build_routine("Garage_Monitor", garage_rungs) + "\n" \
+   + build_routine("Well_Pump_Monitor", well_rungs) + "\n" \
+   + build_routine("Maintenance_Monitor", maint_rungs) + "\n" \
    + build_routine("HMI_Interface", hmi_rungs) + "\n" \
    + build_routine("Output_Mapping", output_rungs) + '''
 </Routines>
@@ -534,12 +820,16 @@ with open(r"C:\Users\tremmen\Desktop\HomePLC.L5X", "w", encoding="utf-8") as f:
 
 print("HomePLC.L5X written successfully!")
 print(f"Tags: {len(tags)}")
-print(f"Routines: 8 (MainRoutine + 7 subroutines)")
+print(f"Routines: 12 (MainRoutine + 11 subroutines)")
 print(f"Main rungs: {len(main_rungs)}")
 print(f"Input mapping rungs: {len(input_rungs)}")
 print(f"Generator control rungs: {len(gen_rungs)}")
 print(f"Sump pump control rungs: {len(sump_rungs)}")
 print(f"HVAC monitor rungs: {len(hvac_rungs)}")
 print(f"Electrical monitor rungs: {len(elec_rungs)}")
+print(f"Leak detection rungs: {len(leak_rungs)}")
+print(f"Garage monitor rungs: {len(garage_rungs)}")
+print(f"Well pump monitor rungs: {len(well_rungs)}")
+print(f"Maintenance monitor rungs: {len(maint_rungs)}")
 print(f"HMI interface rungs: {len(hmi_rungs)}")
 print(f"Output mapping rungs: {len(output_rungs)}")

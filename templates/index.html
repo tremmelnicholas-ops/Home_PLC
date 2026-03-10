@@ -13,6 +13,8 @@
     <div style="display:flex; align-items:center; gap:16px;">
         <h1>HomePLC Dashboard</h1>
         <a href="/viz" class="nav-link">Visualization</a>
+        <a href="/history" class="nav-link">History</a>
+        <a href="/settings" class="nav-link">Settings</a>
     </div>
     <div class="conn-status">
         <span id="connText">Connecting...</span>
@@ -42,6 +44,10 @@
                     <label class="sim-toggle"><input type="checkbox" id="simGenReady" checked onchange="simInput('gen_ready',this.checked)"> Generator Ready</label>
                     <label class="sim-toggle"><input type="checkbox" id="simFloat" onchange="simInput('float_high',this.checked)"> Sump Float High</label>
                     <label class="sim-toggle"><input type="checkbox" id="simThermostat" onchange="simInput('thermostat_call',this.checked)"> Thermostat Call</label>
+                    <label class="sim-toggle"><input type="checkbox" id="simLeak1" onchange="simInput('leak_zone1',this.checked)"> Leak Zone 1 (Basement)</label>
+                    <label class="sim-toggle"><input type="checkbox" id="simLeak2" onchange="simInput('leak_zone2',this.checked)"> Leak Zone 2 (Utility Room)</label>
+                    <label class="sim-toggle"><input type="checkbox" id="simLeak3" onchange="simInput('leak_zone3',this.checked)"> Leak Zone 3 (Bathroom)</label>
+                    <label class="sim-toggle"><input type="checkbox" id="simGarage" checked onchange="simInput('garage_closed',this.checked)"> Garage Door Closed</label>
                 </div>
                 <!-- Analog sliders -->
                 <div style="flex:1; min-width:250px;">
@@ -55,6 +61,11 @@
                         <span class="status-label">House Current</span>
                         <input type="range" id="simCurrent" min="20" max="100" step="0.5" value="35" oninput="simInput('house_current_pct',parseFloat(this.value));document.getElementById('simCurrentVal').textContent=((this.value-20)*2.5).toFixed(0)+'A'">
                         <span id="simCurrentVal" style="min-width:45px;text-align:right;">38A</span>
+                    </div>
+                    <div class="sim-slider-row">
+                        <span class="status-label">Water Pressure</span>
+                        <input type="range" id="simPressure" min="20" max="100" step="0.5" value="60" oninput="simInput('water_pressure_pct',parseFloat(this.value));document.getElementById('simPressureVal').textContent=((this.value-20)*1.25).toFixed(1)+' PSI'">
+                        <span id="simPressureVal" style="min-width:55px;text-align:right;">50.0 PSI</span>
                     </div>
                 </div>
                 <!-- Speed control -->
@@ -126,6 +137,14 @@
                 <span class="status-value"><span id="indExercise" class="indicator ind-off"></span><span id="txtExercise">--</span></span>
             </div>
             <div class="status-row">
+                <span class="status-label">Exercise Schedule</span>
+                <span class="status-value" id="txtExerciseSchedule">--</span>
+            </div>
+            <div class="status-row">
+                <span class="status-label">Exercise Duration</span>
+                <span class="status-value" id="txtExerciseDuration">--</span>
+            </div>
+            <div class="status-row">
                 <span class="status-label">Total Run Hours</span>
                 <span class="status-value" id="txtGenHours">--</span>
             </div>
@@ -154,6 +173,14 @@
             <div class="status-row">
                 <span class="status-label">Max Run Fault</span>
                 <span class="status-value"><span id="indSumpFault" class="indicator ind-off"></span><span id="txtSumpFault">--</span></span>
+            </div>
+            <div class="status-row">
+                <span class="status-label">Cycle Rate Alarm</span>
+                <span class="status-value"><span id="indSumpCycleRate" class="indicator ind-off"></span><span id="txtSumpCycleRate">--</span></span>
+            </div>
+            <div class="status-row">
+                <span class="status-label">Cycles This Hour</span>
+                <span class="status-value" id="txtSumpCyclesHour">--</span>
             </div>
             <div class="status-row">
                 <span class="status-label">Test Active</span>
@@ -206,6 +233,14 @@
                 <span class="status-label">Filter Change Due</span>
                 <span class="status-value"><span id="indFilter" class="indicator ind-off"></span><span id="txtFilter">--</span></span>
             </div>
+            <div class="status-row">
+                <span class="status-label">Efficiency</span>
+                <span class="status-value" id="txtHvacEfficiency">-- %</span>
+            </div>
+            <div class="status-row">
+                <span class="status-label">Efficiency Alarm</span>
+                <span class="status-value"><span id="indHvacEfficiency" class="indicator ind-off"></span><span id="txtHvacEfficiencyAlarm">--</span></span>
+            </div>
             <div class="big-row">
                 <div class="item"><div class="val" id="txtHvacCycles">--</div><div class="lbl">Cycles</div></div>
                 <div class="item"><div class="val" id="txtHvacHours">--</div><div class="lbl">Run Hours</div></div>
@@ -222,6 +257,7 @@
             <div class="btn-row">
                 <button class="btn btn-yellow" onclick="plcWrite('HMI_Filter_Reset')">Reset Filter Hours</button>
                 <button class="btn btn-red" onclick="plcWrite('HMI_HVAC_Alarm_Reset')">Reset Alarm</button>
+                <button class="btn btn-orange" onclick="plcWrite('HMI_HVAC_Efficiency_Reset')">Reset Efficiency</button>
             </div>
         </div>
     </div>
@@ -246,8 +282,17 @@
                     <div class="lbl">High</div>
                 </div>
             </div>
+            <div class="status-row">
+                <span class="status-label">Freeze Warning</span>
+                <span class="status-value"><span id="indFreezeWarn" class="indicator ind-off"></span><span id="txtFreezeWarn">--</span></span>
+            </div>
+            <div class="status-row">
+                <span class="status-label">Freeze Critical</span>
+                <span class="status-value"><span id="indFreezeCrit" class="indicator ind-off"></span><span id="txtFreezeCrit">--</span></span>
+            </div>
             <div class="btn-row">
                 <button class="btn" onclick="plcWrite('HMI_Temp_MinMax_Reset')">Reset Min/Max</button>
+                <button class="btn btn-red" onclick="plcWrite('HMI_Freeze_Alarm_Reset')">Reset Freeze Alarm</button>
             </div>
         </div>
     </div>
@@ -282,9 +327,160 @@
                 <span class="status-label">Gen Overload Alarm</span>
                 <span class="status-value"><span id="indGenOverload" class="indicator ind-off"></span><span id="txtGenOverload">--</span></span>
             </div>
+            <div class="status-row">
+                <span class="status-label">Load Shed Active</span>
+                <span class="status-value"><span id="indLoadShed" class="indicator ind-off"></span><span id="txtLoadShed">--</span></span>
+            </div>
+            <div class="status-row">
+                <span class="status-label">Load Shed Threshold</span>
+                <span class="status-value" id="txtLoadShedThreshold">-- A</span>
+            </div>
             <div class="btn-row">
                 <button class="btn" onclick="plcWrite('HMI_Elec_Peak_Reset')">Reset Peak</button>
                 <button class="btn btn-red" onclick="plcWrite('HMI_Elec_Alarm_Reset')">Reset Alarms</button>
+                <button class="btn btn-orange" onclick="plcWrite('HMI_Load_Shed_Reset')">Reset Load Shed</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============ WATER LEAK DETECTION CARD ============ -->
+    <div class="card">
+        <div class="card-header">
+            <h2>Water Leak Detection</h2>
+            <span id="leakBadge" class="state-badge state-ok">OK</span>
+        </div>
+        <div class="card-body">
+            <div class="status-row">
+                <span class="status-label">Zone 1 (Basement)</span>
+                <span class="status-value"><span id="indLeak1" class="indicator ind-off"></span><span id="txtLeak1">--</span></span>
+            </div>
+            <div class="status-row">
+                <span class="status-label">Zone 2 (Utility Room)</span>
+                <span class="status-value"><span id="indLeak2" class="indicator ind-off"></span><span id="txtLeak2">--</span></span>
+            </div>
+            <div class="status-row">
+                <span class="status-label">Zone 3 (Bathroom)</span>
+                <span class="status-value"><span id="indLeak3" class="indicator ind-off"></span><span id="txtLeak3">--</span></span>
+            </div>
+            <div class="status-row">
+                <span class="status-label">Any Alarm</span>
+                <span class="status-value"><span id="indLeakAny" class="indicator ind-off"></span><span id="txtLeakAny">--</span></span>
+            </div>
+            <div class="btn-row">
+                <button class="btn btn-red" onclick="plcWrite('HMI_Leak_Alarm_Reset')">Reset Alarm</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============ GARAGE DOOR CARD ============ -->
+    <div class="card">
+        <div class="card-header">
+            <h2>Garage Door</h2>
+            <span id="garageBadge" class="state-badge state-closed">CLOSED</span>
+        </div>
+        <div class="card-body">
+            <div class="status-row">
+                <span class="status-label">Door Status</span>
+                <span class="status-value"><span id="indGarage" class="indicator ind-off"></span><span id="txtGarage">--</span></span>
+            </div>
+            <div class="status-row">
+                <span class="status-label">Open Duration</span>
+                <span class="status-value" id="txtGarageOpenSec">-- sec</span>
+            </div>
+            <div class="status-row">
+                <span class="status-label">Open Too Long Alarm</span>
+                <span class="status-value"><span id="indGarageAlarm" class="indicator ind-off"></span><span id="txtGarageAlarm">--</span></span>
+            </div>
+            <div class="btn-row">
+                <button class="btn btn-red" onclick="plcWrite('HMI_Garage_Alarm_Reset')">Reset Alarm</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============ WELL PUMP / WATER CARD ============ -->
+    <div class="card">
+        <div class="card-header">
+            <h2>Well Pump / Water</h2>
+        </div>
+        <div class="card-body">
+            <div class="big-value" id="txtWaterPSI">-- <span class="unit">PSI</span></div>
+            <div class="pressure-bar-container">
+                <div id="pressureBar" class="pressure-bar" style="width:0%; background:var(--green);">0 PSI</div>
+            </div>
+            <div class="status-row">
+                <span class="status-label">Pump Running</span>
+                <span class="status-value"><span id="indWellPump" class="indicator ind-off"></span><span id="txtWellPump">--</span></span>
+            </div>
+            <div class="status-row">
+                <span class="status-label">Cycle Count</span>
+                <span class="status-value" id="txtWellCycles">--</span>
+            </div>
+            <div class="status-row">
+                <span class="status-label">Current Run</span>
+                <span class="status-value" id="txtWellCurrentRun">-- sec</span>
+            </div>
+            <div class="status-row">
+                <span class="status-label">Last Run</span>
+                <span class="status-value" id="txtWellLastRun">-- sec</span>
+            </div>
+            <div class="status-row">
+                <span class="status-label">Short Cycle Count</span>
+                <span class="status-value" id="txtWellShortCycles">--</span>
+            </div>
+            <div class="status-row">
+                <span class="status-label">Short Cycle Alarm</span>
+                <span class="status-value"><span id="indWellShortCycle" class="indicator ind-off"></span><span id="txtWellShortCycle">--</span></span>
+            </div>
+            <div class="status-row">
+                <span class="status-label">Low Pressure Alarm</span>
+                <span class="status-value"><span id="indLowPressure" class="indicator ind-off"></span><span id="txtLowPressure">--</span></span>
+            </div>
+            <div class="btn-row">
+                <button class="btn btn-red" onclick="plcWrite('HMI_Well_Alarm_Reset')">Reset Alarms</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============ MAINTENANCE CARD ============ -->
+    <div class="card">
+        <div class="card-header">
+            <h2>Maintenance Schedule</h2>
+        </div>
+        <div class="card-body">
+            <div class="status-row">
+                <span class="status-label">Gen Oil Change</span>
+                <span class="status-value">
+                    <div class="maint-progress">
+                        <div class="maint-bar-bg"><div id="maintGenOilBar" class="maint-bar-fill" style="width:0%"></div></div>
+                        <span class="maint-text" id="txtMaintGenOil">-- / 200 hrs</span>
+                        <span id="indMaintGenOil" class="indicator ind-off"></span>
+                    </div>
+                </span>
+            </div>
+            <div class="status-row">
+                <span class="status-label">Sump Inspection</span>
+                <span class="status-value">
+                    <div class="maint-progress">
+                        <div class="maint-bar-bg"><div id="maintSumpBar" class="maint-bar-fill" style="width:0%"></div></div>
+                        <span class="maint-text" id="txtMaintSump">-- / 500 cyc</span>
+                        <span id="indMaintSump" class="indicator ind-off"></span>
+                    </div>
+                </span>
+            </div>
+            <div class="status-row">
+                <span class="status-label">Furnace Inspection</span>
+                <span class="status-value">
+                    <div class="maint-progress">
+                        <div class="maint-bar-bg"><div id="maintFurnaceBar" class="maint-bar-fill" style="width:0%"></div></div>
+                        <span class="maint-text" id="txtMaintFurnace">-- / 1000 hrs</span>
+                        <span id="indMaintFurnace" class="indicator ind-off"></span>
+                    </div>
+                </span>
+            </div>
+            <div class="btn-row">
+                <button class="btn btn-green" onclick="plcWrite('HMI_Maint_Gen_Oil_Reset')">Reset Gen Oil</button>
+                <button class="btn btn-green" onclick="plcWrite('HMI_Maint_Sump_Inspect_Reset')">Reset Sump Inspect</button>
+                <button class="btn btn-green" onclick="plcWrite('HMI_Maint_Furnace_Inspect_Reset')">Reset Furnace Inspect</button>
             </div>
         </div>
     </div>
@@ -376,6 +572,18 @@ function sumpStateClass(s) {
     return 'state-running';
 }
 
+function dayName(n) {
+    const days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+    return days[n] || 'Day '+n;
+}
+
+function formatHour(h) {
+    if (h === 0) return '12:00 AM';
+    if (h === 12) return '12:00 PM';
+    if (h < 12) return h + ':00 AM';
+    return (h - 12) + ':00 PM';
+}
+
 function updateUI() {
     // Connection
     const conn = val('_plc_connected', false);
@@ -394,6 +602,10 @@ function updateUI() {
         document.getElementById('simGenReady').checked = si.gen_ready;
         document.getElementById('simFloat').checked = si.float_high;
         document.getElementById('simThermostat').checked = si.thermostat_call;
+        document.getElementById('simLeak1').checked = si.leak_zone1 || false;
+        document.getElementById('simLeak2').checked = si.leak_zone2 || false;
+        document.getElementById('simLeak3').checked = si.leak_zone3 || false;
+        document.getElementById('simGarage').checked = si.garage_closed !== undefined ? si.garage_closed : true;
     }
 
     // Alarm banner
@@ -406,6 +618,18 @@ function updateUI() {
     if (val('HVAC_Filter_Change_Due',false)) alarms.push('FILTER CHANGE DUE');
     if (val('Elec_Overload_Alarm',false)) alarms.push('ELECTRICAL OVERLOAD');
     if (val('Elec_Gen_Overload_Alarm',false)) alarms.push('GEN OVERLOAD');
+    if (val('Freeze_Warning',false)) alarms.push('FREEZE WARNING');
+    if (val('Freeze_Critical',false)) alarms.push('FREEZE CRITICAL');
+    if (val('Sump_Cycle_Rate_Alarm',false)) alarms.push('SUMP CYCLE RATE');
+    if (val('Leak_Any_Alarm',false)) alarms.push('WATER LEAK');
+    if (val('Garage_Open_Alarm',false)) alarms.push('GARAGE DOOR OPEN');
+    if (val('Well_Pump_Short_Cycle_Alarm',false)) alarms.push('WELL SHORT CYCLE');
+    if (val('Water_Pressure_Low_Alarm',false)) alarms.push('LOW WATER PRESSURE');
+    if (val('Load_Shed_Active',false)) alarms.push('LOAD SHEDDING');
+    if (val('Maint_Gen_Oil_Due',false)) alarms.push('GEN OIL CHANGE DUE');
+    if (val('Maint_Sump_Inspect_Due',false)) alarms.push('SUMP INSPECT DUE');
+    if (val('Maint_Furnace_Inspect_Due',false)) alarms.push('FURNACE INSPECT DUE');
+    if (val('HVAC_Efficiency_Alarm',false)) alarms.push('HVAC EFFICIENCY');
 
     const banner = document.getElementById('alarmBanner');
     if (alarms.length > 0) {
@@ -461,6 +685,13 @@ function updateUI() {
     setInd('indExercise', exActive, 'ind-blue');
     setText('txtExercise', exActive ? 'ACTIVE' : 'OFF');
 
+    const exDay = val('Exercise_Schedule_Day', 6);
+    const exHour = val('Exercise_Schedule_Hour', 10);
+    setText('txtExerciseSchedule', dayName(exDay) + ' ' + formatHour(exHour));
+
+    const exDuration = val('Exercise_Duration_Minutes', 15);
+    setText('txtExerciseDuration', exDuration + ' min');
+
     setText('txtGenHours', val('Gen_Total_Run_Hours', 0) + ' hrs');
 
     // ---- SUMP PUMP ----
@@ -478,6 +709,12 @@ function updateUI() {
     const sumpFault = val('Sump_Max_Run_Fault', false);
     setInd('indSumpFault', sumpFault, 'ind-red');
     setText('txtSumpFault', sumpFault ? 'FAULT' : 'OK');
+
+    const sumpCycleRate = val('Sump_Cycle_Rate_Alarm', false);
+    setInd('indSumpCycleRate', sumpCycleRate, 'ind-red');
+    setText('txtSumpCycleRate', sumpCycleRate ? 'ALARM' : 'OK');
+
+    setText('txtSumpCyclesHour', val('Sump_Cycles_This_Hour', 0));
 
     const sumpTest = val('Sump_Test_Active', false);
     setInd('indSumpTest', sumpTest, 'ind-blue');
@@ -512,6 +749,13 @@ function updateUI() {
     setInd('indFilter', filterDue, 'ind-yellow');
     setText('txtFilter', filterDue ? 'CHANGE FILTER' : 'OK');
 
+    const hvacEff = val('HVAC_Efficiency_Pct', 0);
+    setText('txtHvacEfficiency', (typeof hvacEff === 'number' ? hvacEff.toFixed(1) : hvacEff) + ' %');
+
+    const hvacEffAlarm = val('HVAC_Efficiency_Alarm', false);
+    setInd('indHvacEfficiency', hvacEffAlarm, 'ind-red');
+    setText('txtHvacEfficiencyAlarm', hvacEffAlarm ? 'ALARM' : 'OK');
+
     setText('txtHvacCycles', val('HVAC_Cycle_Count', 0));
     setText('txtHvacHours', val('HVAC_Total_Run_Hours', 0));
     setText('txtFilterHours', val('HVAC_Filter_Run_Hours', 0));
@@ -525,6 +769,14 @@ function updateUI() {
     setText('txtTempMin', tempMin !== null ? tempMin.toFixed(1) + '\u00B0F' : '--');
     const tempMax = val('HVAC_Outdoor_Temp_Max', null);
     setText('txtTempMax', tempMax !== null ? tempMax.toFixed(1) + '\u00B0F' : '--');
+
+    const freezeWarn = val('Freeze_Warning', false);
+    setInd('indFreezeWarn', freezeWarn, 'ind-yellow');
+    setText('txtFreezeWarn', freezeWarn ? 'WARNING' : 'OK');
+
+    const freezeCrit = val('Freeze_Critical', false);
+    setInd('indFreezeCrit', freezeCrit, 'ind-red');
+    setText('txtFreezeCrit', freezeCrit ? 'CRITICAL' : 'OK');
 
     // ---- ELECTRICAL ----
     const amps = val('Elec_Current_Amps', 0) || 0;
@@ -549,6 +801,99 @@ function updateUI() {
     const genOL = val('Elec_Gen_Overload_Alarm', false);
     setInd('indGenOverload', genOL, 'ind-red');
     setText('txtGenOverload', genOL ? 'ALARM' : 'OK');
+
+    const loadShed = val('Load_Shed_Active', false);
+    setInd('indLoadShed', loadShed, 'ind-orange');
+    setText('txtLoadShed', loadShed ? 'ACTIVE' : 'OFF');
+
+    const loadShedThreshold = val('Load_Shed_Threshold', 0);
+    setText('txtLoadShedThreshold', (typeof loadShedThreshold === 'number' ? loadShedThreshold.toFixed(0) : loadShedThreshold) + ' A');
+
+    // ---- WATER LEAK DETECTION ----
+    const leak1 = val('Leak_Zone1', false);
+    setInd('indLeak1', leak1, 'ind-red');
+    setText('txtLeak1', leak1 ? 'LEAK' : 'DRY');
+
+    const leak2 = val('Leak_Zone2', false);
+    setInd('indLeak2', leak2, 'ind-red');
+    setText('txtLeak2', leak2 ? 'LEAK' : 'DRY');
+
+    const leak3 = val('Leak_Zone3', false);
+    setInd('indLeak3', leak3, 'ind-red');
+    setText('txtLeak3', leak3 ? 'LEAK' : 'DRY');
+
+    const leakAny = val('Leak_Any_Alarm', false);
+    setInd('indLeakAny', leakAny, 'ind-red');
+    setText('txtLeakAny', leakAny ? 'ALARM' : 'OK');
+    setBadge('leakBadge', leakAny ? 'ALARM' : 'OK', leakAny ? 'state-alarm' : 'state-ok');
+
+    // ---- GARAGE DOOR ----
+    const garageClosed = val('Garage_Door_Closed', true);
+    const garageOpen = val('Garage_Door_Open', false);
+    setInd('indGarage', garageOpen, 'ind-yellow', 'ind-green');
+    setText('txtGarage', garageOpen ? 'OPEN' : 'CLOSED');
+    setBadge('garageBadge', garageOpen ? 'OPEN' : 'CLOSED', garageOpen ? 'state-open' : 'state-closed');
+
+    setText('txtGarageOpenSec', val('Garage_Open_Seconds', 0) + ' sec');
+
+    const garageAlarm = val('Garage_Open_Alarm', false);
+    setInd('indGarageAlarm', garageAlarm, 'ind-red');
+    setText('txtGarageAlarm', garageAlarm ? 'ALARM' : 'OK');
+
+    // ---- WELL PUMP / WATER ----
+    const psi = val('Water_Pressure_PSI', 0) || 0;
+    document.getElementById('txtWaterPSI').innerHTML = psi.toFixed(1) + ' <span class="unit">PSI</span>';
+
+    const psiPct = Math.min(psi / 100 * 100, 100);
+    const pBar = document.getElementById('pressureBar');
+    pBar.style.width = psiPct + '%';
+    pBar.textContent = psi.toFixed(0) + ' PSI';
+    if (psi < 30) { pBar.style.background = 'var(--red)'; }
+    else if (psi < 40) { pBar.style.background = 'var(--yellow)'; }
+    else if (psi <= 60) { pBar.style.background = 'var(--green)'; }
+    else { pBar.style.background = 'var(--green)'; }
+
+    const wellPump = val('Well_Pump_Running', false);
+    setInd('indWellPump', wellPump, 'ind-blue');
+    setText('txtWellPump', wellPump ? 'RUNNING' : 'OFF');
+
+    setText('txtWellCycles', val('Well_Pump_Cycle_Count', 0));
+    setText('txtWellCurrentRun', val('Well_Pump_Current_Run_Seconds', 0) + ' sec');
+    setText('txtWellLastRun', val('Well_Pump_Last_Run_Seconds', 0) + ' sec');
+    setText('txtWellShortCycles', val('Well_Pump_Short_Cycle_Count', 0));
+
+    const wellShortCycle = val('Well_Pump_Short_Cycle_Alarm', false);
+    setInd('indWellShortCycle', wellShortCycle, 'ind-red');
+    setText('txtWellShortCycle', wellShortCycle ? 'ALARM' : 'OK');
+
+    const lowPressure = val('Water_Pressure_Low_Alarm', false);
+    setInd('indLowPressure', lowPressure, 'ind-red');
+    setText('txtLowPressure', lowPressure ? 'ALARM' : 'OK');
+
+    // ---- MAINTENANCE ----
+    const genOilHours = val('Maint_Gen_Oil_Hours', 0);
+    const genOilDue = val('Maint_Gen_Oil_Due', false);
+    const genOilPct = Math.min(genOilHours / 200 * 100, 100);
+    setText('txtMaintGenOil', genOilHours + ' / 200 hrs');
+    document.getElementById('maintGenOilBar').style.width = genOilPct + '%';
+    document.getElementById('maintGenOilBar').className = 'maint-bar-fill' + (genOilDue ? ' due' : (genOilPct > 80 ? ' warn' : ''));
+    setInd('indMaintGenOil', genOilDue, 'ind-red');
+
+    const sumpInspCycles = val('Maint_Sump_Inspect_Cycles', 0);
+    const sumpInspDue = val('Maint_Sump_Inspect_Due', false);
+    const sumpInspPct = Math.min(sumpInspCycles / 500 * 100, 100);
+    setText('txtMaintSump', sumpInspCycles + ' / 500 cyc');
+    document.getElementById('maintSumpBar').style.width = sumpInspPct + '%';
+    document.getElementById('maintSumpBar').className = 'maint-bar-fill' + (sumpInspDue ? ' due' : (sumpInspPct > 80 ? ' warn' : ''));
+    setInd('indMaintSump', sumpInspDue, 'ind-red');
+
+    const furnaceInspHours = val('Maint_Furnace_Inspect_Hours', 0);
+    const furnaceInspDue = val('Maint_Furnace_Inspect_Due', false);
+    const furnaceInspPct = Math.min(furnaceInspHours / 1000 * 100, 100);
+    setText('txtMaintFurnace', furnaceInspHours + ' / 1000 hrs');
+    document.getElementById('maintFurnaceBar').style.width = furnaceInspPct + '%';
+    document.getElementById('maintFurnaceBar').className = 'maint-bar-fill' + (furnaceInspDue ? ' due' : (furnaceInspPct > 80 ? ' warn' : ''));
+    setInd('indMaintFurnace', furnaceInspDue, 'ind-red');
 }
 
 // Poll every 1 second

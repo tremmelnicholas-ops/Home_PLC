@@ -343,6 +343,8 @@
     <div style="display:flex; align-items:center; gap:16px;">
         <h1>HomePLC Visualization</h1>
         <a href="/" class="nav-link">Dashboard</a>
+        <a href="/history" class="nav-link">History</a>
+        <a href="/settings" class="nav-link">Settings</a>
     </div>
     <div class="conn-status">
         <span id="connText">Connecting...</span>
@@ -586,7 +588,8 @@ const TAG_GROUPS = {
         "Sump_State", "Sump_Pump_Run", "Sump_Float_High",
         "Sump_Test_Active", "Sump_Last_Test_OK", "Sump_Max_Run_Fault",
         "Sump_Cycle_Count", "Sump_Total_Run_Seconds",
-        "Sump_Last_Run_Seconds", "Sump_Current_Run_Seconds"
+        "Sump_Last_Run_Seconds", "Sump_Current_Run_Seconds",
+        "Sump_Cycle_Rate_Alarm"
     ],
     "HVAC": [
         "Thermostat_W_Call", "HVAC_Furnace_Running",
@@ -594,12 +597,32 @@ const TAG_GROUPS = {
         "HVAC_Last_Run_Seconds", "HVAC_Current_Run_Seconds",
         "HVAC_Filter_Run_Seconds", "HVAC_Filter_Change_Due",
         "HVAC_Short_Cycle_Alarm", "HVAC_Short_Cycle_Count",
-        "HVAC_Outdoor_Temp_Min", "HVAC_Outdoor_Temp_Max"
+        "HVAC_Outdoor_Temp_Min", "HVAC_Outdoor_Temp_Max",
+        "Freeze_Warning", "Freeze_Critical",
+        "HVAC_Efficiency_Pct", "HVAC_Efficiency_Alarm"
     ],
     "Electrical": [
         "Outdoor_Temp_F", "House_Current_Amps",
         "Elec_Current_Amps", "Elec_Peak_Amps", "Elec_Total_kWh",
         "Elec_Overload_Alarm", "Elec_Gen_Overload_Alarm", "Elec_Gen_Max_Amps"
+    ],
+    "Water Leak": [
+        "Leak_Zone1", "Leak_Zone2", "Leak_Zone3", "Leak_Any_Alarm"
+    ],
+    "Garage Door": [
+        "Garage_Door_Closed", "Garage_Door_Open",
+        "Garage_Open_Seconds", "Garage_Open_Alarm"
+    ],
+    "Well Pump": [
+        "Water_Pressure_PSI", "Well_Pump_Running",
+        "Well_Pump_Cycle_Count", "Well_Pump_Short_Cycle_Alarm",
+        "Water_Pressure_Low_Alarm"
+    ],
+    "Maintenance": [
+        "Maint_Gen_Oil_Due", "Maint_Sump_Inspect_Due", "Maint_Furnace_Inspect_Due"
+    ],
+    "Load Shedding": [
+        "Load_Shed_Active", "Load_Shed_HVAC"
     ]
 };
 
@@ -749,6 +772,10 @@ function updateIO() {
         { tag: 'gen_ready', label: 'Gen Ready', color: 'green' },
         { tag: 'float_high', label: 'Sump Float High', color: 'yellow' },
         { tag: 'thermostat_call', label: 'Thermostat Call', color: 'yellow' },
+        { tag: 'leak_zone1', label: 'Leak Zone 1 (Basement)', color: 'red' },
+        { tag: 'leak_zone2', label: 'Leak Zone 2 (Utility)', color: 'red' },
+        { tag: 'leak_zone3', label: 'Leak Zone 3 (Bathroom)', color: 'red' },
+        { tag: 'garage_closed', label: 'Garage Door Closed', color: 'green' },
     ];
 
     const si = D._sim_inputs || {};
@@ -766,26 +793,37 @@ function updateIO() {
     // Analog inputs
     const tempPct = si.outdoor_temp_pct || 0;
     const currPct = si.house_current_pct || 0;
+    const pressPct = si.water_pressure_pct || 0;
     const tempF = val('Outdoor_Temp_F', 0);
     const houseA = val('House_Current_Amps', 0);
+    const waterPSI = val('Water_Pressure_PSI', 0);
 
     document.getElementById('analogGrid').innerHTML = `
         <div class="analog-item" style="margin-bottom:8px;">
             <div class="analog-header">
                 <span class="analog-label">Outdoor Temp</span>
-                <span class="analog-value">${typeof tempF === 'number' ? tempF.toFixed(1) : '--'}°F (${tempPct.toFixed(1)}%)</span>
+                <span class="analog-value">${typeof tempF === 'number' ? tempF.toFixed(1) : '--'}\u00B0F (${tempPct.toFixed(1)}%)</span>
             </div>
             <div class="analog-bar-bg">
                 <div class="analog-bar-fill" style="width:${tempPct}%; background:${tempF < 0 ? 'var(--blue)' : tempF > 90 ? 'var(--red)' : 'var(--accent)'}"></div>
             </div>
         </div>
-        <div class="analog-item">
+        <div class="analog-item" style="margin-bottom:8px;">
             <div class="analog-header">
                 <span class="analog-label">House Current</span>
                 <span class="analog-value">${typeof houseA === 'number' ? houseA.toFixed(1) : '--'}A (${currPct.toFixed(1)}%)</span>
             </div>
             <div class="analog-bar-bg">
                 <div class="analog-bar-fill" style="width:${currPct}%; background:${houseA > 180 ? 'var(--red)' : houseA > 120 ? 'var(--yellow)' : 'var(--accent)'}"></div>
+            </div>
+        </div>
+        <div class="analog-item">
+            <div class="analog-header">
+                <span class="analog-label">Water Pressure</span>
+                <span class="analog-value">${typeof waterPSI === 'number' ? waterPSI.toFixed(1) : '--'} PSI (${pressPct.toFixed(1)}%)</span>
+            </div>
+            <div class="analog-bar-bg">
+                <div class="analog-bar-fill" style="width:${pressPct}%; background:${waterPSI < 30 ? 'var(--red)' : waterPSI < 40 ? 'var(--yellow)' : 'var(--accent)'}"></div>
             </div>
         </div>`;
 
@@ -795,6 +833,8 @@ function updateIO() {
         { tag: 'ATS_Transfer_Cmd', label: 'ATS Transfer Cmd', color: 'yellow' },
         { tag: 'Sump_Pump_Run', label: 'Sump Pump Run', color: 'blue' },
         { tag: 'Gen_Running', label: 'Gen Running', color: 'green' },
+        { tag: 'Load_Shed_Active', label: 'Load Shed Active', color: 'yellow' },
+        { tag: 'Load_Shed_HVAC', label: 'Load Shed HVAC', color: 'yellow' },
     ];
 
     let doHtml = '';

@@ -1,3 +1,5 @@
 __pycache__/
 *.pyc
 .env
+data/*.db
+data/alert_config.json

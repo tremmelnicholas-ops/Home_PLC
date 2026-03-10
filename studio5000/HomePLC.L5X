@@ -1397,6 +1397,236 @@
 <Data Format="L5K"><![CDATA[0]]></Data>
 <Data Format="Decorated"><DataValue DataType="BOOL" Radix="Decimal" Value="0"/></Data>
 </Tag>
+<Tag Name="Freeze_Warning" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[Freeze warning - temp below warning setpoint]]></Description>
+<Data Format="L5K"><![CDATA[0]]></Data>
+<Data Format="Decorated"><DataValue DataType="BOOL" Radix="Decimal" Value="0"/></Data>
+</Tag>
+<Tag Name="Freeze_Critical" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[Freeze critical - temp below critical setpoint]]></Description>
+<Data Format="L5K"><![CDATA[0]]></Data>
+<Data Format="Decorated"><DataValue DataType="BOOL" Radix="Decimal" Value="0"/></Data>
+</Tag>
+<Tag Name="HMI_Freeze_Alarm_Reset" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[HMI freeze alarm reset]]></Description>
+<Data Format="L5K"><![CDATA[0]]></Data>
+<Data Format="Decorated"><DataValue DataType="BOOL" Radix="Decimal" Value="0"/></Data>
+</Tag>
+<Tag Name="Sump_Cycle_Rate_Alarm" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[Sump pump excessive cycle rate alarm]]></Description>
+<Data Format="L5K"><![CDATA[0]]></Data>
+<Data Format="Decorated"><DataValue DataType="BOOL" Radix="Decimal" Value="0"/></Data>
+</Tag>
+<Tag Name="Sump_Cycle_Rate_ONS" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[One-shot for sump cycle rate counting]]></Description>
+<Data Format="L5K"><![CDATA[0]]></Data>
+<Data Format="Decorated"><DataValue DataType="BOOL" Radix="Decimal" Value="0"/></Data>
+</Tag>
+<Tag Name="Leak_Zone1" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[Leak sensor zone 1]]></Description>
+<Data Format="L5K"><![CDATA[0]]></Data>
+<Data Format="Decorated"><DataValue DataType="BOOL" Radix="Decimal" Value="0"/></Data>
+</Tag>
+<Tag Name="Leak_Zone2" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[Leak sensor zone 2]]></Description>
+<Data Format="L5K"><![CDATA[0]]></Data>
+<Data Format="Decorated"><DataValue DataType="BOOL" Radix="Decimal" Value="0"/></Data>
+</Tag>
+<Tag Name="Leak_Zone3" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[Leak sensor zone 3]]></Description>
+<Data Format="L5K"><![CDATA[0]]></Data>
+<Data Format="Decorated"><DataValue DataType="BOOL" Radix="Decimal" Value="0"/></Data>
+</Tag>
+<Tag Name="Leak_Any_Alarm" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[Any leak zone alarm active]]></Description>
+<Data Format="L5K"><![CDATA[0]]></Data>
+<Data Format="Decorated"><DataValue DataType="BOOL" Radix="Decimal" Value="0"/></Data>
+</Tag>
+<Tag Name="HMI_Leak_Alarm_Reset" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[HMI leak alarm reset]]></Description>
+<Data Format="L5K"><![CDATA[0]]></Data>
+<Data Format="Decorated"><DataValue DataType="BOOL" Radix="Decimal" Value="0"/></Data>
+</Tag>
+<Tag Name="Garage_Door_Closed" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[Garage door closed limit switch NC]]></Description>
+<Data Format="L5K"><![CDATA[0]]></Data>
+<Data Format="Decorated"><DataValue DataType="BOOL" Radix="Decimal" Value="0"/></Data>
+</Tag>
+<Tag Name="Garage_Door_Open" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[Garage door is open]]></Description>
+<Data Format="L5K"><![CDATA[0]]></Data>
+<Data Format="Decorated"><DataValue DataType="BOOL" Radix="Decimal" Value="0"/></Data>
+</Tag>
+<Tag Name="Garage_Open_Alarm" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[Garage door open too long alarm]]></Description>
+<Data Format="L5K"><![CDATA[0]]></Data>
+<Data Format="Decorated"><DataValue DataType="BOOL" Radix="Decimal" Value="0"/></Data>
+</Tag>
+<Tag Name="HMI_Garage_Alarm_Reset" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[HMI garage alarm reset]]></Description>
+<Data Format="L5K"><![CDATA[0]]></Data>
+<Data Format="Decorated"><DataValue DataType="BOOL" Radix="Decimal" Value="0"/></Data>
+</Tag>
+<Tag Name="Well_Pump_Running" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[Well pump running feedback]]></Description>
+<Data Format="L5K"><![CDATA[0]]></Data>
+<Data Format="Decorated"><DataValue DataType="BOOL" Radix="Decimal" Value="0"/></Data>
+</Tag>
+<Tag Name="Well_Pump_Cycle_ONS" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[One-shot for well pump cycle counting]]></Description>
+<Data Format="L5K"><![CDATA[0]]></Data>
+<Data Format="Decorated"><DataValue DataType="BOOL" Radix="Decimal" Value="0"/></Data>
+</Tag>
+<Tag Name="Well_Pump_Short_Cycle_Alarm" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[Well pump short cycle alarm]]></Description>
+<Data Format="L5K"><![CDATA[0]]></Data>
+<Data Format="Decorated"><DataValue DataType="BOOL" Radix="Decimal" Value="0"/></Data>
+</Tag>
+<Tag Name="Water_Pressure_Low_Alarm" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[Water pressure low alarm]]></Description>
+<Data Format="L5K"><![CDATA[0]]></Data>
+<Data Format="Decorated"><DataValue DataType="BOOL" Radix="Decimal" Value="0"/></Data>
+</Tag>
+<Tag Name="HMI_Well_Alarm_Reset" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[HMI well pump alarm reset]]></Description>
+<Data Format="L5K"><![CDATA[0]]></Data>
+<Data Format="Decorated"><DataValue DataType="BOOL" Radix="Decimal" Value="0"/></Data>
+</Tag>
+<Tag Name="Load_Shed_Active" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[Load shedding active]]></Description>
+<Data Format="L5K"><![CDATA[0]]></Data>
+<Data Format="Decorated"><DataValue DataType="BOOL" Radix="Decimal" Value="0"/></Data>
+</Tag>
+<Tag Name="Load_Shed_HVAC" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[Load shed HVAC output]]></Description>
+<Data Format="L5K"><![CDATA[0]]></Data>
+<Data Format="Decorated"><DataValue DataType="BOOL" Radix="Decimal" Value="0"/></Data>
+</Tag>
+<Tag Name="Load_Shed_NonCritical1" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[Load shed non-critical 1 output]]></Description>
+<Data Format="L5K"><![CDATA[0]]></Data>
+<Data Format="Decorated"><DataValue DataType="BOOL" Radix="Decimal" Value="0"/></Data>
+</Tag>
+<Tag Name="Load_Shed_NonCritical2" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[Load shed non-critical 2 output]]></Description>
+<Data Format="L5K"><![CDATA[0]]></Data>
+<Data Format="Decorated"><DataValue DataType="BOOL" Radix="Decimal" Value="0"/></Data>
+</Tag>
+<Tag Name="HMI_Load_Shed_Reset" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[HMI load shed reset]]></Description>
+<Data Format="L5K"><![CDATA[0]]></Data>
+<Data Format="Decorated"><DataValue DataType="BOOL" Radix="Decimal" Value="0"/></Data>
+</Tag>
+<Tag Name="Maint_Gen_Oil_Due" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[Generator oil change due]]></Description>
+<Data Format="L5K"><![CDATA[0]]></Data>
+<Data Format="Decorated"><DataValue DataType="BOOL" Radix="Decimal" Value="0"/></Data>
+</Tag>
+<Tag Name="Maint_Sump_Inspect_Due" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[Sump pump inspection due]]></Description>
+<Data Format="L5K"><![CDATA[0]]></Data>
+<Data Format="Decorated"><DataValue DataType="BOOL" Radix="Decimal" Value="0"/></Data>
+</Tag>
+<Tag Name="Maint_Furnace_Inspect_Due" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[Furnace inspection due]]></Description>
+<Data Format="L5K"><![CDATA[0]]></Data>
+<Data Format="Decorated"><DataValue DataType="BOOL" Radix="Decimal" Value="0"/></Data>
+</Tag>
+<Tag Name="HMI_Maint_Gen_Oil_Reset" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[HMI gen oil maintenance reset]]></Description>
+<Data Format="L5K"><![CDATA[0]]></Data>
+<Data Format="Decorated"><DataValue DataType="BOOL" Radix="Decimal" Value="0"/></Data>
+</Tag>
+<Tag Name="HMI_Maint_Sump_Reset" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[HMI sump maintenance reset]]></Description>
+<Data Format="L5K"><![CDATA[0]]></Data>
+<Data Format="Decorated"><DataValue DataType="BOOL" Radix="Decimal" Value="0"/></Data>
+</Tag>
+<Tag Name="HMI_Maint_Furnace_Reset" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[HMI furnace maintenance reset]]></Description>
+<Data Format="L5K"><![CDATA[0]]></Data>
+<Data Format="Decorated"><DataValue DataType="BOOL" Radix="Decimal" Value="0"/></Data>
+</Tag>
+<Tag Name="Maint_Sump_Cycle_ONS" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[One-shot for maintenance sump cycle counting]]></Description>
+<Data Format="L5K"><![CDATA[0]]></Data>
+<Data Format="Decorated"><DataValue DataType="BOOL" Radix="Decimal" Value="0"/></Data>
+</Tag>
+<Tag Name="HVAC_Efficiency_Alarm" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[HVAC efficiency degradation alarm]]></Description>
+<Data Format="L5K"><![CDATA[0]]></Data>
+<Data Format="Decorated"><DataValue DataType="BOOL" Radix="Decimal" Value="0"/></Data>
+</Tag>
+<Tag Name="HMI_HVAC_Efficiency_Reset" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[HMI HVAC efficiency reset]]></Description>
+<Data Format="L5K"><![CDATA[0]]></Data>
+<Data Format="Decorated"><DataValue DataType="BOOL" Radix="Decimal" Value="0"/></Data>
+</Tag>
+<Tag Name="HMI_Freeze_Warning" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[Freeze warning for HMI]]></Description>
+<Data Format="L5K"><![CDATA[0]]></Data>
+<Data Format="Decorated"><DataValue DataType="BOOL" Radix="Decimal" Value="0"/></Data>
+</Tag>
+<Tag Name="HMI_Freeze_Critical" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[Freeze critical for HMI]]></Description>
+<Data Format="L5K"><![CDATA[0]]></Data>
+<Data Format="Decorated"><DataValue DataType="BOOL" Radix="Decimal" Value="0"/></Data>
+</Tag>
+<Tag Name="HMI_Sump_Cycle_Rate_Alarm" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[Sump cycle rate alarm for HMI]]></Description>
+<Data Format="L5K"><![CDATA[0]]></Data>
+<Data Format="Decorated"><DataValue DataType="BOOL" Radix="Decimal" Value="0"/></Data>
+</Tag>
+<Tag Name="HMI_Leak_Any_Alarm" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[Leak alarm for HMI]]></Description>
+<Data Format="L5K"><![CDATA[0]]></Data>
+<Data Format="Decorated"><DataValue DataType="BOOL" Radix="Decimal" Value="0"/></Data>
+</Tag>
+<Tag Name="HMI_Garage_Open_Alarm" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[Garage open alarm for HMI]]></Description>
+<Data Format="L5K"><![CDATA[0]]></Data>
+<Data Format="Decorated"><DataValue DataType="BOOL" Radix="Decimal" Value="0"/></Data>
+</Tag>
+<Tag Name="HMI_Well_Pump_Running" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[Well pump running for HMI]]></Description>
+<Data Format="L5K"><![CDATA[0]]></Data>
+<Data Format="Decorated"><DataValue DataType="BOOL" Radix="Decimal" Value="0"/></Data>
+</Tag>
+<Tag Name="HMI_Well_Short_Cycle_Alarm" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[Well pump short cycle alarm for HMI]]></Description>
+<Data Format="L5K"><![CDATA[0]]></Data>
+<Data Format="Decorated"><DataValue DataType="BOOL" Radix="Decimal" Value="0"/></Data>
+</Tag>
+<Tag Name="HMI_Water_Pressure_Low_Alarm" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[Water pressure low alarm for HMI]]></Description>
+<Data Format="L5K"><![CDATA[0]]></Data>
+<Data Format="Decorated"><DataValue DataType="BOOL" Radix="Decimal" Value="0"/></Data>
+</Tag>
+<Tag Name="HMI_Load_Shed_Active" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[Load shed active for HMI]]></Description>
+<Data Format="L5K"><![CDATA[0]]></Data>
+<Data Format="Decorated"><DataValue DataType="BOOL" Radix="Decimal" Value="0"/></Data>
+</Tag>
+<Tag Name="HMI_Maint_Gen_Oil_Due" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[Gen oil due for HMI]]></Description>
+<Data Format="L5K"><![CDATA[0]]></Data>
+<Data Format="Decorated"><DataValue DataType="BOOL" Radix="Decimal" Value="0"/></Data>
+</Tag>
+<Tag Name="HMI_Maint_Sump_Inspect_Due" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[Sump inspect due for HMI]]></Description>
+<Data Format="L5K"><![CDATA[0]]></Data>
+<Data Format="Decorated"><DataValue DataType="BOOL" Radix="Decimal" Value="0"/></Data>
+</Tag>
+<Tag Name="HMI_Maint_Furnace_Inspect_Due" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[Furnace inspect due for HMI]]></Description>
+<Data Format="L5K"><![CDATA[0]]></Data>
+<Data Format="Decorated"><DataValue DataType="BOOL" Radix="Decimal" Value="0"/></Data>
+</Tag>
+<Tag Name="HMI_HVAC_Efficiency_Alarm" TagType="Base" DataType="BOOL" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[HVAC efficiency alarm for HMI]]></Description>
+<Data Format="L5K"><![CDATA[0]]></Data>
+<Data Format="Decorated"><DataValue DataType="BOOL" Radix="Decimal" Value="0"/></Data>
+</Tag>
 <Tag Name="Gen_State" TagType="Base" DataType="DINT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
 <Description><![CDATA[Generator state machine]]></Description>
 <Data Format="L5K"><![CDATA[0]]></Data>
@@ -1532,6 +1762,151 @@
 <Data Format="L5K"><![CDATA[0]]></Data>
 <Data Format="Decorated"><DataValue DataType="DINT" Radix="Decimal" Value="0"/></Data>
 </Tag>
+<Tag Name="Exercise_Schedule_Day" TagType="Base" DataType="DINT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[Exercise day of week 0=Sun 6=Sat]]></Description>
+<Data Format="L5K"><![CDATA[6]]></Data>
+<Data Format="Decorated"><DataValue DataType="DINT" Radix="Decimal" Value="6"/></Data>
+</Tag>
+<Tag Name="Exercise_Schedule_Hour" TagType="Base" DataType="DINT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[Exercise hour of day 0-23]]></Description>
+<Data Format="L5K"><![CDATA[10]]></Data>
+<Data Format="Decorated"><DataValue DataType="DINT" Radix="Decimal" Value="10"/></Data>
+</Tag>
+<Tag Name="Exercise_Duration_Minutes" TagType="Base" DataType="DINT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[Exercise duration in minutes]]></Description>
+<Data Format="L5K"><![CDATA[15]]></Data>
+<Data Format="Decorated"><DataValue DataType="DINT" Radix="Decimal" Value="15"/></Data>
+</Tag>
+<Tag Name="Sump_Hourly_Cycle_Count" TagType="Base" DataType="DINT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[Sump pump starts in current hour]]></Description>
+<Data Format="L5K"><![CDATA[0]]></Data>
+<Data Format="Decorated"><DataValue DataType="DINT" Radix="Decimal" Value="0"/></Data>
+</Tag>
+<Tag Name="Sump_Hourly_Seconds" TagType="Base" DataType="DINT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[Seconds counter for hourly cycle rate]]></Description>
+<Data Format="L5K"><![CDATA[0]]></Data>
+<Data Format="Decorated"><DataValue DataType="DINT" Radix="Decimal" Value="0"/></Data>
+</Tag>
+<Tag Name="Sump_Cycle_Rate_Max" TagType="Base" DataType="DINT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[Max sump cycles per hour before alarm]]></Description>
+<Data Format="L5K"><![CDATA[10]]></Data>
+<Data Format="Decorated"><DataValue DataType="DINT" Radix="Decimal" Value="10"/></Data>
+</Tag>
+<Tag Name="Garage_Open_Seconds" TagType="Base" DataType="DINT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[Garage door open duration seconds]]></Description>
+<Data Format="L5K"><![CDATA[0]]></Data>
+<Data Format="Decorated"><DataValue DataType="DINT" Radix="Decimal" Value="0"/></Data>
+</Tag>
+<Tag Name="Garage_Open_Max_Seconds" TagType="Base" DataType="DINT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[Max garage open seconds before alarm]]></Description>
+<Data Format="L5K"><![CDATA[1800]]></Data>
+<Data Format="Decorated"><DataValue DataType="DINT" Radix="Decimal" Value="1800"/></Data>
+</Tag>
+<Tag Name="Well_Pump_Cycle_Count" TagType="Base" DataType="DINT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[Total well pump cycles]]></Description>
+<Data Format="L5K"><![CDATA[0]]></Data>
+<Data Format="Decorated"><DataValue DataType="DINT" Radix="Decimal" Value="0"/></Data>
+</Tag>
+<Tag Name="Well_Pump_Current_Run_Seconds" TagType="Base" DataType="DINT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[Current well pump run seconds]]></Description>
+<Data Format="L5K"><![CDATA[0]]></Data>
+<Data Format="Decorated"><DataValue DataType="DINT" Radix="Decimal" Value="0"/></Data>
+</Tag>
+<Tag Name="Well_Pump_Last_Run_Seconds" TagType="Base" DataType="DINT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[Last well pump run duration seconds]]></Description>
+<Data Format="L5K"><![CDATA[0]]></Data>
+<Data Format="Decorated"><DataValue DataType="DINT" Radix="Decimal" Value="0"/></Data>
+</Tag>
+<Tag Name="Well_Pump_Short_Cycle_Count" TagType="Base" DataType="DINT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[Consecutive well pump short cycles]]></Description>
+<Data Format="L5K"><![CDATA[0]]></Data>
+<Data Format="Decorated"><DataValue DataType="DINT" Radix="Decimal" Value="0"/></Data>
+</Tag>
+<Tag Name="Well_Pump_Min_Run_Seconds" TagType="Base" DataType="DINT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[Minimum expected well pump run seconds]]></Description>
+<Data Format="L5K"><![CDATA[30]]></Data>
+<Data Format="Decorated"><DataValue DataType="DINT" Radix="Decimal" Value="30"/></Data>
+</Tag>
+<Tag Name="Maint_Gen_Oil_Hours" TagType="Base" DataType="DINT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[Gen oil change interval hours]]></Description>
+<Data Format="L5K"><![CDATA[200]]></Data>
+<Data Format="Decorated"><DataValue DataType="DINT" Radix="Decimal" Value="200"/></Data>
+</Tag>
+<Tag Name="Maint_Gen_Run_Since_Oil" TagType="Base" DataType="DINT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[Gen run seconds since last oil change]]></Description>
+<Data Format="L5K"><![CDATA[0]]></Data>
+<Data Format="Decorated"><DataValue DataType="DINT" Radix="Decimal" Value="0"/></Data>
+</Tag>
+<Tag Name="Maint_Sump_Inspect_Cycles" TagType="Base" DataType="DINT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[Sump inspect interval cycles]]></Description>
+<Data Format="L5K"><![CDATA[500]]></Data>
+<Data Format="Decorated"><DataValue DataType="DINT" Radix="Decimal" Value="500"/></Data>
+</Tag>
+<Tag Name="Maint_Sump_Cycles_Since_Inspect" TagType="Base" DataType="DINT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[Sump cycles since last inspection]]></Description>
+<Data Format="L5K"><![CDATA[0]]></Data>
+<Data Format="Decorated"><DataValue DataType="DINT" Radix="Decimal" Value="0"/></Data>
+</Tag>
+<Tag Name="Maint_Furnace_Inspect_Hours" TagType="Base" DataType="DINT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[Furnace inspect interval hours]]></Description>
+<Data Format="L5K"><![CDATA[1000]]></Data>
+<Data Format="Decorated"><DataValue DataType="DINT" Radix="Decimal" Value="1000"/></Data>
+</Tag>
+<Tag Name="Maint_Furnace_Run_Since_Inspect" TagType="Base" DataType="DINT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[Furnace run seconds since last inspection]]></Description>
+<Data Format="L5K"><![CDATA[0]]></Data>
+<Data Format="Decorated"><DataValue DataType="DINT" Radix="Decimal" Value="0"/></Data>
+</Tag>
+<Tag Name="Maint_Gen_Hours_Since_Oil" TagType="Base" DataType="DINT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[Gen hours since oil change]]></Description>
+<Data Format="L5K"><![CDATA[0]]></Data>
+<Data Format="Decorated"><DataValue DataType="DINT" Radix="Decimal" Value="0"/></Data>
+</Tag>
+<Tag Name="Maint_Furnace_Hours_Since_Inspect" TagType="Base" DataType="DINT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[Furnace hours since inspection]]></Description>
+<Data Format="L5K"><![CDATA[0]]></Data>
+<Data Format="Decorated"><DataValue DataType="DINT" Radix="Decimal" Value="0"/></Data>
+</Tag>
+<Tag Name="HVAC_Daily_Run_Seconds" TagType="Base" DataType="DINT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[Daily furnace run seconds for efficiency calc]]></Description>
+<Data Format="L5K"><![CDATA[0]]></Data>
+<Data Format="Decorated"><DataValue DataType="DINT" Radix="Decimal" Value="0"/></Data>
+</Tag>
+<Tag Name="HVAC_HDD_Hourly_Seconds" TagType="Base" DataType="DINT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[Seconds counter for HDD hourly calc]]></Description>
+<Data Format="L5K"><![CDATA[0]]></Data>
+<Data Format="Decorated"><DataValue DataType="DINT" Radix="Decimal" Value="0"/></Data>
+</Tag>
+<Tag Name="HMI_Garage_Open_Seconds" TagType="Base" DataType="DINT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[Garage open seconds for HMI]]></Description>
+<Data Format="L5K"><![CDATA[0]]></Data>
+<Data Format="Decorated"><DataValue DataType="DINT" Radix="Decimal" Value="0"/></Data>
+</Tag>
+<Tag Name="HMI_Well_Pump_Cycle_Count" TagType="Base" DataType="DINT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[Well pump cycles for HMI]]></Description>
+<Data Format="L5K"><![CDATA[0]]></Data>
+<Data Format="Decorated"><DataValue DataType="DINT" Radix="Decimal" Value="0"/></Data>
+</Tag>
+<Tag Name="HMI_Well_Pump_Last_Run_Seconds" TagType="Base" DataType="DINT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[Well pump last run for HMI]]></Description>
+<Data Format="L5K"><![CDATA[0]]></Data>
+<Data Format="Decorated"><DataValue DataType="DINT" Radix="Decimal" Value="0"/></Data>
+</Tag>
+<Tag Name="HMI_Maint_Gen_Hours_Since_Oil" TagType="Base" DataType="DINT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[Gen hours since oil for HMI]]></Description>
+<Data Format="L5K"><![CDATA[0]]></Data>
+<Data Format="Decorated"><DataValue DataType="DINT" Radix="Decimal" Value="0"/></Data>
+</Tag>
+<Tag Name="HMI_Maint_Sump_Cycles_Since_Inspect" TagType="Base" DataType="DINT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[Sump cycles since inspect for HMI]]></Description>
+<Data Format="L5K"><![CDATA[0]]></Data>
+<Data Format="Decorated"><DataValue DataType="DINT" Radix="Decimal" Value="0"/></Data>
+</Tag>
+<Tag Name="HMI_Maint_Furnace_Hours_Since_Inspect" TagType="Base" DataType="DINT" Radix="Decimal" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[Furnace hours since inspect for HMI]]></Description>
+<Data Format="L5K"><![CDATA[0]]></Data>
+<Data Format="Decorated"><DataValue DataType="DINT" Radix="Decimal" Value="0"/></Data>
+</Tag>
 <Tag Name="Outdoor_Temp_F" TagType="Base" DataType="REAL" Radix="Float" Constant="false" ExternalAccess="Read/Write">
 <Description><![CDATA[Scaled outdoor temperature in F]]></Description>
 <Data Format="L5K"><![CDATA[0.00000000e+000]]></Data>
@@ -1609,6 +1984,76 @@
 </Tag>
 <Tag Name="HMI_Elec_Total_kWh" TagType="Base" DataType="REAL" Radix="Float" Constant="false" ExternalAccess="Read/Write">
 <Description><![CDATA[Total kWh for HMI]]></Description>
+<Data Format="L5K"><![CDATA[0.00000000e+000]]></Data>
+<Data Format="Decorated"><DataValue DataType="REAL" Radix="Float" Value="0.0"/></Data>
+</Tag>
+<Tag Name="Freeze_Warning_SP" TagType="Base" DataType="REAL" Radix="Float" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[Freeze warning setpoint deg F]]></Description>
+<Data Format="L5K"><![CDATA[3.50000000e+001]]></Data>
+<Data Format="Decorated"><DataValue DataType="REAL" Radix="Float" Value="35.0"/></Data>
+</Tag>
+<Tag Name="Freeze_Critical_SP" TagType="Base" DataType="REAL" Radix="Float" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[Freeze critical setpoint deg F]]></Description>
+<Data Format="L5K"><![CDATA[2.00000000e+001]]></Data>
+<Data Format="Decorated"><DataValue DataType="REAL" Radix="Float" Value="20.0"/></Data>
+</Tag>
+<Tag Name="Water_Pressure_PSI" TagType="Base" DataType="REAL" Radix="Float" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[Scaled water pressure in PSI]]></Description>
+<Data Format="L5K"><![CDATA[0.00000000e+000]]></Data>
+<Data Format="Decorated"><DataValue DataType="REAL" Radix="Float" Value="0.0"/></Data>
+</Tag>
+<Tag Name="Water_Pressure_Raw" TagType="Base" DataType="REAL" Radix="Float" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[Raw water pressure intermediate calc]]></Description>
+<Data Format="L5K"><![CDATA[0.00000000e+000]]></Data>
+<Data Format="Decorated"><DataValue DataType="REAL" Radix="Float" Value="0.0"/></Data>
+</Tag>
+<Tag Name="Water_Pressure_Low_SP" TagType="Base" DataType="REAL" Radix="Float" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[Water pressure low alarm setpoint PSI]]></Description>
+<Data Format="L5K"><![CDATA[3.00000000e+001]]></Data>
+<Data Format="Decorated"><DataValue DataType="REAL" Radix="Float" Value="30.0"/></Data>
+</Tag>
+<Tag Name="Load_Shed_Threshold" TagType="Base" DataType="REAL" Radix="Float" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[Load shed current threshold amps]]></Description>
+<Data Format="L5K"><![CDATA[7.00000000e+001]]></Data>
+<Data Format="Decorated"><DataValue DataType="REAL" Radix="Float" Value="70.0"/></Data>
+</Tag>
+<Tag Name="HVAC_HDD_Accumulated" TagType="Base" DataType="REAL" Radix="Float" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[Accumulated heating degree days]]></Description>
+<Data Format="L5K"><![CDATA[0.00000000e+000]]></Data>
+<Data Format="Decorated"><DataValue DataType="REAL" Radix="Float" Value="0.0"/></Data>
+</Tag>
+<Tag Name="HVAC_HDD_Runtime_Ratio" TagType="Base" DataType="REAL" Radix="Float" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[Runtime to HDD ratio]]></Description>
+<Data Format="L5K"><![CDATA[0.00000000e+000]]></Data>
+<Data Format="Decorated"><DataValue DataType="REAL" Radix="Float" Value="0.0"/></Data>
+</Tag>
+<Tag Name="HVAC_HDD_Baseline_Ratio" TagType="Base" DataType="REAL" Radix="Float" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[Baseline runtime to HDD ratio]]></Description>
+<Data Format="L5K"><![CDATA[3.60000000e+003]]></Data>
+<Data Format="Decorated"><DataValue DataType="REAL" Radix="Float" Value="3600.0"/></Data>
+</Tag>
+<Tag Name="HVAC_Efficiency_Pct" TagType="Base" DataType="REAL" Radix="Float" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[HVAC efficiency percentage]]></Description>
+<Data Format="L5K"><![CDATA[0.00000000e+000]]></Data>
+<Data Format="Decorated"><DataValue DataType="REAL" Radix="Float" Value="0.0"/></Data>
+</Tag>
+<Tag Name="HVAC_Efficiency_Threshold" TagType="Base" DataType="REAL" Radix="Float" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[HVAC efficiency alarm threshold pct]]></Description>
+<Data Format="L5K"><![CDATA[1.30000000e+002]]></Data>
+<Data Format="Decorated"><DataValue DataType="REAL" Radix="Float" Value="130.0"/></Data>
+</Tag>
+<Tag Name="HVAC_Daily_HDD" TagType="Base" DataType="REAL" Radix="Float" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[Daily heating degree days]]></Description>
+<Data Format="L5K"><![CDATA[0.00000000e+000]]></Data>
+<Data Format="Decorated"><DataValue DataType="REAL" Radix="Float" Value="0.0"/></Data>
+</Tag>
+<Tag Name="HMI_Water_Pressure_PSI" TagType="Base" DataType="REAL" Radix="Float" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[Water pressure for HMI]]></Description>
+<Data Format="L5K"><![CDATA[0.00000000e+000]]></Data>
+<Data Format="Decorated"><DataValue DataType="REAL" Radix="Float" Value="0.0"/></Data>
+</Tag>
+<Tag Name="HMI_HVAC_Efficiency_Pct" TagType="Base" DataType="REAL" Radix="Float" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[HVAC efficiency pct for HMI]]></Description>
 <Data Format="L5K"><![CDATA[0.00000000e+000]]></Data>
 <Data Format="Decorated"><DataValue DataType="REAL" Radix="Float" Value="0.0"/></Data>
 </Tag>
@@ -1833,6 +2278,32 @@
 </Structure>
 </Data>
 </Tag>
+<Tag Name="Load_Shed_Timer" TagType="Base" DataType="TIMER" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[10s sustained overload for load shed]]></Description>
+<Data Format="L5K"><![CDATA[[0,10000,0]]]></Data>
+<Data Format="Decorated">
+<Structure DataType="TIMER">
+<DataValueMember Name="PRE" DataType="DINT" Radix="Decimal" Value="10000"/>
+<DataValueMember Name="ACC" DataType="DINT" Radix="Decimal" Value="0"/>
+<DataValueMember Name="EN" DataType="BOOL" Value="0"/>
+<DataValueMember Name="TT" DataType="BOOL" Value="0"/>
+<DataValueMember Name="DN" DataType="BOOL" Value="0"/>
+</Structure>
+</Data>
+</Tag>
+<Tag Name="Well_Short_Cycle_Timer" TagType="Base" DataType="TIMER" Constant="false" ExternalAccess="Read/Write">
+<Description><![CDATA[60s well pump short cycle detection]]></Description>
+<Data Format="L5K"><![CDATA[[0,60000,0]]]></Data>
+<Data Format="Decorated">
+<Structure DataType="TIMER">
+<DataValueMember Name="PRE" DataType="DINT" Radix="Decimal" Value="60000"/>
+<DataValueMember Name="ACC" DataType="DINT" Radix="Decimal" Value="0"/>
+<DataValueMember Name="EN" DataType="BOOL" Value="0"/>
+<DataValueMember Name="TT" DataType="BOOL" Value="0"/>
+<DataValueMember Name="DN" DataType="BOOL" Value="0"/>
+</Structure>
+</Data>
+</Tag>
 </Tags>
 <Programs>
 <Program Name="MainProgram" TestEdits="false" MainRoutineName="MainRoutine" Disabled="false" UseAsFolder="false">
@@ -1861,10 +2332,26 @@
 <Text><![CDATA[JSR(Electrical_Monitor,0);]]></Text>
 </Rung>
 <Rung Number="5" Type="N">
+<Comment><![CDATA[Call Leak Detection]]></Comment>
+<Text><![CDATA[JSR(Leak_Detection,0);]]></Text>
+</Rung>
+<Rung Number="6" Type="N">
+<Comment><![CDATA[Call Garage Monitor]]></Comment>
+<Text><![CDATA[JSR(Garage_Monitor,0);]]></Text>
+</Rung>
+<Rung Number="7" Type="N">
+<Comment><![CDATA[Call Well Pump Monitor]]></Comment>
+<Text><![CDATA[JSR(Well_Pump_Monitor,0);]]></Text>
+</Rung>
+<Rung Number="8" Type="N">
+<Comment><![CDATA[Call Maintenance Monitor]]></Comment>
+<Text><![CDATA[JSR(Maintenance_Monitor,0);]]></Text>
+</Rung>
+<Rung Number="9" Type="N">
 <Comment><![CDATA[Call HMI Interface]]></Comment>
 <Text><![CDATA[JSR(HMI_Interface,0);]]></Text>
 </Rung>
-<Rung Number="6" Type="N">
+<Rung Number="10" Type="N">
 <Comment><![CDATA[Call Output Mapping]]></Comment>
 <Text><![CDATA[JSR(Output_Mapping,0);]]></Text>
 </Rung>
@@ -1940,6 +2427,42 @@
 <Comment><![CDATA[Clamp current high]]></Comment>
 <Text><![CDATA[GRT(House_Current_Amps,200.0)MOV(200.0,House_Current_Amps);]]></Text>
 </Rung>
+<Rung Number="17" Type="N">
+<Comment><![CDATA[Pt08: Leak sensor zone 1]]></Comment>
+<Text><![CDATA[XIC(Local:1:I.Pt08.Data)OTE(Leak_Zone1);]]></Text>
+</Rung>
+<Rung Number="18" Type="N">
+<Comment><![CDATA[Pt09: Leak sensor zone 2]]></Comment>
+<Text><![CDATA[XIC(Local:1:I.Pt09.Data)OTE(Leak_Zone2);]]></Text>
+</Rung>
+<Rung Number="19" Type="N">
+<Comment><![CDATA[Pt10: Leak sensor zone 3]]></Comment>
+<Text><![CDATA[XIC(Local:1:I.Pt10.Data)OTE(Leak_Zone3);]]></Text>
+</Rung>
+<Rung Number="20" Type="N">
+<Comment><![CDATA[Pt11: Garage door closed limit switch NC]]></Comment>
+<Text><![CDATA[XIC(Local:1:I.Pt11.Data)OTE(Garage_Door_Closed);]]></Text>
+</Rung>
+<Rung Number="21" Type="N">
+<Comment><![CDATA[Pt12: Well pump running feedback]]></Comment>
+<Text><![CDATA[XIC(Local:1:I.Pt12.Data)OTE(Well_Pump_Running);]]></Text>
+</Rung>
+<Rung Number="22" Type="N">
+<Comment><![CDATA[Water pressure: subtract 20% offset (4mA)]]></Comment>
+<Text><![CDATA[SUB(Local:3:I.Ch02.Data,20.0,Water_Pressure_Raw);]]></Text>
+</Rung>
+<Rung Number="23" Type="N">
+<Comment><![CDATA[Water pressure: scale to 0-100 PSI (x1.25)]]></Comment>
+<Text><![CDATA[MUL(Water_Pressure_Raw,1.25,Water_Pressure_PSI);]]></Text>
+</Rung>
+<Rung Number="24" Type="N">
+<Comment><![CDATA[Clamp water pressure low]]></Comment>
+<Text><![CDATA[LES(Water_Pressure_PSI,0.0)MOV(0.0,Water_Pressure_PSI);]]></Text>
+</Rung>
+<Rung Number="25" Type="N">
+<Comment><![CDATA[Clamp water pressure high]]></Comment>
+<Text><![CDATA[GRT(Water_Pressure_PSI,100.0)MOV(100.0,Water_Pressure_PSI);]]></Text>
+</Rung>
 </RLLContent>
 </Routine>
 <Routine Name="Generator_Control" Type="RLL">
@@ -2005,178 +2528,182 @@
 <Text><![CDATA[XIC(HMI_Exercise_Request)OTU(HMI_Exercise_Request);]]></Text>
 </Rung>
 <Rung Number="15" Type="N">
+<Comment><![CDATA[Set exercise timer preset from duration setting]]></Comment>
+<Text><![CDATA[EQU(Gen_State,0)MUL(Exercise_Duration_Minutes,60000,Exercise_Run_Timer.PRE);]]></Text>
+</Rung>
+<Rung Number="16" Type="N">
 <Comment><![CDATA[Gen start cmd - active in run/warmup/transfer/exercise states]]></Comment>
 <Text><![CDATA[[EQU(Gen_State,10),EQU(Gen_State,20),EQU(Gen_State,30),EQU(Gen_State,40),EQU(Gen_State,50),EQU(Gen_State,55),EQU(Gen_State,60),EQU(Gen_State,90),EQU(Gen_State,95),EQU(Gen_State,100),EQU(Gen_State,105)]OTE(Gen_Start_Cmd);]]></Text>
 </Rung>
-<Rung Number="16" Type="N">
+<Rung Number="17" Type="N">
 <Comment><![CDATA[ATS transfer cmd - active during generator operation]]></Comment>
 <Text><![CDATA[[EQU(Gen_State,40),EQU(Gen_State,50)]OTE(ATS_Transfer_Cmd);]]></Text>
 </Rung>
-<Rung Number="17" Type="N">
+<Rung Number="18" Type="N">
 <Comment><![CDATA[On utility power flag]]></Comment>
 <Text><![CDATA[[EQU(Gen_State,0),EQU(Gen_State,55),EQU(Gen_State,60),EQU(Gen_State,70),EQU(Gen_State,90),EQU(Gen_State,95),EQU(Gen_State,100),EQU(Gen_State,105),EQU(Gen_State,110),EQU(Gen_State,999)]OTE(Gen_On_Utility);]]></Text>
 </Rung>
-<Rung Number="18" Type="N">
+<Rung Number="19" Type="N">
 <Comment><![CDATA[On generator power flag]]></Comment>
 <Text><![CDATA[EQU(Gen_State,50)OTE(Gen_On_Generator);]]></Text>
 </Rung>
-<Rung Number="19" Type="N">
+<Rung Number="20" Type="N">
 <Comment><![CDATA[Exercise active flag]]></Comment>
 <Text><![CDATA[[EQU(Gen_State,90),EQU(Gen_State,95),EQU(Gen_State,100),EQU(Gen_State,105)]OTE(Gen_Exercise_Active);]]></Text>
 </Rung>
-<Rung Number="20" Type="N">
+<Rung Number="21" Type="N">
 <Comment><![CDATA[State 0->10: Power loss confirmed]]></Comment>
 <Text><![CDATA[EQU(Gen_State,0)XIC(Power_Loss_Delay.DN)MOV(10,Gen_State);]]></Text>
 </Rung>
-<Rung Number="21" Type="N">
+<Rung Number="22" Type="N">
 <Comment><![CDATA[State 0->90: Exercise trigger, no fault]]></Comment>
 <Text><![CDATA[EQU(Gen_State,0)XIC(Exercise_Trigger)XIO(Gen_Fault)XIO(Power_Loss_Delay.DN)MOV(90,Gen_State);]]></Text>
 </Rung>
-<Rung Number="22" Type="N">
+<Rung Number="23" Type="N">
 <Comment><![CDATA[State 90: Clear exercise trigger]]></Comment>
 <Text><![CDATA[EQU(Gen_State,90)OTU(Exercise_Trigger);]]></Text>
 </Rung>
-<Rung Number="23" Type="N">
+<Rung Number="24" Type="N">
 <Comment><![CDATA[State 10->20: Start commanded]]></Comment>
 <Text><![CDATA[EQU(Gen_State,10)MOV(20,Gen_State);]]></Text>
 </Rung>
-<Rung Number="24" Type="N">
+<Rung Number="25" Type="N">
 <Comment><![CDATA[State 20->30: Generator running confirmed]]></Comment>
 <Text><![CDATA[EQU(Gen_State,20)XIC(Gen_Running)MOV(30,Gen_State);]]></Text>
 </Rung>
-<Rung Number="25" Type="N">
+<Rung Number="26" Type="N">
 <Comment><![CDATA[State 20: Increment crank attempts on timeout]]></Comment>
 <Text><![CDATA[EQU(Gen_State,20)XIC(Gen_Start_Timeout.DN)ONS(Crank_Attempt_ONS)ADD(Gen_Crank_Attempts,1,Gen_Crank_Attempts);]]></Text>
 </Rung>
-<Rung Number="26" Type="N">
+<Rung Number="27" Type="N">
 <Comment><![CDATA[State 20->999: Start fail after 3 attempts]]></Comment>
 <Text><![CDATA[EQU(Gen_State,20)XIC(Gen_Start_Timeout.DN)GEQ(Gen_Crank_Attempts,3)OTL(Gen_Start_Fail);]]></Text>
 </Rung>
-<Rung Number="27" Type="N">
+<Rung Number="28" Type="N">
 <Text><![CDATA[EQU(Gen_State,20)XIC(Gen_Start_Timeout.DN)GEQ(Gen_Crank_Attempts,3)MOV(999,Gen_State);]]></Text>
 </Rung>
-<Rung Number="28" Type="N">
+<Rung Number="29" Type="N">
 <Comment><![CDATA[State 20->10: Retry start (under 3 attempts)]]></Comment>
 <Text><![CDATA[EQU(Gen_State,20)XIC(Gen_Start_Timeout.DN)LES(Gen_Crank_Attempts,3)MOV(10,Gen_State);]]></Text>
 </Rung>
-<Rung Number="29" Type="N">
+<Rung Number="30" Type="N">
 <Comment><![CDATA[State 30->40: Warmup complete]]></Comment>
 <Text><![CDATA[EQU(Gen_State,30)XIC(Gen_Warmup_Timer.DN)MOV(40,Gen_State);]]></Text>
 </Rung>
-<Rung Number="30" Type="N">
+<Rung Number="31" Type="N">
 <Comment><![CDATA[State 30->999: Fault during warmup]]></Comment>
 <Text><![CDATA[EQU(Gen_State,30)XIC(Gen_Fault)MOV(999,Gen_State);]]></Text>
 </Rung>
-<Rung Number="31" Type="N">
+<Rung Number="32" Type="N">
 <Comment><![CDATA[State 40->50: ATS transfer confirmed]]></Comment>
 <Text><![CDATA[EQU(Gen_State,40)XIC(Transfer_Delay.DN)XIC(ATS_Generator_Pos)MOV(50,Gen_State);]]></Text>
 </Rung>
-<Rung Number="32" Type="N">
+<Rung Number="33" Type="N">
 <Comment><![CDATA[State 40->999: Fault during transfer]]></Comment>
 <Text><![CDATA[EQU(Gen_State,40)XIC(Gen_Fault)MOV(999,Gen_State);]]></Text>
 </Rung>
-<Rung Number="33" Type="N">
+<Rung Number="34" Type="N">
 <Comment><![CDATA[State 50: Track generator run time]]></Comment>
 <Text><![CDATA[EQU(Gen_State,50)XIC(Pulse_1s)ADD(Gen_Total_Run_Seconds,1,Gen_Total_Run_Seconds);]]></Text>
 </Rung>
-<Rung Number="34" Type="N">
+<Rung Number="35" Type="N">
 <Comment><![CDATA[State 50->55: Utility returned stable 5s]]></Comment>
 <Text><![CDATA[EQU(Gen_State,50)XIC(Gen_Utility_Return_Timer.DN)MOV(55,Gen_State);]]></Text>
 </Rung>
-<Rung Number="35" Type="N">
+<Rung Number="36" Type="N">
 <Comment><![CDATA[State 50->999: Fault while on generator]]></Comment>
 <Text><![CDATA[EQU(Gen_State,50)XIC(Gen_Fault)MOV(999,Gen_State);]]></Text>
 </Rung>
-<Rung Number="36" Type="N">
+<Rung Number="37" Type="N">
 <Comment><![CDATA[State 55->60: ATS back to utility confirmed]]></Comment>
 <Text><![CDATA[EQU(Gen_State,55)XIC(ATS_Utility_Pos)MOV(60,Gen_State);]]></Text>
 </Rung>
-<Rung Number="37" Type="N">
+<Rung Number="38" Type="N">
 <Comment><![CDATA[State 60->70: Cooldown complete]]></Comment>
 <Text><![CDATA[EQU(Gen_State,60)XIC(Gen_Cooldown_Timer.DN)MOV(70,Gen_State);]]></Text>
 </Rung>
-<Rung Number="38" Type="N">
+<Rung Number="39" Type="N">
 <Comment><![CDATA[State 70: Clear crank attempts on successful stop]]></Comment>
 <Text><![CDATA[EQU(Gen_State,70)XIO(Gen_Running)MOV(0,Gen_Crank_Attempts);]]></Text>
 </Rung>
-<Rung Number="39" Type="N">
+<Rung Number="40" Type="N">
 <Comment><![CDATA[State 70->0: Generator stopped]]></Comment>
 <Text><![CDATA[EQU(Gen_State,70)XIO(Gen_Running)MOV(0,Gen_State);]]></Text>
 </Rung>
-<Rung Number="40" Type="N">
+<Rung Number="41" Type="N">
 <Comment><![CDATA[State 70->999: Stop timeout]]></Comment>
 <Text><![CDATA[EQU(Gen_State,70)XIC(Gen_Stop_Timeout.DN)OTL(Gen_Stop_Fail);]]></Text>
 </Rung>
-<Rung Number="41" Type="N">
+<Rung Number="42" Type="N">
 <Text><![CDATA[EQU(Gen_State,70)XIC(Gen_Stop_Timeout.DN)MOV(999,Gen_State);]]></Text>
 </Rung>
-<Rung Number="42" Type="N">
+<Rung Number="43" Type="N">
 <Comment><![CDATA[State 90->95: Exercise start transition]]></Comment>
 <Text><![CDATA[EQU(Gen_State,90)MOV(95,Gen_State);]]></Text>
 </Rung>
-<Rung Number="43" Type="N">
+<Rung Number="44" Type="N">
 <Comment><![CDATA[State 95->100: Exercise generator running]]></Comment>
 <Text><![CDATA[EQU(Gen_State,95)XIC(Gen_Running)MOV(100,Gen_State);]]></Text>
 </Rung>
-<Rung Number="44" Type="N">
+<Rung Number="45" Type="N">
 <Comment><![CDATA[State 95->999: Exercise start timeout]]></Comment>
 <Text><![CDATA[EQU(Gen_State,95)XIC(Gen_Start_Timeout.DN)OTL(Gen_Start_Fail);]]></Text>
 </Rung>
-<Rung Number="45" Type="N">
+<Rung Number="46" Type="N">
 <Text><![CDATA[EQU(Gen_State,95)XIC(Gen_Start_Timeout.DN)MOV(999,Gen_State);]]></Text>
 </Rung>
-<Rung Number="46" Type="N">
+<Rung Number="47" Type="N">
 <Comment><![CDATA[State 100: Track exercise run time]]></Comment>
 <Text><![CDATA[EQU(Gen_State,100)XIC(Pulse_1s)ADD(Gen_Total_Run_Seconds,1,Gen_Total_Run_Seconds);]]></Text>
 </Rung>
-<Rung Number="47" Type="N">
+<Rung Number="48" Type="N">
 <Comment><![CDATA[State 100->105: Exercise run complete]]></Comment>
 <Text><![CDATA[EQU(Gen_State,100)XIC(Exercise_Run_Timer.DN)MOV(105,Gen_State);]]></Text>
 </Rung>
-<Rung Number="48" Type="N">
+<Rung Number="49" Type="N">
 <Comment><![CDATA[State 100->30: Power loss during exercise - switch to real operation]]></Comment>
 <Text><![CDATA[EQU(Gen_State,100)XIO(Utility_Power_Present)MOV(30,Gen_State);]]></Text>
 </Rung>
-<Rung Number="49" Type="N">
+<Rung Number="50" Type="N">
 <Comment><![CDATA[State 100->999: Fault during exercise]]></Comment>
 <Text><![CDATA[EQU(Gen_State,100)XIC(Gen_Fault)MOV(999,Gen_State);]]></Text>
 </Rung>
-<Rung Number="50" Type="N">
+<Rung Number="51" Type="N">
 <Comment><![CDATA[State 105->110: Exercise cooldown complete]]></Comment>
 <Text><![CDATA[EQU(Gen_State,105)XIC(Gen_Cooldown_Timer.DN)MOV(110,Gen_State);]]></Text>
 </Rung>
-<Rung Number="51" Type="N">
+<Rung Number="52" Type="N">
 <Comment><![CDATA[State 110: Clear crank attempts on exercise shutdown]]></Comment>
 <Text><![CDATA[EQU(Gen_State,110)XIO(Gen_Running)MOV(0,Gen_Crank_Attempts);]]></Text>
 </Rung>
-<Rung Number="52" Type="N">
+<Rung Number="53" Type="N">
 <Comment><![CDATA[State 110->0: Exercise shutdown complete]]></Comment>
 <Text><![CDATA[EQU(Gen_State,110)XIO(Gen_Running)MOV(0,Gen_State);]]></Text>
 </Rung>
-<Rung Number="53" Type="N">
+<Rung Number="54" Type="N">
 <Comment><![CDATA[State 110->999: Exercise stop timeout]]></Comment>
 <Text><![CDATA[EQU(Gen_State,110)XIC(Gen_Stop_Timeout.DN)OTL(Gen_Stop_Fail);]]></Text>
 </Rung>
-<Rung Number="54" Type="N">
+<Rung Number="55" Type="N">
 <Text><![CDATA[EQU(Gen_State,110)XIC(Gen_Stop_Timeout.DN)MOV(999,Gen_State);]]></Text>
 </Rung>
-<Rung Number="55" Type="N">
+<Rung Number="56" Type="N">
 <Comment><![CDATA[Fault reset from HMI - clear start fail]]></Comment>
 <Text><![CDATA[XIC(HMI_Gen_Fault_Reset)XIO(Gen_Fault)OTU(Gen_Start_Fail);]]></Text>
 </Rung>
-<Rung Number="56" Type="N">
+<Rung Number="57" Type="N">
 <Comment><![CDATA[Fault reset - clear stop fail]]></Comment>
 <Text><![CDATA[XIC(HMI_Gen_Fault_Reset)XIO(Gen_Fault)OTU(Gen_Stop_Fail);]]></Text>
 </Rung>
-<Rung Number="57" Type="N">
+<Rung Number="58" Type="N">
 <Comment><![CDATA[Fault reset - clear crank attempts]]></Comment>
 <Text><![CDATA[XIC(HMI_Gen_Fault_Reset)XIO(Gen_Fault)MOV(0,Gen_Crank_Attempts);]]></Text>
 </Rung>
-<Rung Number="58" Type="N">
+<Rung Number="59" Type="N">
 <Comment><![CDATA[Fault reset - return to idle]]></Comment>
 <Text><![CDATA[XIC(HMI_Gen_Fault_Reset)XIO(Gen_Fault)MOV(0,Gen_State);]]></Text>
 </Rung>
-<Rung Number="59" Type="N">
+<Rung Number="60" Type="N">
 <Comment><![CDATA[Clear HMI fault reset]]></Comment>
 <Text><![CDATA[XIC(HMI_Gen_Fault_Reset)OTU(HMI_Gen_Fault_Reset);]]></Text>
 </Rung>
@@ -2308,10 +2835,42 @@
 <Text><![CDATA[XIC(HMI_Sump_Fault_Reset)OTU(Sump_Max_Run_Fault);]]></Text>
 </Rung>
 <Rung Number="31" Type="N">
-<Text><![CDATA[XIC(HMI_Sump_Fault_Reset)MOV(0,Sump_State);]]></Text>
+<Comment><![CDATA[Sump fault reset - clear cycle rate alarm]]></Comment>
+<Text><![CDATA[XIC(HMI_Sump_Fault_Reset)OTU(Sump_Cycle_Rate_Alarm);]]></Text>
 </Rung>
 <Rung Number="32" Type="N">
+<Text><![CDATA[XIC(HMI_Sump_Fault_Reset)MOV(0,Sump_State);]]></Text>
+</Rung>
+<Rung Number="33" Type="N">
 <Text><![CDATA[XIC(HMI_Sump_Fault_Reset)OTU(HMI_Sump_Fault_Reset);]]></Text>
+</Rung>
+<Rung Number="34" Type="N">
+<Comment><![CDATA[Count hourly seconds]]></Comment>
+<Text><![CDATA[XIC(Pulse_1s)ADD(Sump_Hourly_Seconds,1,Sump_Hourly_Seconds);]]></Text>
+</Rung>
+<Rung Number="35" Type="N">
+<Comment><![CDATA[One-shot trigger: pump entering state 10]]></Comment>
+<Text><![CDATA[EQU(Sump_State,10)XIO(Sump_Cycle_Rate_ONS)ADD(Sump_Hourly_Cycle_Count,1,Sump_Hourly_Cycle_Count);]]></Text>
+</Rung>
+<Rung Number="36" Type="N">
+<Comment><![CDATA[Set one-shot bit when in state 10]]></Comment>
+<Text><![CDATA[EQU(Sump_State,10)OTL(Sump_Cycle_Rate_ONS);]]></Text>
+</Rung>
+<Rung Number="37" Type="N">
+<Comment><![CDATA[Clear one-shot bit when not in state 10]]></Comment>
+<Text><![CDATA[NEQ(Sump_State,10)OTU(Sump_Cycle_Rate_ONS);]]></Text>
+</Rung>
+<Rung Number="38" Type="N">
+<Comment><![CDATA[Reset hourly counter at 3600 seconds]]></Comment>
+<Text><![CDATA[GEQ(Sump_Hourly_Seconds,3600)MOV(0,Sump_Hourly_Cycle_Count);]]></Text>
+</Rung>
+<Rung Number="39" Type="N">
+<Comment><![CDATA[Reset hourly seconds at 3600]]></Comment>
+<Text><![CDATA[GEQ(Sump_Hourly_Seconds,3600)MOV(0,Sump_Hourly_Seconds);]]></Text>
+</Rung>
+<Rung Number="40" Type="N">
+<Comment><![CDATA[Cycle rate alarm when count exceeds max]]></Comment>
+<Text><![CDATA[GEQ(Sump_Hourly_Cycle_Count,Sump_Cycle_Rate_Max)OTL(Sump_Cycle_Rate_Alarm);]]></Text>
 </Rung>
 </RLLContent>
 </Routine>
@@ -2420,6 +2979,86 @@
 <Rung Number="26" Type="N">
 <Text><![CDATA[XIC(HMI_HVAC_Alarm_Reset)OTU(HMI_HVAC_Alarm_Reset);]]></Text>
 </Rung>
+<Rung Number="27" Type="N">
+<Comment><![CDATA[Freeze warning when temp at or below warning setpoint]]></Comment>
+<Text><![CDATA[LEQ(Outdoor_Temp_F,Freeze_Warning_SP)OTL(Freeze_Warning);]]></Text>
+</Rung>
+<Rung Number="28" Type="N">
+<Comment><![CDATA[Freeze critical when temp at or below critical setpoint]]></Comment>
+<Text><![CDATA[LEQ(Outdoor_Temp_F,Freeze_Critical_SP)OTL(Freeze_Critical);]]></Text>
+</Rung>
+<Rung Number="29" Type="N">
+<Comment><![CDATA[Clear freeze warning when temp above warning SP and HMI reset]]></Comment>
+<Text><![CDATA[XIC(HMI_Freeze_Alarm_Reset)GRT(Outdoor_Temp_F,Freeze_Warning_SP)OTU(Freeze_Warning);]]></Text>
+</Rung>
+<Rung Number="30" Type="N">
+<Comment><![CDATA[Clear freeze critical when temp above critical SP and HMI reset]]></Comment>
+<Text><![CDATA[XIC(HMI_Freeze_Alarm_Reset)GRT(Outdoor_Temp_F,Freeze_Critical_SP)OTU(Freeze_Critical);]]></Text>
+</Rung>
+<Rung Number="31" Type="N">
+<Comment><![CDATA[Clear HMI freeze alarm reset]]></Comment>
+<Text><![CDATA[XIC(HMI_Freeze_Alarm_Reset)OTU(HMI_Freeze_Alarm_Reset);]]></Text>
+</Rung>
+<Rung Number="32" Type="N">
+<Comment><![CDATA[Track daily furnace run seconds]]></Comment>
+<Text><![CDATA[XIC(HVAC_Furnace_Running)XIC(Pulse_1s)ADD(HVAC_Daily_Run_Seconds,1,HVAC_Daily_Run_Seconds);]]></Text>
+</Rung>
+<Rung Number="33" Type="N">
+<Comment><![CDATA[Count HDD hourly seconds]]></Comment>
+<Text><![CDATA[XIC(Pulse_1s)ADD(HVAC_HDD_Hourly_Seconds,1,HVAC_HDD_Hourly_Seconds);]]></Text>
+</Rung>
+<Rung Number="34" Type="N">
+<Comment><![CDATA[Accumulate HDD hourly: HDD += max(0,(65-temp)/24) every 3600s]]></Comment>
+<Text><![CDATA[GEQ(HVAC_HDD_Hourly_Seconds,3600)SUB(65.0,Outdoor_Temp_F,HVAC_Daily_HDD);]]></Text>
+</Rung>
+<Rung Number="35" Type="N">
+<Comment><![CDATA[HDD: divide by 24 for hourly fraction]]></Comment>
+<Text><![CDATA[GEQ(HVAC_HDD_Hourly_Seconds,3600)DIV(HVAC_Daily_HDD,24.0,HVAC_Daily_HDD);]]></Text>
+</Rung>
+<Rung Number="36" Type="N">
+<Comment><![CDATA[HDD: clamp negative to zero]]></Comment>
+<Text><![CDATA[LES(HVAC_Daily_HDD,0.0)MOV(0.0,HVAC_Daily_HDD);]]></Text>
+</Rung>
+<Rung Number="37" Type="N">
+<Comment><![CDATA[HDD: add hourly fraction to accumulated]]></Comment>
+<Text><![CDATA[GEQ(HVAC_HDD_Hourly_Seconds,3600)ADD(HVAC_HDD_Accumulated,HVAC_Daily_HDD,HVAC_HDD_Accumulated);]]></Text>
+</Rung>
+<Rung Number="38" Type="N">
+<Comment><![CDATA[HDD: reset hourly seconds counter]]></Comment>
+<Text><![CDATA[GEQ(HVAC_HDD_Hourly_Seconds,3600)MOV(0,HVAC_HDD_Hourly_Seconds);]]></Text>
+</Rung>
+<Rung Number="39" Type="N">
+<Comment><![CDATA[Compute runtime to HDD ratio (avoid div by zero)]]></Comment>
+<Text><![CDATA[GRT(HVAC_HDD_Accumulated,0.0)DIV(HVAC_Daily_Run_Seconds,HVAC_HDD_Accumulated,HVAC_HDD_Runtime_Ratio);]]></Text>
+</Rung>
+<Rung Number="40" Type="N">
+<Comment><![CDATA[Compute efficiency pct = ratio/baseline * 100]]></Comment>
+<Text><![CDATA[GRT(HVAC_HDD_Baseline_Ratio,0.0)DIV(HVAC_HDD_Runtime_Ratio,HVAC_HDD_Baseline_Ratio,HVAC_Efficiency_Pct);]]></Text>
+</Rung>
+<Rung Number="41" Type="N">
+<Comment><![CDATA[Scale efficiency to percentage]]></Comment>
+<Text><![CDATA[MUL(HVAC_Efficiency_Pct,100.0,HVAC_Efficiency_Pct);]]></Text>
+</Rung>
+<Rung Number="42" Type="N">
+<Comment><![CDATA[Efficiency alarm when above threshold]]></Comment>
+<Text><![CDATA[GRT(HVAC_Efficiency_Pct,HVAC_Efficiency_Threshold)OTL(HVAC_Efficiency_Alarm);]]></Text>
+</Rung>
+<Rung Number="43" Type="N">
+<Comment><![CDATA[HMI efficiency reset - clear accumulated data]]></Comment>
+<Text><![CDATA[XIC(HMI_HVAC_Efficiency_Reset)MOV(0,HVAC_Daily_Run_Seconds);]]></Text>
+</Rung>
+<Rung Number="44" Type="N">
+<Text><![CDATA[XIC(HMI_HVAC_Efficiency_Reset)MOV(0.0,HVAC_HDD_Accumulated);]]></Text>
+</Rung>
+<Rung Number="45" Type="N">
+<Text><![CDATA[XIC(HMI_HVAC_Efficiency_Reset)MOV(0.0,HVAC_Efficiency_Pct);]]></Text>
+</Rung>
+<Rung Number="46" Type="N">
+<Text><![CDATA[XIC(HMI_HVAC_Efficiency_Reset)OTU(HVAC_Efficiency_Alarm);]]></Text>
+</Rung>
+<Rung Number="47" Type="N">
+<Text><![CDATA[XIC(HMI_HVAC_Efficiency_Reset)OTU(HMI_HVAC_Efficiency_Reset);]]></Text>
+</Rung>
 </RLLContent>
 </Routine>
 <Routine Name="Electrical_Monitor" Type="RLL">
@@ -2480,6 +3119,216 @@
 </Rung>
 <Rung Number="14" Type="N">
 <Text><![CDATA[XIC(HMI_Elec_Alarm_Reset)OTU(HMI_Elec_Alarm_Reset);]]></Text>
+</Rung>
+<Rung Number="15" Type="N">
+<Comment><![CDATA[Load shed timer - on generator and above threshold for 10s]]></Comment>
+<Text><![CDATA[XIC(Gen_On_Generator)GRT(Elec_Current_Amps,Load_Shed_Threshold)TON(Load_Shed_Timer,10000,0);]]></Text>
+</Rung>
+<Rung Number="16" Type="N">
+<Comment><![CDATA[Latch load shed active]]></Comment>
+<Text><![CDATA[XIC(Load_Shed_Timer.DN)OTL(Load_Shed_Active);]]></Text>
+</Rung>
+<Rung Number="17" Type="N">
+<Comment><![CDATA[Auto-clear load shed when not on generator or HMI reset]]></Comment>
+<Text><![CDATA[[XIO(Gen_On_Generator),XIC(HMI_Load_Shed_Reset)]OTU(Load_Shed_Active);]]></Text>
+</Rung>
+<Rung Number="18" Type="N">
+<Comment><![CDATA[Clear HMI load shed reset]]></Comment>
+<Text><![CDATA[XIC(HMI_Load_Shed_Reset)OTU(HMI_Load_Shed_Reset);]]></Text>
+</Rung>
+<Rung Number="19" Type="N">
+<Comment><![CDATA[Load shed HVAC output]]></Comment>
+<Text><![CDATA[XIC(Load_Shed_Active)OTE(Load_Shed_HVAC);]]></Text>
+</Rung>
+<Rung Number="20" Type="N">
+<Comment><![CDATA[Load shed non-critical 1 output]]></Comment>
+<Text><![CDATA[XIC(Load_Shed_Active)OTE(Load_Shed_NonCritical1);]]></Text>
+</Rung>
+<Rung Number="21" Type="N">
+<Comment><![CDATA[Load shed non-critical 2 output]]></Comment>
+<Text><![CDATA[XIC(Load_Shed_Active)OTE(Load_Shed_NonCritical2);]]></Text>
+</Rung>
+</RLLContent>
+</Routine>
+<Routine Name="Leak_Detection" Type="RLL">
+<RLLContent>
+<Rung Number="0" Type="N">
+<Comment><![CDATA[Any leak zone active - latch alarm]]></Comment>
+<Text><![CDATA[[XIC(Leak_Zone1),XIC(Leak_Zone2),XIC(Leak_Zone3)]OTL(Leak_Any_Alarm);]]></Text>
+</Rung>
+<Rung Number="1" Type="N">
+<Comment><![CDATA[Reset leak alarm only when all zones clear]]></Comment>
+<Text><![CDATA[XIC(HMI_Leak_Alarm_Reset)XIO(Leak_Zone1)XIO(Leak_Zone2)XIO(Leak_Zone3)OTU(Leak_Any_Alarm);]]></Text>
+</Rung>
+<Rung Number="2" Type="N">
+<Comment><![CDATA[Clear HMI leak alarm reset]]></Comment>
+<Text><![CDATA[XIC(HMI_Leak_Alarm_Reset)OTU(HMI_Leak_Alarm_Reset);]]></Text>
+</Rung>
+</RLLContent>
+</Routine>
+<Routine Name="Garage_Monitor" Type="RLL">
+<RLLContent>
+<Rung Number="0" Type="N">
+<Comment><![CDATA[Garage door open when not closed]]></Comment>
+<Text><![CDATA[XIO(Garage_Door_Closed)OTE(Garage_Door_Open);]]></Text>
+</Rung>
+<Rung Number="1" Type="N">
+<Comment><![CDATA[Track garage open duration]]></Comment>
+<Text><![CDATA[XIC(Garage_Door_Open)XIC(Pulse_1s)ADD(Garage_Open_Seconds,1,Garage_Open_Seconds);]]></Text>
+</Rung>
+<Rung Number="2" Type="N">
+<Comment><![CDATA[Reset open counter when door closed]]></Comment>
+<Text><![CDATA[XIO(Garage_Door_Open)MOV(0,Garage_Open_Seconds);]]></Text>
+</Rung>
+<Rung Number="3" Type="N">
+<Comment><![CDATA[Alarm when open too long]]></Comment>
+<Text><![CDATA[GEQ(Garage_Open_Seconds,Garage_Open_Max_Seconds)OTL(Garage_Open_Alarm);]]></Text>
+</Rung>
+<Rung Number="4" Type="N">
+<Comment><![CDATA[Reset garage alarm when door closed and HMI reset]]></Comment>
+<Text><![CDATA[XIC(HMI_Garage_Alarm_Reset)XIC(Garage_Door_Closed)OTU(Garage_Open_Alarm);]]></Text>
+</Rung>
+<Rung Number="5" Type="N">
+<Comment><![CDATA[Clear HMI garage alarm reset]]></Comment>
+<Text><![CDATA[XIC(HMI_Garage_Alarm_Reset)OTU(HMI_Garage_Alarm_Reset);]]></Text>
+</Rung>
+</RLLContent>
+</Routine>
+<Routine Name="Well_Pump_Monitor" Type="RLL">
+<RLLContent>
+<Rung Number="0" Type="N">
+<Comment><![CDATA[Well pump short cycle detection window 60s]]></Comment>
+<Text><![CDATA[XIO(Well_Pump_Running)TON(Well_Short_Cycle_Timer,60000,0);]]></Text>
+</Rung>
+<Rung Number="1" Type="N">
+<Comment><![CDATA[Count well pump cycle on start]]></Comment>
+<Text><![CDATA[XIC(Well_Pump_Running)XIO(Well_Pump_Cycle_ONS)ADD(Well_Pump_Cycle_Count,1,Well_Pump_Cycle_Count);]]></Text>
+</Rung>
+<Rung Number="2" Type="N">
+<Comment><![CDATA[Set well pump cycle one-shot]]></Comment>
+<Text><![CDATA[XIC(Well_Pump_Running)OTL(Well_Pump_Cycle_ONS);]]></Text>
+</Rung>
+<Rung Number="3" Type="N">
+<Comment><![CDATA[Clear well pump cycle one-shot]]></Comment>
+<Text><![CDATA[XIO(Well_Pump_Running)OTU(Well_Pump_Cycle_ONS);]]></Text>
+</Rung>
+<Rung Number="4" Type="N">
+<Comment><![CDATA[Track well pump current run seconds]]></Comment>
+<Text><![CDATA[XIC(Well_Pump_Running)XIC(Pulse_1s)ADD(Well_Pump_Current_Run_Seconds,1,Well_Pump_Current_Run_Seconds);]]></Text>
+</Rung>
+<Rung Number="5" Type="N">
+<Comment><![CDATA[Save last run on pump stop]]></Comment>
+<Text><![CDATA[XIO(Well_Pump_Running)XIC(Well_Pump_Cycle_ONS)MOV(Well_Pump_Current_Run_Seconds,Well_Pump_Last_Run_Seconds);]]></Text>
+</Rung>
+<Rung Number="6" Type="N">
+<Comment><![CDATA[Short cycle detect - run less than minimum]]></Comment>
+<Text><![CDATA[XIO(Well_Pump_Running)XIC(Well_Pump_Cycle_ONS)LES(Well_Pump_Current_Run_Seconds,Well_Pump_Min_Run_Seconds)ADD(Well_Pump_Short_Cycle_Count,1,Well_Pump_Short_Cycle_Count);]]></Text>
+</Rung>
+<Rung Number="7" Type="N">
+<Comment><![CDATA[Clear short cycle count on normal run]]></Comment>
+<Text><![CDATA[XIO(Well_Pump_Running)XIC(Well_Pump_Cycle_ONS)GEQ(Well_Pump_Current_Run_Seconds,Well_Pump_Min_Run_Seconds)MOV(0,Well_Pump_Short_Cycle_Count);]]></Text>
+</Rung>
+<Rung Number="8" Type="N">
+<Comment><![CDATA[Clear current run seconds on pump stop]]></Comment>
+<Text><![CDATA[XIO(Well_Pump_Running)MOV(0,Well_Pump_Current_Run_Seconds);]]></Text>
+</Rung>
+<Rung Number="9" Type="N">
+<Comment><![CDATA[Short cycle alarm at 3 consecutive]]></Comment>
+<Text><![CDATA[GEQ(Well_Pump_Short_Cycle_Count,3)OTL(Well_Pump_Short_Cycle_Alarm);]]></Text>
+</Rung>
+<Rung Number="10" Type="N">
+<Comment><![CDATA[Low water pressure alarm]]></Comment>
+<Text><![CDATA[LES(Water_Pressure_PSI,Water_Pressure_Low_SP)OTL(Water_Pressure_Low_Alarm);]]></Text>
+</Rung>
+<Rung Number="11" Type="N">
+<Comment><![CDATA[Clear low pressure when above setpoint]]></Comment>
+<Text><![CDATA[GEQ(Water_Pressure_PSI,Water_Pressure_Low_SP)OTU(Water_Pressure_Low_Alarm);]]></Text>
+</Rung>
+<Rung Number="12" Type="N">
+<Comment><![CDATA[HMI well alarm reset - clear short cycle alarm]]></Comment>
+<Text><![CDATA[XIC(HMI_Well_Alarm_Reset)OTU(Well_Pump_Short_Cycle_Alarm);]]></Text>
+</Rung>
+<Rung Number="13" Type="N">
+<Comment><![CDATA[HMI well alarm reset - clear short cycle count]]></Comment>
+<Text><![CDATA[XIC(HMI_Well_Alarm_Reset)MOV(0,Well_Pump_Short_Cycle_Count);]]></Text>
+</Rung>
+<Rung Number="14" Type="N">
+<Comment><![CDATA[Clear HMI well alarm reset]]></Comment>
+<Text><![CDATA[XIC(HMI_Well_Alarm_Reset)OTU(HMI_Well_Alarm_Reset);]]></Text>
+</Rung>
+</RLLContent>
+</Routine>
+<Routine Name="Maintenance_Monitor" Type="RLL">
+<RLLContent>
+<Rung Number="0" Type="N">
+<Comment><![CDATA[Track gen run seconds since oil change]]></Comment>
+<Text><![CDATA[XIC(Gen_Running)XIC(Pulse_1s)ADD(Maint_Gen_Run_Since_Oil,1,Maint_Gen_Run_Since_Oil);]]></Text>
+</Rung>
+<Rung Number="1" Type="N">
+<Comment><![CDATA[Convert gen run seconds to hours]]></Comment>
+<Text><![CDATA[DIV(Maint_Gen_Run_Since_Oil,3600,Maint_Gen_Hours_Since_Oil);]]></Text>
+</Rung>
+<Rung Number="2" Type="N">
+<Comment><![CDATA[Gen oil change due]]></Comment>
+<Text><![CDATA[GEQ(Maint_Gen_Hours_Since_Oil,Maint_Gen_Oil_Hours)OTL(Maint_Gen_Oil_Due);]]></Text>
+</Rung>
+<Rung Number="3" Type="N">
+<Comment><![CDATA[HMI gen oil reset]]></Comment>
+<Text><![CDATA[XIC(HMI_Maint_Gen_Oil_Reset)MOV(0,Maint_Gen_Run_Since_Oil);]]></Text>
+</Rung>
+<Rung Number="4" Type="N">
+<Text><![CDATA[XIC(HMI_Maint_Gen_Oil_Reset)OTU(Maint_Gen_Oil_Due);]]></Text>
+</Rung>
+<Rung Number="5" Type="N">
+<Text><![CDATA[XIC(HMI_Maint_Gen_Oil_Reset)OTU(HMI_Maint_Gen_Oil_Reset);]]></Text>
+</Rung>
+<Rung Number="6" Type="N">
+<Comment><![CDATA[Track sump cycles since inspection]]></Comment>
+<Text><![CDATA[XIC(Sump_Pump_Run)XIO(Maint_Sump_Cycle_ONS)ADD(Maint_Sump_Cycles_Since_Inspect,1,Maint_Sump_Cycles_Since_Inspect);]]></Text>
+</Rung>
+<Rung Number="7" Type="N">
+<Comment><![CDATA[Set maint sump cycle one-shot]]></Comment>
+<Text><![CDATA[XIC(Sump_Pump_Run)OTL(Maint_Sump_Cycle_ONS);]]></Text>
+</Rung>
+<Rung Number="8" Type="N">
+<Comment><![CDATA[Clear maint sump cycle one-shot]]></Comment>
+<Text><![CDATA[XIO(Sump_Pump_Run)OTU(Maint_Sump_Cycle_ONS);]]></Text>
+</Rung>
+<Rung Number="9" Type="N">
+<Comment><![CDATA[Sump inspection due]]></Comment>
+<Text><![CDATA[GEQ(Maint_Sump_Cycles_Since_Inspect,Maint_Sump_Inspect_Cycles)OTL(Maint_Sump_Inspect_Due);]]></Text>
+</Rung>
+<Rung Number="10" Type="N">
+<Comment><![CDATA[HMI sump inspect reset - clear cycle counter]]></Comment>
+<Text><![CDATA[XIC(HMI_Maint_Sump_Reset)MOV(0,Maint_Sump_Cycles_Since_Inspect);]]></Text>
+</Rung>
+<Rung Number="11" Type="N">
+<Text><![CDATA[XIC(HMI_Maint_Sump_Reset)OTU(Maint_Sump_Inspect_Due);]]></Text>
+</Rung>
+<Rung Number="12" Type="N">
+<Text><![CDATA[XIC(HMI_Maint_Sump_Reset)OTU(HMI_Maint_Sump_Reset);]]></Text>
+</Rung>
+<Rung Number="13" Type="N">
+<Comment><![CDATA[Track furnace run seconds since inspection]]></Comment>
+<Text><![CDATA[XIC(HVAC_Furnace_Running)XIC(Pulse_1s)ADD(Maint_Furnace_Run_Since_Inspect,1,Maint_Furnace_Run_Since_Inspect);]]></Text>
+</Rung>
+<Rung Number="14" Type="N">
+<Comment><![CDATA[Convert furnace run seconds to hours]]></Comment>
+<Text><![CDATA[DIV(Maint_Furnace_Run_Since_Inspect,3600,Maint_Furnace_Hours_Since_Inspect);]]></Text>
+</Rung>
+<Rung Number="15" Type="N">
+<Comment><![CDATA[Furnace inspection due]]></Comment>
+<Text><![CDATA[GEQ(Maint_Furnace_Hours_Since_Inspect,Maint_Furnace_Inspect_Hours)OTL(Maint_Furnace_Inspect_Due);]]></Text>
+</Rung>
+<Rung Number="16" Type="N">
+<Comment><![CDATA[HMI furnace inspect reset]]></Comment>
+<Text><![CDATA[XIC(HMI_Maint_Furnace_Reset)MOV(0,Maint_Furnace_Run_Since_Inspect);]]></Text>
+</Rung>
+<Rung Number="17" Type="N">
+<Text><![CDATA[XIC(HMI_Maint_Furnace_Reset)OTU(Maint_Furnace_Inspect_Due);]]></Text>
+</Rung>
+<Rung Number="18" Type="N">
+<Text><![CDATA[XIC(HMI_Maint_Furnace_Reset)OTU(HMI_Maint_Furnace_Reset);]]></Text>
 </Rung>
 </RLLContent>
 </Routine>
@@ -2626,8 +3475,92 @@
 <Text><![CDATA[XIC(Elec_Gen_Overload_Alarm)OTE(HMI_Elec_Gen_Overload_Alarm);]]></Text>
 </Rung>
 <Rung Number="35" Type="N">
+<Comment><![CDATA[Freeze warning to HMI]]></Comment>
+<Text><![CDATA[XIC(Freeze_Warning)OTE(HMI_Freeze_Warning);]]></Text>
+</Rung>
+<Rung Number="36" Type="N">
+<Comment><![CDATA[Freeze critical to HMI]]></Comment>
+<Text><![CDATA[XIC(Freeze_Critical)OTE(HMI_Freeze_Critical);]]></Text>
+</Rung>
+<Rung Number="37" Type="N">
+<Comment><![CDATA[Sump cycle rate alarm to HMI]]></Comment>
+<Text><![CDATA[XIC(Sump_Cycle_Rate_Alarm)OTE(HMI_Sump_Cycle_Rate_Alarm);]]></Text>
+</Rung>
+<Rung Number="38" Type="N">
+<Comment><![CDATA[Leak alarm to HMI]]></Comment>
+<Text><![CDATA[XIC(Leak_Any_Alarm)OTE(HMI_Leak_Any_Alarm);]]></Text>
+</Rung>
+<Rung Number="39" Type="N">
+<Comment><![CDATA[Garage open alarm to HMI]]></Comment>
+<Text><![CDATA[XIC(Garage_Open_Alarm)OTE(HMI_Garage_Open_Alarm);]]></Text>
+</Rung>
+<Rung Number="40" Type="N">
+<Comment><![CDATA[Garage open seconds to HMI]]></Comment>
+<Text><![CDATA[MOV(Garage_Open_Seconds,HMI_Garage_Open_Seconds);]]></Text>
+</Rung>
+<Rung Number="41" Type="N">
+<Comment><![CDATA[Well pump running to HMI]]></Comment>
+<Text><![CDATA[XIC(Well_Pump_Running)OTE(HMI_Well_Pump_Running);]]></Text>
+</Rung>
+<Rung Number="42" Type="N">
+<Comment><![CDATA[Well pump short cycle alarm to HMI]]></Comment>
+<Text><![CDATA[XIC(Well_Pump_Short_Cycle_Alarm)OTE(HMI_Well_Short_Cycle_Alarm);]]></Text>
+</Rung>
+<Rung Number="43" Type="N">
+<Comment><![CDATA[Water pressure low alarm to HMI]]></Comment>
+<Text><![CDATA[XIC(Water_Pressure_Low_Alarm)OTE(HMI_Water_Pressure_Low_Alarm);]]></Text>
+</Rung>
+<Rung Number="44" Type="N">
+<Comment><![CDATA[Water pressure to HMI]]></Comment>
+<Text><![CDATA[MOV(Water_Pressure_PSI,HMI_Water_Pressure_PSI);]]></Text>
+</Rung>
+<Rung Number="45" Type="N">
+<Comment><![CDATA[Well pump cycle count to HMI]]></Comment>
+<Text><![CDATA[MOV(Well_Pump_Cycle_Count,HMI_Well_Pump_Cycle_Count);]]></Text>
+</Rung>
+<Rung Number="46" Type="N">
+<Comment><![CDATA[Well pump last run to HMI]]></Comment>
+<Text><![CDATA[MOV(Well_Pump_Last_Run_Seconds,HMI_Well_Pump_Last_Run_Seconds);]]></Text>
+</Rung>
+<Rung Number="47" Type="N">
+<Comment><![CDATA[Load shed active to HMI]]></Comment>
+<Text><![CDATA[XIC(Load_Shed_Active)OTE(HMI_Load_Shed_Active);]]></Text>
+</Rung>
+<Rung Number="48" Type="N">
+<Comment><![CDATA[Gen oil due to HMI]]></Comment>
+<Text><![CDATA[XIC(Maint_Gen_Oil_Due)OTE(HMI_Maint_Gen_Oil_Due);]]></Text>
+</Rung>
+<Rung Number="49" Type="N">
+<Comment><![CDATA[Sump inspect due to HMI]]></Comment>
+<Text><![CDATA[XIC(Maint_Sump_Inspect_Due)OTE(HMI_Maint_Sump_Inspect_Due);]]></Text>
+</Rung>
+<Rung Number="50" Type="N">
+<Comment><![CDATA[Furnace inspect due to HMI]]></Comment>
+<Text><![CDATA[XIC(Maint_Furnace_Inspect_Due)OTE(HMI_Maint_Furnace_Inspect_Due);]]></Text>
+</Rung>
+<Rung Number="51" Type="N">
+<Comment><![CDATA[Gen hours since oil to HMI]]></Comment>
+<Text><![CDATA[MOV(Maint_Gen_Hours_Since_Oil,HMI_Maint_Gen_Hours_Since_Oil);]]></Text>
+</Rung>
+<Rung Number="52" Type="N">
+<Comment><![CDATA[Sump cycles since inspect to HMI]]></Comment>
+<Text><![CDATA[MOV(Maint_Sump_Cycles_Since_Inspect,HMI_Maint_Sump_Cycles_Since_Inspect);]]></Text>
+</Rung>
+<Rung Number="53" Type="N">
+<Comment><![CDATA[Furnace hours since inspect to HMI]]></Comment>
+<Text><![CDATA[MOV(Maint_Furnace_Hours_Since_Inspect,HMI_Maint_Furnace_Hours_Since_Inspect);]]></Text>
+</Rung>
+<Rung Number="54" Type="N">
+<Comment><![CDATA[HVAC efficiency pct to HMI]]></Comment>
+<Text><![CDATA[MOV(HVAC_Efficiency_Pct,HMI_HVAC_Efficiency_Pct);]]></Text>
+</Rung>
+<Rung Number="55" Type="N">
+<Comment><![CDATA[HVAC efficiency alarm to HMI]]></Comment>
+<Text><![CDATA[XIC(HVAC_Efficiency_Alarm)OTE(HMI_HVAC_Efficiency_Alarm);]]></Text>
+</Rung>
+<Rung Number="56" Type="N">
 <Comment><![CDATA[Any alarm active for HMI banner]]></Comment>
-<Text><![CDATA[[XIC(Gen_Start_Fail),XIC(Gen_Stop_Fail),XIC(Gen_Fault),XIC(Sump_Max_Run_Fault),XIC(HVAC_Short_Cycle_Alarm),XIC(HVAC_Filter_Change_Due),XIC(Elec_Overload_Alarm),XIC(Elec_Gen_Overload_Alarm)]OTE(HMI_Any_Alarm);]]></Text>
+<Text><![CDATA[[XIC(Gen_Start_Fail),XIC(Gen_Stop_Fail),XIC(Gen_Fault),XIC(Sump_Max_Run_Fault),XIC(Sump_Cycle_Rate_Alarm),XIC(HVAC_Short_Cycle_Alarm),XIC(HVAC_Filter_Change_Due),XIC(HVAC_Efficiency_Alarm),XIC(Elec_Overload_Alarm),XIC(Elec_Gen_Overload_Alarm),XIC(Freeze_Warning),XIC(Freeze_Critical),XIC(Leak_Any_Alarm),XIC(Garage_Open_Alarm),XIC(Well_Pump_Short_Cycle_Alarm),XIC(Water_Pressure_Low_Alarm),XIC(Load_Shed_Active),XIC(Maint_Gen_Oil_Due),XIC(Maint_Sump_Inspect_Due),XIC(Maint_Furnace_Inspect_Due)]OTE(HMI_Any_Alarm);]]></Text>
 </Rung>
 </RLLContent>
 </Routine>
@@ -2644,6 +3577,18 @@
 <Rung Number="2" Type="N">
 <Comment><![CDATA[Sump pump run to Pt02]]></Comment>
 <Text><![CDATA[XIC(Sump_Pump_Run)OTE(Local:2:O.Pt02.Data);]]></Text>
+</Rung>
+<Rung Number="3" Type="N">
+<Comment><![CDATA[Load shed HVAC to Pt03]]></Comment>
+<Text><![CDATA[XIC(Load_Shed_HVAC)OTE(Local:2:O.Pt03.Data);]]></Text>
+</Rung>
+<Rung Number="4" Type="N">
+<Comment><![CDATA[Load shed non-critical 1 to Pt04]]></Comment>
+<Text><![CDATA[XIC(Load_Shed_NonCritical1)OTE(Local:2:O.Pt04.Data);]]></Text>
+</Rung>
+<Rung Number="5" Type="N">
+<Comment><![CDATA[Load shed non-critical 2 to Pt05]]></Comment>
+<Text><![CDATA[XIC(Load_Shed_NonCritical2)OTE(Local:2:O.Pt05.Data);]]></Text>
 </Rung>
 </RLLContent>
 </Routine>

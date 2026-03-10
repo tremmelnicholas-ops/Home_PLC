@@ -227,6 +227,9 @@ body {
 .btn-yellow { border-color: var(--yellow); color: var(--yellow); }
 .btn-yellow:hover { background: var(--yellow); color: white; }
 
+.btn-orange { border-color: var(--orange); color: var(--orange); }
+.btn-orange:hover { background: var(--orange); color: white; }
+
 /* State colors */
 .state-idle { background: #2c3e50; color: #bdc3c7; }
 .state-running { background: var(--green); color: white; }
@@ -234,6 +237,10 @@ body {
 .state-fault { background: var(--red); color: white; animation: alarm-flash 1s infinite; }
 .state-exercise { background: var(--purple); color: white; }
 .state-transition { background: var(--blue); color: white; }
+.state-ok { background: var(--green); color: white; }
+.state-alarm { background: var(--red); color: white; animation: alarm-flash 1s infinite; }
+.state-closed { background: var(--green); color: white; }
+.state-open { background: var(--yellow); color: #333; }
 
 /* Temp display */
 .temp-display {
@@ -276,6 +283,66 @@ body {
     padding-left: 8px;
     font-size: 0.75rem;
     font-weight: 600;
+}
+
+/* Pressure bar (water pressure gauge) */
+.pressure-bar-container {
+    margin: 10px 0;
+    background: #0a0a1a;
+    border-radius: 4px;
+    height: 24px;
+    position: relative;
+    overflow: hidden;
+}
+
+.pressure-bar {
+    height: 100%;
+    border-radius: 4px;
+    transition: width 0.5s, background 0.5s;
+    display: flex;
+    align-items: center;
+    padding-left: 8px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+/* Maintenance progress display */
+.maint-progress {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.maint-progress .maint-bar-bg {
+    flex: 1;
+    height: 8px;
+    background: #0a0a1a;
+    border-radius: 4px;
+    overflow: hidden;
+    min-width: 60px;
+}
+
+.maint-progress .maint-bar-fill {
+    height: 100%;
+    border-radius: 4px;
+    transition: width 0.5s, background 0.5s;
+    background: var(--green);
+}
+
+.maint-progress .maint-bar-fill.due {
+    background: var(--red);
+}
+
+.maint-progress .maint-bar-fill.warn {
+    background: var(--yellow);
+}
+
+.maint-progress .maint-text {
+    font-size: 0.8rem;
+    font-weight: 500;
+    white-space: nowrap;
+    min-width: 80px;
+    text-align: right;
 }
 
 /* Simulation controls */
